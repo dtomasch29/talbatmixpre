@@ -94,7 +94,7 @@
 using namespace FEAST;
 
 // We're opening a new namespace for our tutorial.
-namespace bath
+namespace Tutorial01
 {
   // We start with a set of typedefs, which make up the basic configuration for this
   // tutorial application. The general idea of these typedefs is (1) to avoid typing and
@@ -221,7 +221,8 @@ namespace bath
     // Moreover, we need a boundary condition filter. Filters can be used to apply boundary conditions
     // in matrices and vectors. Since we are using Dirichlet boundary conditions for our problem, we
     // need a so-called "unit filter".
-    typedef LAFEM::UnitFilter<MemType, DataTypeD> FilterType;
+    typedef LAFEM::UnitFilter<MemType, DataTypeD> FilterTypeF;
+    typedef LAFEM::UnitFilter<MemType, DataTypeD> FilterTypeD;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // Symbolic linear system assembly
@@ -320,7 +321,7 @@ namespace bath
         force_functional, // the functional that is to be assembled
         space,            // the finite element space in use
         cubature_factory, // the cubature factory to be used for integration
-        2.0 * Math::sqr(Math::pi<DataType>()) // this is our factor 2*pi^2
+        2.0 * Math::sqr(Math::pi<DataTypeD>()) // this is our factor 2*pi^2
         );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -345,7 +346,7 @@ namespace bath
 
     // Now, we need to assemble a unit-filter representing homogeneous Dirichlet BCs.
     // This is done by calling the 'assemble' function:
-    FilterType filter;
+    FilterTypeD filter;
     unit_asm.assemble(filter, space);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -369,14 +370,47 @@ namespace bath
     // the homogene Dirichlet boundary conditions.
 
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
+    MatrixTypeF matrix_F;
+    //Fetch and Convert Data:
+    matrix_F.convert(matrix);
     std::cout << "Solving linear system..." << std::endl;
 
-    // Create a SSOR preconditioner
-    auto precond = Solver::new_ssor_precond(matrix, filter);
+    VectorTypeD d_D(space.get_num_dofs());
+    VectorTypeD b_D(space.get_num_dofs());
+    VectorTypeD x_D(space.get_num_dofs());
+    VectorTypeD c_D(space.get_num_dofs());
 
+    VectorTypeF d_F(space.get_num_dofs());
+    VectorTypeF x_F(space.get_num_dofs());
+    VectorTypeF c_F(space.get_num_dofs());
+    VectorTypeF vec_rhs_F(space.get_num_dofs());
+    VectorTypeF vec_sol_F(space.get_num_dofs());
+    
+    //Definiere einen float filter:
+    FilterTypeF filter_F;
+    unit_asm.assemble(filter_F, space);
+    // Boundary Condition imposition
+
+    std::cout << "Imposing boundary conditions in float..." << std::endl;
+
+    // We have assembled the boundary conditions, but the linear system does not know about that
+    // yet. So we need to apply the filter onto the system matrix and both vectors now.
+
+    // Apply the filter onto the system matrix...
+    filter_F.filter_mat(matrix_F);
+
+    // ...the right-hand-side vector...
+    filter_F.filter_rhs(vec_rhs_F);
+
+    // ...and the solution vector.
+    filter_F.filter_sol(vec_sol_F);
+
+    //Erstelle nun einen Loeser mit float
+    // Create a SSOR preconditioner
+    auto precond = Solver::new_ssor_precond(matrix_F, filter_F);
+    
     // Create a PCG solver
-    auto solver = Solver::new_pcg(matrix, filter, precond);
+    auto solver = Solver::new_pcg(matrix_F, filter_F, precond);
 
     // Enable convergence plot
     solver->set_plot(true);
@@ -399,44 +433,30 @@ namespace bath
 
     // For this tutorial, we stick to a simple PCG-SSOR solver.
     //5 nachiterations schritte:
-    VectorTypeD d_D(space.get_num_dofs());
-    VectorTypeD b_D(space.get_num_dofs());
-    VectorTypeD x_D(space.get_num_dofs());
-    VectorTypeD c_D(space.get_num_dofs());
-
-    VectorTypeF d_F(space.get_num_dofs());
-    VectorTypeF x_F(space.get_num_dofs());
-    VectorTypeF c_F(space.get_num_dofs());
-
-    MatrixTypeF matrixF;
-    //Fetch and Convert Data:
-    matrixF::convert(const matrix);
-
-
-
+    
     //Solve: matrix * vec_sol = vec_rhs
     //Hence:
     //x = vec_sol
     //d = vec_rhs
     //Startwert fuer x_F
     c_F.convert(vec_rhs);
-    Solver::solve(*solver, x_F, c_F, matrixF, filter);
-    b_D = vec_rhs;
+    Solver::solve(*solver, x_F, c_F, matrix_F, filter_F);
+    b_D.copy(vec_rhs);
 
     for(int k = 0;k<5;k++)
     {
         //Use c_d as TMP memeory
         matrix.apply(c_D,x_D);
-        d_D.axpy(const c_D,const b_D,-1.0D);
+        d_D.axpy(c_D,b_D,-1.0D);
         //Convert d_D to d_F
         d_F.convert(d_D);
         //Jetzt Ac = d
-        Solver::solve(*solver, c_F, d_F, matrixF, filter);
+        Solver::solve(*solver, c_F, d_F, matrix_F, filter_F);
         //Convert c_F to c_D
         c_D.convert(c_F);
-        x_D.axpy(x_D,c_d,1.0D);
+        x_D.axpy(x_D,c_D,1.0D);
     }
-    vec_sol = x_D;
+    vec_sol.copy(x_D);
 
     // Release the solver
     solver->done();
@@ -460,7 +480,7 @@ namespace bath
     // We have already created the 'sine_bubble' object representing our analytical solution for
     // the assembly of the right-hand-side vector, so we may reuse it for the computation now:
 
-    Assembly::ScalarErrorInfo<DataType> errors = Assembly::ScalarErrorComputer<1>::compute(
+    Assembly::ScalarErrorInfo<DataTypeD> errors = Assembly::ScalarErrorComputer<1>::compute(
       vec_sol,          // the coefficient vector of the discrete solution
       sol_function,     // the analytic function object, declared for RHS assembly
       space,            // the finite element space
@@ -486,7 +506,7 @@ namespace bath
 
     // First, declare a vector that will receive the vertex projection of our solution.
     // We will also project and write out our right-hand-side, just for fun...
-    VectorType vertex_sol, vertex_rhs;
+    VectorTypeD vertex_sol, vertex_rhs;
 
     // And use the DiscreteVertexProjector class to do the dirty work:
     Assembly::DiscreteVertexProjector::project(
