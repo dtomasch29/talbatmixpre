@@ -547,7 +547,6 @@ int main(int argc, char* argv[])
   // Note that FEAST uses its own "Index" type rather than a wild mixture of int, uint, long
   // and such.
   Index level(3);
-//
 
   // Now let's see if we have command line parameters: This tutorial supports passing
   // the refinement level as a command line parameter, to investigate the behaviour of the L2/H1

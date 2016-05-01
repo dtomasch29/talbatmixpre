@@ -94,7 +94,7 @@
 using namespace FEAST;
 
 // We're opening a new namespace for our tutorial.
-namespace Tutorial01
+namespace bath
 {
   // We start with a set of typedefs, which make up the basic configuration for this
   // tutorial application. The general idea of these typedefs is (1) to avoid typing and
@@ -116,7 +116,6 @@ namespace Tutorial01
   // Moreover, we use main memory (aka "RAM") for our containers. FEAST supports GPUs and other
   // architectures, but we do not want to make use of anything that does not reside in host memory.
   typedef Mem::Main MemType;
-  typedef Mem::CUDA MemTypeCUDA;
 
   // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -211,19 +210,18 @@ namespace Tutorial01
     // Based on the two data and memory typedefs, we now define the vector type.
     // Since we have a scalar problem, we require a dense vector, which is simply FEAST's name for
     // contiguous storage.
-    typedef LAFEM::DenseVector<MemTypeCUDA, DataTypeD> VectorTypeD;
-    typedef LAFEM::DenseVector<MemTypeCUDA, DataTypeF> VectorTypeF;
+    typedef LAFEM::DenseVector<MemType, DataTypeD> VectorTypeD;
+    typedef LAFEM::DenseVector<MemType, DataTypeF> VectorTypeF;
 
     // Furthermore, for the discretised Poisson operator, we require a sparse matrix type.
     // We choose the CSR format here, because it is pretty much standard.
-    typedef LAFEM::SparseMatrixCSR<MemTypeCUDA, DataTypeD> MatrixTypeD;
-    typedef LAFEM::SparseMatrixCSR<MemTypeCUDA, DataTypeF> MatrixTypeF;
+    typedef LAFEM::SparseMatrixCSR<MemType, DataTypeD> MatrixTypeD;
+    typedef LAFEM::SparseMatrixCSR<MemType, DataTypeF> MatrixTypeF;
 
     // Moreover, we need a boundary condition filter. Filters can be used to apply boundary conditions
     // in matrices and vectors. Since we are using Dirichlet boundary conditions for our problem, we
     // need a so-called "unit filter".
-    typedef LAFEM::UnitFilter<MemTypeCUDA, DataTypeF> FilterTypeF;
-    typedef LAFEM::UnitFilter<MemTypeCUDA, DataTypeD> FilterTypeD;
+    typedef LAFEM::UnitFilter<MemType, DataTypeD> FilterType;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // Symbolic linear system assembly
@@ -322,7 +320,7 @@ namespace Tutorial01
         force_functional, // the functional that is to be assembled
         space,            // the finite element space in use
         cubature_factory, // the cubature factory to be used for integration
-        2.0 * Math::sqr(Math::pi<DataTypeD>()) // this is our factor 2*pi^2
+        2.0 * Math::sqr(Math::pi<DataType>()) // this is our factor 2*pi^2
         );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -347,7 +345,7 @@ namespace Tutorial01
 
     // Now, we need to assemble a unit-filter representing homogeneous Dirichlet BCs.
     // This is done by calling the 'assemble' function:
-    FilterTypeD filter;
+    FilterType filter;
     unit_asm.assemble(filter, space);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -371,47 +369,14 @@ namespace Tutorial01
     // the homogene Dirichlet boundary conditions.
 
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    MatrixTypeF matrix_F;
-    //Fetch and Convert Data:
-    matrix_F.convert(matrix);
+
     std::cout << "Solving linear system..." << std::endl;
 
-    VectorTypeD d_D(space.get_num_dofs());
-    VectorTypeD b_D(space.get_num_dofs());
-    VectorTypeD x_D(space.get_num_dofs());
-    VectorTypeD c_D(space.get_num_dofs());
-
-    VectorTypeF d_F(space.get_num_dofs());
-    VectorTypeF x_F(space.get_num_dofs());
-    VectorTypeF c_F(space.get_num_dofs());
-    VectorTypeF vec_rhs_F(space.get_num_dofs());
-    VectorTypeF vec_sol_F(space.get_num_dofs());
-    
-    //Definiere einen float filter:
-    FilterTypeF filter_F;
-    unit_asm.assemble(filter_F, space);
-    // Boundary Condition imposition
-
-    std::cout << "Imposing boundary conditions in float..." << std::endl;
-
-    // We have assembled the boundary conditions, but the linear system does not know about that
-    // yet. So we need to apply the filter onto the system matrix and both vectors now.
-
-    // Apply the filter onto the system matrix...
-    filter_F.filter_mat(matrix_F);
-
-    // ...the right-hand-side vector...
-    filter_F.filter_rhs(vec_rhs_F);
-
-    // ...and the solution vector.
-    filter_F.filter_sol(vec_sol_F);
-
-    //Erstelle nun einen Loeser mit float
     // Create a SSOR preconditioner
-    auto precond = Solver::new_ssor_precond(matrix_F, filter_F);
-    
+    auto precond = Solver::new_ssor_precond(matrix, filter);
+
     // Create a PCG solver
-    auto solver = Solver::new_pcg(matrix_F, filter_F, precond);
+    auto solver = Solver::new_pcg(matrix, filter, precond);
 
     // Enable convergence plot
     solver->set_plot(true);
@@ -434,30 +399,44 @@ namespace Tutorial01
 
     // For this tutorial, we stick to a simple PCG-SSOR solver.
     //5 nachiterations schritte:
-    
+    VectorTypeD d_D(space.get_num_dofs());
+    VectorTypeD b_D(space.get_num_dofs());
+    VectorTypeD x_D(space.get_num_dofs());
+    VectorTypeD c_D(space.get_num_dofs());
+
+    VectorTypeF d_F(space.get_num_dofs());
+    VectorTypeF x_F(space.get_num_dofs());
+    VectorTypeF c_F(space.get_num_dofs());
+
+    MatrixTypeF matrixF;
+    //Fetch and Convert Data:
+    matrixF::convert(const matrix);
+
+
+
     //Solve: matrix * vec_sol = vec_rhs
     //Hence:
     //x = vec_sol
     //d = vec_rhs
     //Startwert fuer x_F
     c_F.convert(vec_rhs);
-    Solver::solve(*solver, x_F, c_F, matrix_F, filter_F);
-    b_D.copy(vec_rhs);
+    Solver::solve(*solver, x_F, c_F, matrixF, filter);
+    b_D = vec_rhs;
 
-    for(int k = 0;k<1;k++)
+    for(int k = 0;k<5;k++)
     {
         //Use c_d as TMP memeory
         matrix.apply(c_D,x_D);
-        d_D.axpy(c_D,b_D,-1.0);
+        d_D.axpy(const c_D,const b_D,-1.0D);
         //Convert d_D to d_F
         d_F.convert(d_D);
-        //Now Ac = d
-        Solver::solve(*solver, c_F, d_F, matrix_F, filter_F);
+        //Jetzt Ac = d
+        Solver::solve(*solver, c_F, d_F, matrixF, filter);
         //Convert c_F to c_D
         c_D.convert(c_F);
-        x_D.axpy(x_D,c_D,1.0);
+        x_D.axpy(x_D,c_d,1.0D);
     }
-    vec_sol.copy(x_D);
+    vec_sol = x_D;
 
     // Release the solver
     solver->done();
@@ -481,7 +460,7 @@ namespace Tutorial01
     // We have already created the 'sine_bubble' object representing our analytical solution for
     // the assembly of the right-hand-side vector, so we may reuse it for the computation now:
 
-    Assembly::ScalarErrorInfo<DataTypeD> errors = Assembly::ScalarErrorComputer<1>::compute(
+    Assembly::ScalarErrorInfo<DataType> errors = Assembly::ScalarErrorComputer<1>::compute(
       vec_sol,          // the coefficient vector of the discrete solution
       sol_function,     // the analytic function object, declared for RHS assembly
       space,            // the finite element space
@@ -507,7 +486,7 @@ namespace Tutorial01
 
     // First, declare a vector that will receive the vertex projection of our solution.
     // We will also project and write out our right-hand-side, just for fun...
-    VectorTypeD vertex_sol, vertex_rhs;
+    VectorType vertex_sol, vertex_rhs;
 
     // And use the DiscreteVertexProjector class to do the dirty work:
     Assembly::DiscreteVertexProjector::project(
@@ -547,7 +526,6 @@ int main(int argc, char* argv[])
   // Note that FEAST uses its own "Index" type rather than a wild mixture of int, uint, long
   // and such.
   Index level(3);
-//
 
   // Now let's see if we have command line parameters: This tutorial supports passing
   // the refinement level as a command line parameter, to investigate the behaviour of the L2/H1

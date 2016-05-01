@@ -116,7 +116,6 @@ namespace Tutorial01
   // Moreover, we use main memory (aka "RAM") for our containers. FEAST supports GPUs and other
   // architectures, but we do not want to make use of anything that does not reside in host memory.
   typedef Mem::Main MemType;
-  typedef Mem::CUDA MemTypeCUDA;
 
   // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -211,19 +210,19 @@ namespace Tutorial01
     // Based on the two data and memory typedefs, we now define the vector type.
     // Since we have a scalar problem, we require a dense vector, which is simply FEAST's name for
     // contiguous storage.
-    typedef LAFEM::DenseVector<MemTypeCUDA, DataTypeD> VectorTypeD;
-    typedef LAFEM::DenseVector<MemTypeCUDA, DataTypeF> VectorTypeF;
+    typedef LAFEM::DenseVector<MemType, DataTypeD> VectorTypeD;
+    typedef LAFEM::DenseVector<MemType, DataTypeF> VectorTypeF;
 
     // Furthermore, for the discretised Poisson operator, we require a sparse matrix type.
     // We choose the CSR format here, because it is pretty much standard.
-    typedef LAFEM::SparseMatrixCSR<MemTypeCUDA, DataTypeD> MatrixTypeD;
-    typedef LAFEM::SparseMatrixCSR<MemTypeCUDA, DataTypeF> MatrixTypeF;
+    typedef LAFEM::SparseMatrixCSR<MemType, DataTypeD> MatrixTypeD;
+    typedef LAFEM::SparseMatrixCSR<MemType, DataTypeF> MatrixTypeF;
 
     // Moreover, we need a boundary condition filter. Filters can be used to apply boundary conditions
     // in matrices and vectors. Since we are using Dirichlet boundary conditions for our problem, we
     // need a so-called "unit filter".
-    typedef LAFEM::UnitFilter<MemTypeCUDA, DataTypeF> FilterTypeF;
-    typedef LAFEM::UnitFilter<MemTypeCUDA, DataTypeD> FilterTypeD;
+    typedef LAFEM::UnitFilter<MemType, DataTypeF> FilterTypeF;
+    typedef LAFEM::UnitFilter<MemType, DataTypeD> FilterTypeD;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // Symbolic linear system assembly
@@ -547,7 +546,6 @@ int main(int argc, char* argv[])
   // Note that FEAST uses its own "Index" type rather than a wild mixture of int, uint, long
   // and such.
   Index level(3);
-//
 
   // Now let's see if we have command line parameters: This tutorial supports passing
   // the refinement level as a command line parameter, to investigate the behaviour of the L2/H1
