@@ -1,0 +1,141 @@
+\documentclass[10pt]{beamer}
+
+% proper umlauts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% german
+\usepackage[ngerman]{babel}
+
+% AMS math for formulae
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+% graphics
+\usepackage{graphicx}
+
+% some other useful packages
+%\usepackage{url}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% my shortcuts
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\highlight}[1]{{\color{blue}\bf#1}}
+\newcommand{\todo}[1]{{\color{blue}\bf TODO: #1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% setup beamer presentation theme
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mode<presentation>
+{
+  \usetheme{TUDortmund2}
+}
+
+% include intermediate TOCs automatically at each \section
+\AtBeginSection[]
+{
+  \begin{frame}[c]
+    \frametitle{Content}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+% Suppress navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% titlepage information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Mixed Precision}
+\author{Christoph Höppke, Daniel Thomaschewsik}
+\institute[TU Dortmund]{TU Dortmund}
+\date{Version:\today}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% titlepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+% Use non-transparent version of logo for title page
+\logo{\centering%
+\includegraphics[height=0.5cm]{figures/logo_TUDortmund}%
+\hspace*{1em}%
+\includegraphics[height=0.5cm]{figures/logo_fakm}%
+\hspace*{15em}}
+\begin{frame}[c]
+  \titlepage
+\end{frame}
+
+% no logo from now on, just eats space
+\logo{}
+
+\begin{frame}{Inhaltsübersicht}
+\tableofcontents
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{What is a Mixed Precision Method?}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Definition}
+\begin{frame}[c]
+
+\end{frame}
+
+
+\subsection{Performance Gains}
+\begin{frame}
+
+\end{frame}
+
+\subsection{Precision}
+\begin{frame}{Roundoff and Cancellation}
+
+\end{frame}
+
+\begin{frame}{Computational Precision vs Accuracy of Result}
+
+\end{frame}
+
+\subsection{Data Error and Truncation}
+\begin{frame}{DataError and Truncation}
+\end{frame}
+
+
+\subsection{Floting Point Operations. A deeper analysis}
+\begin{frame}{}
+
+\end{frame}
+
+\section{History of Mixed Preceition in the context of GPGPU calculations}
+\begin{frame}{History of Mixed Preceition in the context of GPGPU calculations}
+
+\end{frame}
+
+\section{Why Mixed Precision is difficult}
+\begin{frame}{Why Mixed Precision is difficult}
+
+\end{frame}
+
+\section{Unconventional computation Hardware}
+\begin{frame}{Unconventional compuation Hardware}
+
+\end{frame}
+
+\section{Iterative Refinement}
+
+\subsection{Testresults}
+
+\end{document}
+
+
+
+\grid

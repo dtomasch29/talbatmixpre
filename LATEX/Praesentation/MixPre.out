@@ -1,0 +1,10 @@
+\BOOKMARK [2][]{Outline0.1}{What is a Mixed Precision Method?}{}% 1
+\BOOKMARK [3][]{Outline0.1.1.4}{Definition}{Outline0.1}% 2
+\BOOKMARK [3][]{Outline0.1.2.5}{Performance Gains}{Outline0.1}% 3
+\BOOKMARK [3][]{Outline0.1.3.6}{Precision}{Outline0.1}% 4
+\BOOKMARK [3][]{Outline0.1.4.8}{Data Error and Truncation}{Outline0.1}% 5
+\BOOKMARK [3][]{Outline0.1.5.9}{Floting Point Operations. A deeper analysis}{Outline0.1}% 6
+\BOOKMARK [2][]{Outline0.2}{History of Mixed Preceition in the context of GPGPU calculations}{}% 7
+\BOOKMARK [2][]{Outline0.3}{Why Mixed Precision is difficult}{}% 8
+\BOOKMARK [2][]{Outline0.4}{Unconventional computation Hardware}{}% 9
+\BOOKMARK [2][]{Outline0.5}{Iterative Refinement}{}% 10
