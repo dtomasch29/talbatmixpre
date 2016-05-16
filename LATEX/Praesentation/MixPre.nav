@@ -25,34 +25,32 @@
 \headcommand {\beamer@subsectionentry {0}{1}{5}{9}{Floting Point Operations. A deeper analysis}}\headcommand {\beamer@subsectionpages {8}{8}}
 \headcommand {\slideentry {1}{5}{1}{9/9}{Floting Point Operations. A deeper analysis}{0}}
 \headcommand {\beamer@framepages {9}{9}}
-\headcommand {\sectionentry {2}{History of Mixed Preceition in the context of GPGPU calculations}{10}{History of Mixed Preceition in the context of GPGPU calculations}{0}}
+\headcommand {\sectionentry {2}{History of Mixed Precision in the context of GPGPU calculations}{10}{History of Mixed Precision in the context of GPGPU calculations}{0}}
 \headcommand {\beamer@sectionpages {3}{9}}
 \headcommand {\beamer@subsectionpages {9}{9}}
 \headcommand {\slideentry {2}{0}{1}{10/10}{}{0}}
 \headcommand {\beamer@framepages {10}{10}}
-\headcommand {\slideentry {2}{0}{2}{11/11}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{11}{History of GPGPU}}\headcommand {\beamer@subsectionpages {10}{10}}
+\headcommand {\slideentry {2}{1}{1}{11/11}{History of GPGPU}{0}}
 \headcommand {\beamer@framepages {11}{11}}
-\headcommand {\sectionentry {3}{Why Mixed Precision is difficult}{12}{Why Mixed Precision is difficult}{0}}
-\headcommand {\beamer@sectionpages {10}{11}}
-\headcommand {\beamer@subsectionpages {10}{11}}
-\headcommand {\slideentry {3}{0}{1}{12/12}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{12}{Why Mixed Precision is difficult}}\headcommand {\beamer@subsectionpages {11}{11}}
+\headcommand {\slideentry {2}{2}{1}{12/12}{Why Mixed Precision is difficult}{0}}
 \headcommand {\beamer@framepages {12}{12}}
-\headcommand {\slideentry {3}{0}{2}{13/13}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{2}{3}{13}{Unconventional computation Hardware}}\headcommand {\beamer@subsectionpages {12}{12}}
+\headcommand {\slideentry {2}{3}{1}{13/13}{Unconventional computation Hardware}{0}}
 \headcommand {\beamer@framepages {13}{13}}
-\headcommand {\sectionentry {4}{Unconventional computation Hardware}{14}{Unconventional computation Hardware}{0}}
-\headcommand {\beamer@sectionpages {12}{13}}
-\headcommand {\beamer@subsectionpages {12}{13}}
-\headcommand {\slideentry {4}{0}{1}{14/14}{}{0}}
+\headcommand {\sectionentry {3}{Example Calculation}{14}{Example Calculation}{0}}
+\headcommand {\beamer@sectionpages {10}{13}}
+\headcommand {\beamer@subsectionpages {13}{13}}
+\headcommand {\slideentry {3}{0}{1}{14/14}{}{0}}
 \headcommand {\beamer@framepages {14}{14}}
-\headcommand {\slideentry {4}{0}{2}{15/15}{}{0}}
+\headcommand {\slideentry {3}{0}{2}{15/15}{}{0}}
 \headcommand {\beamer@framepages {15}{15}}
-\headcommand {\sectionentry {5}{Iterative Refinement}{16}{Iterative Refinement}{0}}
-\headcommand {\beamer@sectionpages {14}{15}}
-\headcommand {\beamer@subsectionpages {14}{15}}
-\headcommand {\slideentry {5}{0}{1}{16/16}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{16}{Testresults}}\headcommand {\beamer@subsectionpages {14}{15}}
+\headcommand {\slideentry {3}{1}{1}{16/16}{Testresults}{0}}
 \headcommand {\beamer@framepages {16}{16}}
 \headcommand {\beamer@partpages {1}{16}}
-\headcommand {\beamer@subsectionpages {17}{16}}
-\headcommand {\beamer@sectionpages {16}{16}}
+\headcommand {\beamer@subsectionpages {16}{16}}
+\headcommand {\beamer@sectionpages {14}{16}}
 \headcommand {\beamer@documentpages {16}}
 \headcommand {\def \inserttotalframenumber {16}}

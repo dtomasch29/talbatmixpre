@@ -76,7 +76,7 @@
 % no logo from now on, just eats space
 \logo{}
 
-\begin{frame}{Inhaltsübersicht}
+\begin{frame}{Content}
 \tableofcontents
 
 \end{frame}
@@ -86,56 +86,196 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Definition}
-\begin{frame}[c]
+\begin{frame}{Definition}
 
+\begin{block}{\textbf{Definition:}}
+\textbf{An Algorithm that 
+uses different precisions in its computation}
+\end{block}
+
+\textbf{Example:} \color{red}{double(a)} \color{black}+ \color{blue}{float(b)}\color{black}
+~\\~\\
+\textbf{Goal: } 
+\begin{itemize}
+\item[] Obtain the \color{red}{same accuracy}\color{black}~by using 
+high precision
+\item[] but \color{blue}{better performance} \color{black}
+by utilizing low precision computations
+\end{itemize}
 \end{frame}
 
 
 \subsection{Performance Gains}
-\begin{frame}
-
+\begin{frame}{Performance Gains}
+\begin{itemize}
+\item \textbf{Bandwidth bound algorithm}
+	\begin{itemize}
+	\item 64 bit = 1 double = 2 floats = 4 halfs
+	\item More variables per \color{red}{bandwidth}\color{black}
+	\item More variables per \color{red}{storage}\color{black}
+	\item Applies to all memory levels: network, disc, main, device, 
+			local, register
+	\end{itemize}
+\item \textbf{Computation bound algorithm}
+	\begin{itemize}
+	\item 1 double addition $\approx$ 2 float additions $\approx$ 4 half 
+			additions (linear)
+	\item 1 double multip. $\approx$ 4 float multip. $\approx$ 16 
+			half multip. (quadratic)
+	\item $\rightarrow$ up to 16 times better computational efficiency
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
 \subsection{Precision}
 \begin{frame}{Roundoff and Cancellation}
 
+\begin{block}{Definition Machine Precision}
+The smalles positive number $\epsilon$ for wich a floating point 
+calculations evaluates the expression $1 + \epsilon > 1$ to be true.
+\end{block}
+
+\textbf{Examples:}
+\begin{itemize}
+\item $\epsilon_{double} \approx 2.220446049250313\cdot 10^{-16}$
+\item $\epsilon_{float} \approx 1.1920929\cdot 10^{-7}$
+\item $\epsilon_{half} \approx 9.765625\cdot 10^{-4}$
+\item So \color{red}more precision\color{black}~is usually \color{red}better
+\end{itemize}
+\textbf{Cancellation}
+\begin{align*}
+&\text{additive roundoff } & a=1+0.00000004 &= 1.00000004 &=_{fl} 1\\
+&\text{multiplicative roundoff } & b = 1.0002 \cdot 0.9998 &=0.99999996 &=_{fl} 1\\
+&\text{\color{blue}cancellation\color{black}~}  &c\in \lbrace a,b\rbrace 
+\hspace{1cm}\pm 4 &= (c-1)\cdot 10^8 &=_{fl} 0 \\
+&\text{oder~of~operations}  & 1+0.00000004 -1 &=_{fl} 0\\
+& &1-1 + 0.00000004 &=_{fl} 0.0000004
+\end{align*}
 \end{frame}
 
-\begin{frame}{Computational Precision vs Accuracy of Result}
 
+\begin{frame}{Computational Precision vs Accuracy of Result}
+\begin{block}{Instructive Example [S.M. Rump, 1988]}
+$f(x,y) = (333.75 - x^2)y^6 + x^2(11x^2y^2 - 121y^4-2) + 5.5y^8 + 0.5x/y$\\
+$x_0 = 77617, y_0 = 33096$
+\end{block}
+\begin{align*}
+&\text{float s23e8} \hfill &1.1726\\
+&\text{double s52e11} \hfill &1.17260394005318\\
+&\text{quad s63e15} \hfill &1.172603940053178631
+\end{align*}
+\textbf{The correct result is:}\\
+\begin{center}
+\color{red}-0.82739605994682136814116509547981629\color{black}
+\end{center}
 \end{frame}
 
 \subsection{Data Error and Truncation}
 \begin{frame}{DataError and Truncation}
+\begin{itemize}
+\item Data error occurs when the \color{red} exact value~\color{black} has to be \color{red} truncated \color{black} for storage in the binary format
+	\begin{itemize}
+		\item $\pi$ , $\sqrt{2}$, $sin(2)$, $e^2$, $1/3$
+		\item every rational number with a denominator that has a prime 
+		      factor other than $2$
+	\end{itemize}
+\item How can float be better than double?
+\begin{itemize}
+	\item There is \color{red} no data error \color{black} in the operands
+	\item The errors can \color{red} cancel out \color{black} themselves 
+		  favorably
+\end{itemize}
+\color{black}
+\end{itemize}
+
 \end{frame}
 
 
 \subsection{Floting Point Operations. A deeper analysis}
-\begin{frame}{}
-
+\begin{frame}{Floating Point Operations. A deeper analysis}
+\begin{itemize}
+\item Number representation
+\begin{itemize}
+\item half s10e5~a=$\vert$1 bit sign $s_a~|~$10 bit mantissa $m_a~|~$5 bit exp. $e_a$ 
+\item float s23e8~b = $\vert$1 bit sign $s_b~|~$23 bit mantissa $m_b~|~$8 bit exp. $e_b$ 
+\item double s52e11~c = $\vert$1 bit sign $s_c~|~$52 bit mantissa $m_c~|~$11 bit exp. $e_c$ 
+\end{itemize}
+\item Multiplication $float(a) \cdot float(b)$
+	\begin{itemize}
+	\item Operations: $s_a \cdot s_b$,$m_a \cdot m_b$,$e_a \cdot e_b$
+	\item Excat format: s46e9 = s23e8 $\cdot$s23e8
+	\item Main error: Mantissa truncated from 46 bit to 23 bit
+	\end{itemize}
+\item Addition $float(a) + float(b)$
+	\begin{itemize}
+	\item Operations: $e_{diff} = e_a - e_b$, $m_a + (m_b >> e_{diff})$, 
+			normalize
+	\item Exact format: s278e8 = s23e8+s23e8
+	\item Main error: Maintissa truncated from 278 bit to 23 bit
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
-\section{History of Mixed Preceition in the context of GPGPU calculations}
-\begin{frame}{History of Mixed Preceition in the context of GPGPU calculations}
+\section{History of Mixed Precision in the context of GPGPU calculations}
+\subsection{History of GPGPU}
+\begin{frame}{History of GPGPU}
 
+	\textbf{1999: NVIDIA GeForce 256}\\
+	\begin{itemize}
+	\item Term GPU was coined during the launch
+	\item GPGPU calculations were only achievable by "Hacking the GPU" 
+			(verry cumbersome and error-prone)
+	\end{itemize}
+~\\~\\
+\textbf{2003-2007 First wave of GPU computing}
+\begin{itemize}
+\item Floating point support
+\item Performance improvements
+\item Geforce 8800GT Release (29.October 2007)\\
+	first CUDA enabled Consumer GPU
+\item Double precision was not available on the GPU
+\item Mixed Precision was the ONLY way to utilize GPU horesepower
+	without precision compromises
+\item Mixed Precision lead to a speedup of factor 3-5 in FEM applications %[http://www.mathematik.tu-dortmund.de/~goeddeke/pubs/pdf/Strzodka_2006_MPM.pdf]
+\end{itemize}
 \end{frame}
 
-\section{Why Mixed Precision is difficult}
+\subsection{Why Mixed Precision is difficult}
 \begin{frame}{Why Mixed Precision is difficult}
-
+\begin{itemize}
+\item Data has to be transferred to the GPU over the relativly \color{red} slow PCIe \color{black} interface
+\item A lot of time is wasted while waiting for data
+\end{itemize}
 \end{frame}
 
-\section{Unconventional computation Hardware}
+\subsection{Unconventional computation Hardware}
 \begin{frame}{Unconventional compuation Hardware}
-
+\textbf{NVIDIA Jetson TK1 Bord}
+\begin{itemize}
+\item CPU and GPU share the same memory and use the same memory interface
+\item Copying data from CPU to GPU and vice versa is much faster
+\end{itemize}
 \end{frame}
 
-\section{Iterative Refinement}
+\section{Example Calculation}
+\begin{frame}{Example Calculation}
+\begin{block}{Problem}
+Solve the Poission problem $- \Delta u = 1,~x\in\Omega$ with dirichlet boundry conditions $u \equiv 0,~x\in \partial \Omega$ using conforming quadrilateral 
+elements for the finite-element discretization of the unit square $\Omega = 
+(-1,1)^2$
+\end{block}
+
+\begin{itemize}
+\item Method 1: Using a CG solver
+\item Method 2 : Using a more sophisticated MG solver
+\end{itemize}
+
+\end{frame}
 
 \subsection{Testresults}
-
+\begin{frame}{Testresults pending}
+\begin{center}
+\color{red} Imagine a nice Plot\color{black}
+\end{center}
+\end{frame}
 \end{document}
-
-
-
-\grid

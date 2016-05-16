@@ -6,7 +6,9 @@
 \beamer@subsectionintoc {1}{3}{Precision}{6}{0}{1}
 \beamer@subsectionintoc {1}{4}{Data Error and Truncation}{8}{0}{1}
 \beamer@subsectionintoc {1}{5}{Floting Point Operations. A deeper analysis}{9}{0}{1}
-\beamer@sectionintoc {2}{History of Mixed Preceition in the context of GPGPU calculations}{10}{0}{2}
-\beamer@sectionintoc {3}{Why Mixed Precision is difficult}{12}{0}{3}
-\beamer@sectionintoc {4}{Unconventional computation Hardware}{14}{0}{4}
-\beamer@sectionintoc {5}{Iterative Refinement}{16}{0}{5}
+\beamer@sectionintoc {2}{History of Mixed Precision in the context of GPGPU calculations}{10}{0}{2}
+\beamer@subsectionintoc {2}{1}{History of GPGPU}{11}{0}{2}
+\beamer@subsectionintoc {2}{2}{Why Mixed Precision is difficult}{12}{0}{2}
+\beamer@subsectionintoc {2}{3}{Unconventional computation Hardware}{13}{0}{2}
+\beamer@sectionintoc {3}{Example Calculation}{14}{0}{3}
+\beamer@subsectionintoc {3}{1}{Testresults}{16}{0}{3}
