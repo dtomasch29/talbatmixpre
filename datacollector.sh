@@ -1,9 +1,10 @@
 #!/bin/bash
 
-declare -a arrLevelH=("4" "5" "6" )
-declare -a arrLevelL=("1" "2")
+declare -a arrLevelH=("2" "3" "4" "5" "6" "7" "8");
 declare -a arrMaxIters=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10");
-declare -a arrTol=("5" "6" "7" "8")
+declare -a arrTol=("5" "6" "7" "8");
+declare -a memtypeArray=("main" "cuda");
+declare -a memtypeArray2=("1" "2");
 ## now loop through the above array
 for lvlH in "${arrLevelH[@]}"
 do
@@ -15,7 +16,10 @@ touch level_$lvlH.data
     do
         for tol in "${arrTol[@]}"
         do
-          ./collector $lvlH $lvlL $miter $tol
+            for mem in "${memtypeArray2[@]}"
+            do
+                ./collector $lvlH $lvlL $miter $tol $mem
+            done
         done
     done
     done

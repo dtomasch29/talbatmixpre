@@ -1,0 +1,181 @@
+\documentclass{standalone}
+\usepackage{tikz,pgfplots,xcolor}
+\usepackage{xintexpr}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{pgfplots.groupplots,calc}
+\definecolor{chart1}{RGB}{0,69,134}
+\definecolor{chart2}{RGB}{87,157,28}
+\definecolor{chart3}{RGB}{134,69,134}
+\definecolor{chart4}{RGB}{134,69,0}
+\definecolor{chart5}{RGB}{134,120,0}
+\definecolor{chart6}{RGB}{100,80,0}
+\begin{document}
+                   
+\pgfplotsset{
+  every axis x label/.append style={at={(0.5,-.08)}},
+  every axis y label/.append style={at={(-.15,0.5)}},
+  every axis title/.append style={at={(0.5,0.95)}},
+%  every node near coord/.append style={font=\footnotesize,black},
+}
+\begin{tikzpicture}
+  \begin{groupplot}[group style={group size=3 by 2, horizontal sep=40pt, vertical sep=40pt}]
+    \nextgroupplot[title=Arryn,
+                   width=.55\textwidth,
+                   xlabel={dim(A)},
+                   ylabel={Runtime [s]},
+%                   ymin=0,
+                   xmode = log,
+                   ymode = log,
+		   xtick = {0, 4, 8, 16, 32, 64, 128, 256},
+		   xticklabels={0, $2^{2}$, $2^{3}$, $2^{4}$, $2^{5}$, $2^{6}$, $2^{7}$, $2^{8}$ },
+                   max space between ticks=25,
+                   ymajorgrids,
+                   legend columns=4,
+                   legend entries={MixPrec GPU-CPU,MixPrec CPU-CPU, Single GPU, Single CPU},
+                   legend to name=fig:legend:z-plots,
+                   legend style={column sep=1pt},
+%                   visualization depends on={\thisrow{np} \as \np},
+%                   nodes near coords={\pgfmathparse{int(\np)}\pgfmathresult},
+                  ]
+      \addplot[solid,mark=triangle,mark size=1pt,chart1] table[x=n, y=time] {fig/arryn_mix_cuda.data};
+      \addplot[solid,mark=square,mark size=1pt,chart2] table[x=n, y=time] {fig/arryn_mix_main.data};
+      \addplot[solid,mark=diamond,mark size=1pt,chart3] table[x=n, y=time] {fig/arryn_single_cuda.data};
+      \addplot[solid,mark=otimes,mark size=1pt,chart4] table[x=n, y=time] {fig/arryn_single_main.data};
+%      \draw[-latex] (axis cs:0.1,4.9) -- node[pos=0.5,anchor=west] {\footnotesize more cores} (axis cs:0.08,4.1);
+      %\addplot[solid,mark=diamond,mark size=3.5pt,chart2,nodes near coords align=right] table[x=Perf, y=E] {fig/benchdata_ivybridge_float.csv};
+     % \addplot[solid,mark=square,mark size=3.5pt,chart3,nodes near coords align=right] table[x=Perf, y=E] {fig/benchdata_armcortexa15_float.csv};
+     % \addplot[solid,mark=square,mark size=3.5pt,chart4,nodes near coords align=right] table[x=Perf, y=E] {fig/benchdata_armcortexa15_float.csv};
+%      \draw[-latex] (axis cs:0.41,3.05) -- node[pos=0.5,anchor=north west] {\footnotesize more cores} (axis cs:0.32,2.6);
+%      \draw [dotted] (axis cs:0.03,3.17) -- (axis cs:0.03,1.8);
+%      \draw [|<->|] (axis cs:0.03,1.8) -- node[pos=0.5,anchor=north] {\footnotesize speed down x5} (axis cs:0.17,1.8);
+%      \draw[latex-latex,dashed] (axis cs:0.04,3.1) -- node[pos=0.5,rotate=30,anchor=west] {\footnotesize $P$ down x8} (axis cs:0.16,2.15);
+
+    \nextgroupplot[title=Arryn,
+                   width=.55\textwidth,
+                   xlabel={dim(A)},
+                   ylabel={H0-Error},
+%                   ymin=0,
+                   xmode = log,
+                   ymode = log,
+		   xtick = {0, 4, 8, 16, 32, 64, 128, 256},
+		   xticklabels={0, $2^{2}$, $2^{3}$, $2^{4}$, $2^{5}$, $2^{6}$, $2^{7}$, $2^{8}$ },
+                   max space between ticks=25,
+                   ymajorgrids,
+%                   visualization depends on={\thisrow{np} \as \np},
+%                   nodes near coords={\pgfmathparse{int(\np)}\pgfmathresult},
+                  ]
+      \addplot[solid,mark=triangle,mark size=1pt,chart1] table[x=n, y=h0err] {fig/arryn_mix_cuda.data};
+      \addplot[solid,mark=square,mark size=1pt,chart2] table[x=n, y=h0err] {fig/arryn_mix_main.data};
+      \addplot[solid,mark=diamond,mark size=1pt,chart3] table[x=n, y=h0err] {fig/arryn_single_cuda.data};
+      \addplot[solid,mark=otimes,mark size=1pt,chart4] table[x=n, y=h0err] {fig/arryn_single_main.data};
+%      \draw[-latex] (axis cs:0.41,3.05) -- node[pos=0.5,anchor=north west] {\footnotesize more cores} (axis cs:0.32,2.6);
+%      \draw [dotted] (axis cs:0.03,3.17) -- (axis cs:0.03,1.8);
+%      \draw [|<->|] (axis cs:0.03,1.8) -- node[pos=0.5,anchor=north] {\footnotesize speed down x5} (axis cs:0.17,1.8);
+%      \draw[latex-latex,dashed] (axis cs:0.04,3.1) -- node[pos=0.5,rotate=30,anchor=west] {\footnotesize $P$ down x8} (axis cs:0.16,2.15);
+
+    \nextgroupplot[title=Arryn,
+                   width=.55\textwidth,
+                   xlabel={dim(A)},
+                   ylabel={H1-Error},
+%                   ymin=0,
+                   xmode = log,
+                   ymode = log,
+		   xtick = {0, 4, 8, 16, 32, 64, 128, 256},
+		   xticklabels={0, $2^{2}$, $2^{3}$, $2^{4}$, $2^{5}$, $2^{6}$, $2^{7}$, $2^{8}$ },
+                   max space between ticks=25,
+                   ymajorgrids,
+                   legend columns=4,
+                   legend entries={MixPrec GPU-CPU,MixPrec CPU-CPU, Single GPU, Single CPU},
+                   legend to name=fig:legend:z-plots,
+                   legend style={column sep=1pt},
+%                   visualization depends on={\thisrow{np} \as \np},
+%                   nodes near coords={\pgfmathparse{int(\np)}\pgfmathresult},
+                  ]
+      \addplot[solid,mark=triangle,mark size=1pt,chart1] table[x=n, y=h1err] {fig/arryn_mix_cuda.data};
+      \addplot[solid,mark=square,mark size=1pt,chart2] table[x=n, y=h1err] {fig/arryn_mix_main.data};
+      \addplot[solid,mark=diamond,mark size=1pt,chart3] table[x=n, y=h1err] {fig/arryn_single_cuda.data};
+      \addplot[solid,mark=otimes,mark size=1pt,chart4] table[x=n, y=h1err] {fig/arryn_single_main.data};
+%      \draw[-latex] (axis cs:0.1,4.9) -- node[pos=0.5,anchor=west] {\footnotesize more cores} (axis cs:0.08,4.1);
+      %\addplot[solid,mark=diamond,mark size=3.5pt,chart2,nodes near coords align=right] table[x=Perf, y=E] {fig/benchdata_ivybridge_float.csv};
+     % \addplot[solid,mark=square,mark size=3.5pt,chart3,nodes near coords align=right] table[x=Perf, y=E] {fig/benchdata_armcortexa15_float.csv};
+     % \addplot[solid,mark=square,mark size=3.5pt,chart4,nodes near coords align=right] table[x=Perf, y=E] {fig/benchdata_armcortexa15_float.csv};
+%      \draw[-latex] (axis cs:0.41,3.05) -- node[pos=0.5,anchor=north west] {\footnotesize more cores} (axis cs:0.32,2.6);
+%      \draw [dotted] (axis cs:0.03,3.17) -- (axis cs:0.03,1.8);
+%      \draw [|<->|] (axis cs:0.03,1.8) -- node[pos=0.5,anchor=north] {\footnotesize speed down x5} (axis cs:0.17,1.8);
+%      \draw[latex-latex,dashed] (axis cs:0.04,3.1) -- node[pos=0.5,rotate=30,anchor=west] {\footnotesize $P$ down x8} (axis cs:0.16,2.15);
+
+    \nextgroupplot[title=Jetson TK1,
+                   width=.55\textwidth,
+                   xlabel={dim(A)},
+                   ylabel={Runtime [s]},
+%                   ymin=0,
+                   xmode = log,
+                   ymode = log,
+		   xtick = {0, 4, 8, 16, 32, 64, 128, 256},
+		   xticklabels={0, $2^{2}$, $2^{3}$, $2^{4}$, $2^{5}$, $2^{6}$, $2^{7}$, $2^{8}$ },
+                   max space between ticks=25,
+                   ymajorgrids,
+%                   visualization depends on={\thisrow{np} \as \np},
+%                   nodes near coords={\pgfmathparse{int(\np)}\pgfmathresult},
+                  ]
+      \addplot[solid,mark=triangle,mark size=1pt,chart1] table[x=n, y=time] {fig/Jetson_mix_cuda.data};
+      \addplot[solid,mark=square,mark size=1pt,chart2] table[x=n, y=time] {fig/Jetson_mix_main.data};
+      \addplot[solid,mark=diamond,mark size=1pt,chart3] table[x=n, y=time] {fig/Jetson_single_cuda.data};
+      \addplot[solid,mark=otimes,mark size=1pt,chart4] table[x=n, y=time] {fig/Jetson_single_main.data};
+%      \draw[-latex] (axis cs:0.41,3.05) -- node[pos=0.5,anchor=north west] {\footnotesize more cores} (axis cs:0.32,2.6);
+%      \draw [dotted] (axis cs:0.03,3.17) -- (axis cs:0.03,1.8);
+%      \draw [|<->|] (axis cs:0.03,1.8) -- node[pos=0.5,anchor=north] {\footnotesize speed down x5} (axis cs:0.17,1.8);
+%      \draw[latex-latex,dashed] (axis cs:0.04,3.1) -- node[pos=0.5,rotate=30,anchor=west] {\footnotesize $P$ down x8} (axis cs:0.16,2.15);
+
+    \nextgroupplot[title=Jetson TK1,
+                   width=.55\textwidth,
+                   xlabel={dim(A)},
+                   ylabel={H0-Error},
+%                   ymin=0,
+                   xmode = log,
+                   ymode = log,
+		   xtick = {0, 4, 8, 16, 32, 64, 128, 256},
+		   xticklabels={0, $2^{2}$, $2^{3}$, $2^{4}$, $2^{5}$, $2^{6}$, $2^{7}$, $2^{8}$ },
+                   max space between ticks=25,
+                   ymajorgrids,
+%                   visualization depends on={\thisrow{np} \as \np},
+%                   nodes near coords={\pgfmathparse{int(\np)}\pgfmathresult},
+                  ]
+      \addplot[solid,mark=triangle,mark size=1pt,chart1] table[x=n, y=h0err] {fig/Jetson_mix_cuda.data};
+      \addplot[solid,mark=square,mark size=1pt,chart2] table[x=n, y=h0err] {fig/Jetson_mix_main.data};
+      \addplot[solid,mark=diamond,mark size=1pt,chart3] table[x=n, y=h0err] {fig/Jetson_single_cuda.data};
+      \addplot[solid,mark=otimes,mark size=1pt,chart4] table[x=n, y=h0err] {fig/Jetson_single_main.data};
+%      \draw[-latex] (axis cs:0.41,3.05) -- node[pos=0.5,anchor=north west] {\footnotesize more cores} (axis cs:0.32,2.6);
+%      \draw [dotted] (axis cs:0.03,3.17) -- (axis cs:0.03,1.8);
+%      \draw [|<->|] (axis cs:0.03,1.8) -- node[pos=0.5,anchor=north] {\footnotesize speed down x5} (axis cs:0.17,1.8);
+%      \draw[latex-latex,dashed] (axis cs:0.04,3.1) -- node[pos=0.5,rotate=30,anchor=west] {\footnotesize $P$ down x8} (axis cs:0.16,2.15);
+
+    \nextgroupplot[title=Jetson TK1,
+                   width=.55\textwidth,
+                   xlabel={dim(A)},
+                   ylabel={H1-Error},
+%                   ymin=0,
+                   xmode = log,
+                   ymode = log,
+		   xtick = {0, 4, 8, 16, 32, 64, 128, 256},
+		   xticklabels={0, $2^{2}$, $2^{3}$, $2^{4}$, $2^{5}$, $2^{6}$, $2^{7}$, $2^{8}$ },
+                   max space between ticks=25,
+                   ymajorgrids,
+%                   visualization depends on={\thisrow{np} \as \np},
+%                   nodes near coords={\pgfmathparse{int(\np)}\pgfmathresult},
+                  ]
+      \addplot[solid,mark=triangle,mark size=1pt,chart1] table[x=n, y=h1err] {fig/Jetson_mix_cuda.data};
+      \addplot[solid,mark=square,mark size=1pt,chart2] table[x=n, y=h1err] {fig/Jetson_mix_main.data};
+      \addplot[solid,mark=diamond,mark size=1pt,chart3] table[x=n, y=h1err] {fig/Jetson_single_cuda.data};
+      \addplot[solid,mark=otimes,mark size=1pt,chart4] table[x=n, y=h1err] {fig/Jetson_single_main.data};
+%      \draw[-latex] (axis cs:0.41,3.05) -- node[pos=0.5,anchor=north west] {\footnotesize more cores} (axis cs:0.32,2.6);
+%      \draw [dotted] (axis cs:0.03,3.17) -- (axis cs:0.03,1.8);
+%      \draw [|<->|] (axis cs:0.03,1.8) -- node[pos=0.5,anchor=north] {\footnotesize speed down x5} (axis cs:0.17,1.8);
+%      \draw[latex-latex,dashed] (axis cs:0.04,3.1) -- node[pos=0.5,rotate=30,anchor=west] {\footnotesize $P$ down x8} (axis cs:0.16,2.15);
+
+
+  \end{groupplot}
+  \node at ($(group c1r2) + (.52\textwidth,-4cm)$) {\ref{fig:legend:z-plots}};
+\end{tikzpicture}
+
+\end{document}
