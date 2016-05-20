@@ -1,19 +1,42 @@
 \documentclass[10pt]{beamer}
 
-% proper umlauts
-\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage[ngerman]{babel} 
 \usepackage[T1]{fontenc}
-
-% german
-\usepackage[ngerman]{babel}
-
-% AMS math for formulae
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsfonts}
-
-% graphics
 \usepackage{graphicx}
+\usepackage{blindtext}
+% Zeilenabstände auf 0 setzen
+%\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{verbatim}
+
+% Formeln
+\usepackage{amsmath,amssymb,amstext,mathabx}
+
+% Schrift
+%\renewcommand*\familydefault{\sfdefault}
+%\newcommand{\changefont}[3]{\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
+
+% Umlaute
+\usepackage[utf8x]{inputenc}
+
+% Farben
+%\usepackage[usenames,dvipsnames]{xcolor}
+
+\usepackage{parcolumns}
+\usepackage{pstricks-add}
+
+%Definiere Farben:
+\definecolor{orange}{rgb}{1,0.5,0}
+\colorlet{notgreen}{blue!50!yellow}
+\usepackage{pdfpages}
+\usepackage{diagbox}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{float}
+\restylefloat{table}
+
 
 % some other useful packages
 %\usepackage{url}
@@ -53,7 +76,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{Mixed Precision}
-\author{Christoph Höppke, Daniel Thomaschewsik}
+\author{Christoph Höppke, Daniel Tomaschewski}
 \institute[TU Dortmund]{TU Dortmund}
 \date{Version:\today}
 
@@ -82,59 +105,106 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{What is a Mixed Precision Method?}
+\section{Mixedprecision Definition and Goals}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Definition}
 \begin{frame}{Definition}
-
+\onslide<1->
 \begin{block}{\textbf{Definition:}}
-\textbf{An Algorithm that 
-uses different precisions in its computation}
+An Algorithm that 
+uses different precisions in its computation
 \end{block}
 
-\textbf{Example:} \color{red}{double(a)} \color{black}+ \color{blue}{float(b)}\color{black}
-~\\~\\
+%\textbf{Example:} \\Matrix and RHS assembly in double precision\\
+%and Solving in single precision
+\onslide<2->
 \textbf{Goal: } 
 \begin{itemize}
-\item[] Obtain the \color{red}{same accuracy}\color{black}~by using 
+\item[] Obtain the \textbf{same accuracy}~by using 
 high precision
-\item[] but \color{blue}{better performance} \color{black}
+\item[] but \textbf{better performance}
 by utilizing low precision computations
 \end{itemize}
+\onslide<3->
+\textbf{Performance Gains for bandwidth bound algorithms}~\\
+ \begin{itemize}
+  \item 64 bit = 1 double = 2 floats = 4 halfs
+  \item More variables per \textbf{bandwidth} and variables per \textbf{storage}
+  \item Applies to all memory levels: network, disc, main, device, local, register 
+ \end{itemize}
+\onslide<4->
+\textbf{Performance Gains for compuation bound algorithms}~\\
+ \begin{itemize}
+  \item 1 double addition $\approx$ 2 float additions $\approx$ 4 half additions (linear)
+  \item 1 double multip. $\approx$ 4 float multip. $\approx$ 16 half multip. (quadratic)
+  \item $\rightarrow$ up to 16 times better computational efficiency
+ \end{itemize}
+
 \end{frame}
 
+\begin{frame}{A brief history overview}
 
-\subsection{Performance Gains}
-\begin{frame}{Performance Gains}
+\textbf{Trends:}\\
 \begin{itemize}
-\item \textbf{Bandwidth bound algorithm}
-	\begin{itemize}
-	\item 64 bit = 1 double = 2 floats = 4 halfs
-	\item More variables per \color{red}{bandwidth}\color{black}
-	\item More variables per \color{red}{storage}\color{black}
-	\item Applies to all memory levels: network, disc, main, device, 
-			local, register
-	\end{itemize}
-\item \textbf{Computation bound algorithm}
-	\begin{itemize}
-	\item 1 double addition $\approx$ 2 float additions $\approx$ 4 half 
-			additions (linear)
-	\item 1 double multip. $\approx$ 4 float multip. $\approx$ 16 
-			half multip. (quadratic)
-	\item $\rightarrow$ up to 16 times better computational efficiency
-	\end{itemize}
+  \item Memoryclock speeds are increasing\\
+  \begin{itemize}
+    \item GTX 980 Ti Memoryclock speed: 2x 1753 MHz
+    \item GTX 1080 Memoryclock speeds: 4x 2500 MHz (\color{red} +185\%\color{black})
+  \end{itemize}
+  \item Alternative computing arcetectures\\
+  \begin{itemize}
+    \item APU's
+    \item SOC's
+    \item $\rightarrow$ Sharing memory between CPU and GPU is becoming easyer and more common
+  \end{itemize}
+  \item NVIDIA pushing the use of half precision. 
+  \begin{itemize}
+   \item half and half2 were announced as important new features in the CUDA Toolkit version 7.5
+  \end{itemize}
 \end{itemize}
 \end{frame}
+
+\begin{frame}{A brief history overview}
+ \textbf{Past achievements:}~\\
+\begin{center}
+  \includegraphics[width=0.9\textwidth]{../SourcesCites/past.jpg}
+\end{center}
+
+ 
+\end{frame}
+
+
+%\subsection{Performance Gains}
+%\begin{frame}{Performance Gains}
+%\begin{itemize}
+%\item \textbf{Bandwidth bound algorithm}
+%	\begin{itemize}
+%	\item 64 bit = 1 double = 2 floats = 4 halfs
+%	\item More variables per \color{red}{bandwidth}\color{black}
+%	\item More variables per \color{red}{storage}\color{black}
+%	\item Applies to all memory levels: network, disc, main, device, 
+%			local, register
+%	\end{itemize}
+%\item \textbf{Computation bound algorithm}
+%	\begin{itemize}
+%	\item 1 double addition $\approx$ 2 float additions $\approx$ 4 half 
+%			additions (linear)
+%	\item 1 double multip. $\approx$ 4 float multip. $\approx$ 16 
+%			half multip. (quadratic)
+%	\item $\rightarrow$ up to 16 times better computational efficiency
+%	\end{itemize}
+%\end{itemize}
+%\end{frame}
 
 \subsection{Precision}
 \begin{frame}{Roundoff and Cancellation}
-
+\onslide<1->
 \begin{block}{Definition Machine Precision}
 The smalles positive number $\epsilon$ for wich a floating point 
 calculations evaluates the expression $1 + \epsilon > 1$ to be true.
 \end{block}
-
+\onslide<2->
 \textbf{Examples:}
 \begin{itemize}
 \item $\epsilon_{double} \approx 2.220446049250313\cdot 10^{-16}$
@@ -142,6 +212,7 @@ calculations evaluates the expression $1 + \epsilon > 1$ to be true.
 \item $\epsilon_{half} \approx 9.765625\cdot 10^{-4}$
 \item So \color{red}more precision\color{black}~is usually \color{red}better
 \end{itemize}
+\onslide<3->
 \textbf{Cancellation}
 \begin{align*}
 &\text{additive roundoff } & a=1+0.00000004 &= 1.00000004 &=_{fl} 1\\
@@ -155,15 +226,19 @@ calculations evaluates the expression $1 + \epsilon > 1$ to be true.
 
 
 \begin{frame}{Computational Precision vs Accuracy of Result}
+\onslide<1->
 \begin{block}{Instructive Example [S.M. Rump, 1988]}
 $f(x,y) = (333.75 - x^2)y^6 + x^2(11x^2y^2 - 121y^4-2) + 5.5y^8 + 0.5x/y$\\
 $x_0 = 77617, y_0 = 33096$
 \end{block}
+
 \begin{align*}
 &\text{float s23e8} \hfill &1.1726\\
 &\text{double s52e11} \hfill &1.17260394005318\\
-&\text{quad s63e15} \hfill &1.172603940053178631
+%&\text{quad s63e15} \hfill &1.172603940053178631
+%&\text{quad s112e15} \hfill &1.172603940053178631
 \end{align*}
+\onslide<2->
 \textbf{The correct result is:}\\
 \begin{center}
 \color{red}-0.82739605994682136814116509547981629\color{black}
@@ -193,28 +268,54 @@ $x_0 = 77617, y_0 = 33096$
 
 \subsection{Floting Point Operations. A deeper analysis}
 \begin{frame}{Floating Point Operations. A deeper analysis}
-\begin{itemize}
-\item Number representation
-\begin{itemize}
-\item half s10e5~a=$\vert$1 bit sign $s_a~|~$10 bit mantissa $m_a~|~$5 bit exp. $e_a$ 
-\item float s23e8~b = $\vert$1 bit sign $s_b~|~$23 bit mantissa $m_b~|~$8 bit exp. $e_b$ 
-\item double s52e11~c = $\vert$1 bit sign $s_c~|~$52 bit mantissa $m_c~|~$11 bit exp. $e_c$ 
-\end{itemize}
-\item Multiplication $float(a) \cdot float(b)$
-	\begin{itemize}
-	\item Operations: $s_a \cdot s_b$,$m_a \cdot m_b$,$e_a \cdot e_b$
-	\item Excat format: s46e9 = s23e8 $\cdot$s23e8
-	\item Main error: Mantissa truncated from 46 bit to 23 bit
-	\end{itemize}
-\item Addition $float(a) + float(b)$
-	\begin{itemize}
-	\item Operations: $e_{diff} = e_a - e_b$, $m_a + (m_b >> e_{diff})$, 
-			normalize
-	\item Exact format: s278e8 = s23e8+s23e8
-	\item Main error: Maintissa truncated from 278 bit to 23 bit
-	\end{itemize}
-\end{itemize}
+\textbf{Number representation}\textbf{$\rightarrow$ almost all numbers have to be truncated}~\\
+\begin{table}[H]
+ \centering
+      \begin{tabular}{l|l|l|l}
+	half s10e5~a&\text{1 bit sign $s_a$~}&\text{10 bit mantissa $m_a$~}&\text{5 bit exp. $e_a$}\\\hline
+	float s23e8~b&\text{1 bit sign $s_b$~}&\text{23 bit mantissa $m_b$~}& \text{8 bit exp. $e_b$}\\\hline
+	double s52e11~c&\text{1 bit sign $s_c$~}&\text{52 bit mantissa $m_c$~}&\text{11 bit exp. $e_c$} 
+      \end{tabular}
+      %\label{tab:L2-Fehler bei einfachen Dimension-Splitting}
+\end{table}
+
+\begin{table}[H]
+ \centering
+      \begin{tabular}{l||l|l}
+	\textbf{Multiplication} & & \\\hline\hline
+	Precision & Exactformat & main error: \\\hline\hline
+	half(a) $\cdot$ half(b)& s20e6& truncate mantissa from 20 to 10 bit \\\hline
+	float(a) $\cdot$ float(b)& s46e9& truncate mantissa from 46 to 23 bit \\\hline
+	double(a) $\cdot$ double(b)& s104e12& truncate mantissa from 104 to 52 bit 
+      %\label{tab:L2-Fehler bei einfachen Dimension-Splitting}
+      \end{tabular}
+    \hfill
+  \begin{tabular}{l||l|l}
+	\textbf{Addition} & & \\\hline\hline
+	Precision & Exactformat & main error: \\\hline\hline
+	half(a) $\cdot$ half(b)& s41e5& truncate mantissa from 41 to 10 bit \\\hline
+	float(a) $\cdot$ float(b)& s278e8& truncate mantissa from 278 to 23 bit \\\hline
+	double(a) $\cdot$ double(b)& s2099e11& truncate mantissa from 2099 to 52 bit 
+      %\label{tab:L2-Fehler bei einfachen Dimension-Splitting}
+    \end{tabular}
+\end{table}
+
 \end{frame}
+%\begin{itemize}
+%\item Multiplication $float(a) \cdot float(b)$
+%	\begin{itemize}
+%	\item Operations: $s_a \cdot s_b$,$m_a \cdot m_b$,$e_a \cdot e_b$
+%	\item Excat format: s46e9 = s23e8 $\cdot$s23e8
+%	\item Main error: Mantissa truncated from 46 bit to 23 bit
+%	\end{itemize}
+%\item Addition $float(a) + float(b)$
+%	\begin{itemize}
+%	\item Operations: $e_{diff} = e_a - e_b$, $m_a + (m_b >> e_{diff})$, 
+%			normalize
+%	\item Exact format: s278e8 = s23e8+s23e8
+%	\item Main error: Maintissa truncated from 278 bit to 23 bit
+%	\end{itemize}
+%\end{itemize}
 
 \section{History of Mixed Precision in the context of GPGPU calculations}
 \subsection{History of GPGPU}
