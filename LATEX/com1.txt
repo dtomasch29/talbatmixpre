@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\usepackage{tikz,pgfplots,xcolor}
+\usepackage{xintexpr}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{pgfplots.groupplots,calc}
+\definecolor{chart1}{RGB}{0,69,134}
+\definecolor{chart2}{RGB}{87,157,28}
+\definecolor{chart3}{RGB}{134,69,134}
+\definecolor{chart4}{RGB}{134,69,0}
+\definecolor{chart5}{RGB}{134,120,0}
+\definecolor{chart6}{RGB}{100,80,0}
+\begin{document}
+                   
+\pgfplotsset{
+  every axis x label/.append style={at={(0.5,-.08)}},
+  every axis y label/.append style={at={(-.15,0.5)}},
+  every axis title/.append style={at={(0.5,0.95)}},
+%  every node near coord/.append style={font=\footnotesize,black},
+}
+\begin{tikzpicture}
+  \begin{groupplot}[group style={group size=3 by 2, horizontal sep=50pt, vertical sep=50pt}]

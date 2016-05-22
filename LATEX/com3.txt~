@@ -1,0 +1,1 @@
+\node at ($(group c1r1) + (.52\textwidth,-4cm)$) {\ref{fig:legend:z-plots}};
