@@ -2,8 +2,6 @@
 
 \usepackage{multicol}
 \usepackage[ngerman]{babel} 
-\usepackage[T1]{fontenc}
-\usepackage{graphicx}
 \usepackage{blindtext}
 % Zeilenabstände auf 0 setzen
 %\usepackage{enumitem}
@@ -17,10 +15,6 @@
 %\renewcommand*\familydefault{\sfdefault}
 %\newcommand{\changefont}[3]{\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
 
-
-% Umlaute
-\usepackage[utf8x]{inputenc}
-
 % Farben
 %\usepackage[usenames,dvipsnames]{xcolor}
 
@@ -32,9 +26,17 @@
 \colorlet{notgreen}{blue!50!yellow}
 \usepackage{pdfpages}
 \usepackage{diagbox}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{graphicx}
+\usepackage{textcomp}
 \usepackage{float}
+
+\bibliographystyle{unsrt}
+
+\setlength{\parindent}{0pt}%gegen Einrücken nach Bildern
+\usepackage{pdfpages}%includepdf 
+%Fuer die Quellen wird BibLaTeX genutzt:
+\usepackage{lmodern}%bibliography
 \restylefloat{table}
 
 
@@ -143,36 +145,7 @@ by utilizing low precision computations
 
 \end{frame}
 
-\begin{frame}{A brief history overview}
 
-\textbf{Trends:}\\
-\begin{itemize}
-  \item Memoryclock speeds are increasing\\
-  \begin{itemize}
-    \item GTX 980 Ti Memoryclock speed: 2x 1753 MHz
-    \item GTX 1080 Memoryclock speeds: 4x 2500 MHz (\color{red} +185\%\color{black})
-  \end{itemize}
-  \item Alternative computing arcetectures\\
-  \begin{itemize}
-    \item APU's
-    \item SOC's
-    \item $\rightarrow$ Sharing memory between CPU and GPU is becoming easyer and more common
-  \end{itemize}
-  \item NVIDIA pushing the use of half precision. 
-  \begin{itemize}
-   \item half and half2 were announced as important new features in the CUDA Toolkit version 7.5
-  \end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{A brief history overview}
- \textbf{Past achievements:}~\\
-\begin{center}
-  \includegraphics[width=0.9\textwidth]{../SourcesCites/past.jpg}
-\end{center}
-
- 
-\end{frame}
 
 
 %\subsection{Performance Gains}
@@ -283,19 +256,19 @@ $x_0 = 77617, y_0 = 33096$
  \centering
       \begin{tabular}{l||l|l}
 	\textbf{Multiplication} & & \\\hline\hline
-	Precision & Exactformat & main error: \\\hline\hline
-	half(a) $\cdot$ half(b)& s20e6& truncate mantissa from 20 to 10 bit \\\hline
-	float(a) $\cdot$ float(b)& s46e9& truncate mantissa from 46 to 23 bit \\\hline
-	double(a) $\cdot$ double(b)& s104e12& truncate mantissa from 104 to 52 bit 
+	Precision & Exactformat & Mantissa truncation: \\\hline\hline
+	half(a) $\cdot$ half(b)& s20e6& from 20 to 10 bit \\\hline
+	float(a) $\cdot$ float(b)& s46e9& from 46 to 23 bit \\\hline
+	double(a) $\cdot$ double(b)& s104e12& from 104 to 52 bit 
       %\label{tab:L2-Fehler bei einfachen Dimension-Splitting}
       \end{tabular}
     \hfill
   \begin{tabular}{l||l|l}
 	\textbf{Addition} & & \\\hline\hline
-	Precision & Exactformat & main error: \\\hline\hline
-	half(a) $\cdot$ half(b)& s41e5& truncate mantissa from 41 to 10 bit \\\hline
-	float(a) $\cdot$ float(b)& s278e8& truncate mantissa from 278 to 23 bit \\\hline
-	double(a) $\cdot$ double(b)& s2099e11& truncate mantissa from 2099 to 52 bit 
+	Precision & Exactformat & Mantissa truncation: \\\hline\hline
+	half(a) $\cdot$ half(b)& s41e5& from 41 to 10 bit \\\hline
+	float(a) $\cdot$ float(b)& s278e8&  from 278 to 23 bit \\\hline
+	double(a) $\cdot$ double(b)& s2099e11& from 2099 to 52 bit 
       %\label{tab:L2-Fehler bei einfachen Dimension-Splitting}
     \end{tabular}
 \end{table}
@@ -317,61 +290,97 @@ $x_0 = 77617, y_0 = 33096$
 %	\end{itemize}
 %\end{itemize}
 
-\section{History of Mixed Precision in the context of GPGPU calculations}
-\subsection{History of GPGPU}
-\begin{frame}{History of GPGPU}
-
-	\textbf{1999: NVIDIA GeForce 256}\\
-	\begin{itemize}
-	\item Term GPU was coined during the launch
-	\item GPGPU calculations were only achievable by "Hacking the GPU" 
-			(verry cumbersome and error-prone)
-	\end{itemize}
-~\\~\\
-\textbf{2003-2007 First wave of GPU computing}
-\begin{itemize}
-\item Floating point support
-\item Performance improvements
-\item Geforce 8800GT Release (29.October 2007)\\
-	first CUDA enabled Consumer GPU
-\item Double precision was not available on the GPU
-\item Mixed Precision was the ONLY way to utilize GPU horesepower
-	without precision compromises
-\item Mixed Precision lead to a speedup of factor 3-5 in FEM applications %[http://www.mathematik.tu-dortmund.de/~goeddeke/pubs/pdf/Strzodka_2006_MPM.pdf]
-\end{itemize}
-\end{frame}
+%\section{History of Mixed Precision in the context of GPGPU calculations}
+%\subsection{History of GPGPU}
+%\begin{frame}{History of GPGPU}
+%
+%	\textbf{1999: NVIDIA GeForce 256}\\
+%	\begin{itemize}
+%	\item Term GPU was coined during the launch
+%	\item GPGPU calculations were only achievable by "Hacking the GPU" 
+%			(verry cumbersome and error-prone)
+%	\end{itemize}
+%~\\~\\
+%\textbf{2003-2007 First wave of GPU computing}
+%\begin{itemize}
+%\item Floating point support
+%\item Performance improvements
+%\item Geforce 8800GT Release (29.October 2007)\\
+%	first CUDA enabled Consumer GPU
+%\item Double precision was not available on the GPU
+%\item Mixed Precision was the ONLY way to utilize GPU horesepower
+%	without precision compromises
+%\item Mixed Precision lead to a speedup of factor 3-5 in FEM applications %[http://www.mathematik.tu-dortmund.de/~goeddeke/pubs/pdf/Strzodka_2006_MPM.pdf]
+%\end{itemize}
+%\end{frame}
 
 \subsection{Why Mixed Precision is difficult}
 \begin{frame}{Why Mixed Precision is difficult}
 \begin{itemize}
-\item Data has to be transferred to the GPU over the relativly \color{red} slow PCIe \color{black} interface
+\item Data has to be transferred to the GPU (usually) over the relativly \color{red} slow PCIe \color{black} interface
 \item A lot of time is wasted while waiting for data
 \end{itemize}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{../SourcesCites/cpu-and-gpu.jpg} 
+\end{center}
+
+
 \end{frame}
 
-\subsection{Unconventional computation Hardware}
-\begin{frame}{Unconventional compuation Hardware}
-\textbf{NVIDIA Jetson TK1 Bord}
+\begin{frame}{A brief history overview}
+\textbf{Trends:}\\
 \begin{itemize}
-\item CPU and GPU share the same memory and use the same memory interface
-\item Copying data from CPU to GPU and vice versa is much faster
+  \item Memoryclock speeds are increasing\\
+  \begin{itemize}
+    \item GTX 980 Ti Memoryclock speed: 2x 1753 MHz
+    \item GTX 1080 Memoryclock speeds: 4x 2500 MHz (\color{red} +185\%\color{black})
+  \end{itemize}
+  \item Unconventional computation Hardware\\
+  \begin{itemize}
+    \item APU's
+    \item SOC's such as the NVIDIA Tegra K1
+  \end{itemize}
+  \item New technologys\\
+  \begin{itemize}
+   \item Unified memory
+   \item NVIDIA pushing the use of half precision by implementing support for half and half2 in CUDA Toolkit version 7.5 
+  \end{itemize}
 \end{itemize}
+\textbf{$\rightarrow$ Sharing memory between CPU and GPU is becoming easyer and more effective}
 \end{frame}
+
+\begin{frame}{A brief history overview}
+ \textbf{Past achievements:}~\\
+\begin{center}
+  \includegraphics[width=0.9\textwidth]{../SourcesCites/past.jpg}
+  \cite{WaterWaveComp}
+\end{center}
+\textbf{$\rightarrow$ about 35\% performance increase by using mixedprecision}
+\end{frame}
+
+%\subsection{Unconventional computation Hardware}
+%\begin{frame}{Unconventional compuation Hardware}
+%\textbf{NVIDIA Jetson TK1 Bord}
+%\begin{itemize}
+%\item CPU and GPU share the same memory and use the same memory interface
+%\item Copying data from CPU to GPU and vice versa is much faster
+%\end{itemize}
+%\end{frame}
 
 \section{Example Calculation}
 \begin{frame}{Example Calculation}
 \begin{block}{Problem}
 Solve the Poission problem $- \Delta u = 1,~x\in\Omega$ with dirichlet boundry conditions $u \equiv 0,~x\in \partial \Omega$ using conforming quadrilateral 
-elements for the finite-element discretization of the unit square $\Omega = 
-(-1,1)^2$
+elements for the finite-element discretization of the unit square $\Omega = (-1,1)^2$
 \end{block}
 
 \begin{itemize}
-\item Method 1: Using a CG solver
-\item Method 2 : Using a more sophisticated MG solver
+\item Method 1: Using double precision
+\item Method 2 : Using iterative refinement
 \end{itemize}
-
 \end{frame}
+
+
 
 \subsection{Testresults}
 \begin{frame}{Testresults pending}
@@ -379,4 +388,9 @@ elements for the finite-element discretization of the unit square $\Omega =
 \color{red} Imagine a nice Plot\color{black}
 \end{center}
 \end{frame}
+\begin{frame}{Bibliography}
+  \bibliography{literaturscout24.bib} 
+\end{frame}
+
+
 \end{document}
