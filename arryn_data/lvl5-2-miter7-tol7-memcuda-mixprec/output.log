@@ -1,0 +1,68 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 2 [2]
+LVL-MAX: 5 [5]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixELL, Mem:cudaand to SparseMatrixELL, Mem:cuda...
+PCG: 0 : 3.015408e-01
+PCG: 1 : 1.296712e-01 / 4.300287e-01
+PCG: 2 : 5.319667e-02 / 1.764162e-01
+PCG: 3 : 6.768761e-03 / 2.244725e-02
+PCG: 4 : 6.351029e-04 / 2.106193e-03
+PCG: 5 : 8.173711e-05 / 2.710649e-04
+PCG: 6 : 1.757964e-06 / 5.829940e-06
+PCG: 7 : 2.571855e-07 / 8.529046e-07
+PCG: 0 : 3.763025e-02
+PCG: 1 : 7.681017e-03 / 2.041181e-01
+PCG: 2 : 4.607705e-03 / 1.224468e-01
+PCG: 3 : 4.858109e-04 / 1.291012e-02
+PCG: 4 : 4.537943e-05 / 1.205930e-03
+PCG: 5 : 4.805845e-06 / 1.277123e-04
+PCG: 6 : 2.565465e-07 / 6.817560e-06
+PCG: 7 : 6.190145e-08 / 1.644992e-06
+PCG: 0 : 8.104863e-08
+PCG: 1 : 4.216718e-08 / 5.202702e-01
+PCG: 2 : 1.540184e-08 / 1.900321e-01
+PCG: 3 : 2.043495e-09 / 2.521320e-02
+PCG: 4 : 2.579996e-10 / 3.183270e-03
+PCG: 5 : 2.873092e-11 / 3.544899e-04
+PCG: 6 : 3.050432e-12 / 3.763706e-05
+PCG: 7 : 3.322271e-13 / 4.099109e-06
+PCG: 0 : 3.702775e-13
+PCG: 1 : 1.105097e-13 / 2.984511e-01
+PCG: 2 : 1.283278e-14 / 3.465721e-02
+PCG: 3 : 1.830498e-15 / 4.943585e-03
+PCG: 4 : 7.877172e-16 / 2.127370e-03
+PCG: 5 : 2.334618e-16 / 6.305051e-04
+PCG: 6 : 2.995403e-17 / 8.089617e-05
+PCG: 7 : 3.685594e-18 / 9.953599e-06
+
+PCG ( VCycle ( S: Scale / C: Scale )  )
+
+Complete solver TOE: 0.017969
+0.240581 GFlop/s [0.240581 GFlops/s]
+
+Total time: 0.017969s
+Accumulated op time: 0.008984
+
+Reductions: 40.0356%
+Blas-1: 5.15332%
+Blas-2: 4.80828%
+Precon Kernels: 0%
+MPI Execution: 0%
+MPI Wait: 0%
+Not covered: 50.0028%
+
+Domain size: 0.19989 MByte
+LA size: 0.5047 MByte
+MPI size: 0.0113831 MByte
+
+H0-Error: 4.391240e-04
+H1-Error: 6.452751e-02
+
+Writing DATA to output.data...
+Run-Time: 0:00.059 [0:00.059]
+0x31d198e880 Error: MemoryPool<CUDA> still contains memory chunks on deconstructor call

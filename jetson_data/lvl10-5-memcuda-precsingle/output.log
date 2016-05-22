@@ -1,0 +1,70 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 5 [5]
+LVL-MAX: 10 [10]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixELL, Mem:cuda...
+PCG:    0 : 9.473711e-03
+PCG:    1 : 4.065615e-02 / 4.291470e+00
+PCG:    2 : 4.517666e-02 / 4.768634e+00
+PCG:    3 : 1.235313e-01 / 1.303938e+01
+PCG:    4 : 2.106963e-01 / 2.224010e+01
+PCG:    5 : 1.791787e-01 / 1.891325e+01
+PCG:    6 : 1.625135e-01 / 1.715415e+01
+PCG:    7 : 9.683035e-02 / 1.022095e+01
+PCG:    8 : 7.080128e-02 / 7.473447e+00
+PCG:    9 : 7.196582e-02 / 7.596371e+00
+PCG:   10 : 4.884620e-02 / 5.155973e+00
+PCG:   11 : 2.549885e-02 / 2.691538e+00
+PCG:   12 : 1.068446e-02 / 1.127801e+00
+PCG:   13 : 5.596832e-03 / 5.907750e-01
+PCG:   14 : 2.884239e-03 / 3.044466e-01
+PCG:   15 : 1.304368e-03 / 1.376829e-01
+PCG:   16 : 1.548029e-03 / 1.634026e-01
+PCG:   17 : 7.079986e-04 / 7.473297e-02
+PCG:   18 : 1.728826e-04 / 1.824866e-02
+PCG:   19 : 1.838741e-04 / 1.940888e-02
+PCG:   20 : 1.176240e-04 / 1.241583e-02
+PCG:   21 : 2.621532e-05 / 2.767165e-03
+PCG:   22 : 3.665097e-05 / 3.868703e-03
+PCG:   23 : 1.237329e-05 / 1.306066e-03
+PCG:   24 : 5.860755e-06 / 6.186335e-04
+PCG:   25 : 1.953025e-06 / 2.061520e-04
+PCG:   26 : 7.665487e-07 / 8.091325e-05
+PCG:   27 : 3.536413e-07 / 3.732870e-05
+PCG:   28 : 6.599016e-08 / 6.965608e-06
+PCG:   29 : 2.803163e-08 / 2.958886e-06
+PCG:   30 : 1.163231e-08 / 1.227852e-06
+PCG:   31 : 7.741661e-09 / 8.171730e-07
+PCG:   32 : 1.939030e-09 / 2.046748e-07
+PCG:   33 : 4.689806e-10 / 4.950337e-08
+PCG:   34 : 1.676519e-10 / 1.769654e-08
+PCG:   35 : 8.772576e-11 / 9.259915e-09
+
+PCG ( VCycle ( S: Scale / C: Scale )  )
+
+Complete solver TOE: 9.28667
+0.0966612 GFlop/s [0.0966612 GFlops/s]
+
+Total time: 9.28667s
+Accumulated op time: 4.95684
+
+Reductions: 50.9462%
+Blas-1: 1.1095%
+Blas-2: 1.32016%
+Precon Kernels: 0%
+MPI Execution: 0%
+MPI Wait: 0%
+Not covered: 46.6242%
+
+Domain size: 106.918 MByte
+LA size: 356.315 MByte
+MPI size: 10.6949 MByte
+
+H0-Error: 4.290880e-07
+H1-Error: 2.017209e-03
+
+Run-Time: 0:19.902 [0:19.902]

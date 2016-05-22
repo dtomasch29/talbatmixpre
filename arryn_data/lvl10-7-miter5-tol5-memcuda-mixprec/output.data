@@ -1,0 +1,9 @@
+maxIter:5
+level-Grob:10
+level-Fine:7
+Total time: 11.4328
+DefTol: 1e-05
+H0-Error: 4.927263e-06
+H1-Error: 2.017312e-03
+memtype: cuda
+prec: mixprec

@@ -1,0 +1,76 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 4 [4]
+LVL-MAX: 8 [8]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixELL, Mem:cudaand to SparseMatrixELL, Mem:cuda...
+PCG: 0 : 3.788187e-02
+PCG: 1 : 7.372160e-02 / 1.946092e+00
+PCG: 2 : 8.837245e-02 / 2.332843e+00
+PCG: 3 : 1.869590e-01 / 4.935316e+00
+PCG: 4 : 1.519525e-01 / 4.011220e+00
+PCG: 5 : 5.171773e-02 / 1.365237e+00
+PCG: 6 : 2.259771e-02 / 5.965310e-01
+PCG: 7 : 5.483121e-03 / 1.447426e-01
+PCG: 0 : 5.733142e-03
+PCG: 1 : 2.320968e-03 / 4.048336e-01
+PCG: 2 : 9.312899e-04 / 1.624397e-01
+PCG: 3 : 2.923602e-04 / 5.099476e-02
+PCG: 4 : 9.201360e-05 / 1.604942e-02
+PCG: 5 : 8.616371e-05 / 1.502906e-02
+PCG: 6 : 1.507473e-04 / 2.629401e-02
+PCG: 7 : 7.454232e-05 / 1.300200e-02
+PCG: 0 : 7.454221e-05
+PCG: 1 : 6.906461e-05 / 9.265168e-01
+PCG: 2 : 6.163515e-05 / 8.268490e-01
+PCG: 3 : 2.853251e-05 / 3.827698e-01
+PCG: 4 : 1.901135e-05 / 2.550413e-01
+PCG: 5 : 2.147319e-05 / 2.880675e-01
+PCG: 6 : 3.928852e-05 / 5.270640e-01
+PCG: 7 : 8.118803e-06 / 1.089155e-01
+PCG: 0 : 8.118789e-06
+PCG: 1 : 2.776205e-06 / 3.419482e-01
+PCG: 2 : 7.536900e-07 / 9.283280e-02
+PCG: 3 : 2.816666e-07 / 3.469318e-02
+PCG: 4 : 1.346222e-07 / 1.658157e-02
+PCG: 5 : 1.234487e-07 / 1.520530e-02
+PCG: 6 : 1.897852e-07 / 2.337604e-02
+PCG: 7 : 1.212740e-07 / 1.493745e-02
+PCG: 0 : 1.212739e-07
+PCG: 1 : 1.024112e-07 / 8.444620e-01
+PCG: 2 : 7.709451e-08 / 6.357055e-01
+PCG: 3 : 5.175103e-08 / 4.267284e-01
+PCG: 4 : 3.150805e-08 / 2.598089e-01
+PCG: 5 : 2.969057e-08 / 2.448223e-01
+PCG: 6 : 5.124531e-08 / 4.225583e-01
+PCG: 7 : 2.295227e-08 / 1.892597e-01
+
+PCG ( VCycle ( S: Scale / C: Scale )  )
+
+Complete solver TOE: 0.082515
+4.10972 GFlop/s [4.10972 GFlops/s]
+
+Total time: 0.082515s
+Accumulated op time: 0.021577
+
+Reductions: 22.7183%
+Blas-1: 1.74029%
+Blas-2: 1.6906%
+Precon Kernels: 0%
+MPI Execution: 0%
+MPI Wait: 0%
+Not covered: 73.8508%
+
+Domain size: 12.0946 MByte
+LA size: 30.305 MByte
+MPI size: 0.673698 MByte
+
+H0-Error: 6.863668e-06
+H1-Error: 8.068795e-03
+
+Writing DATA to output.data...
+Run-Time: 0:00.295 [0:00.295]
+0x31d198e880 Error: MemoryPool<CUDA> still contains memory chunks on deconstructor call

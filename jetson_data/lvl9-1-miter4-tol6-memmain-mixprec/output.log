@@ -1,0 +1,51 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 1 [1]
+LVL-MAX: 9 [9]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixCSR, Mem:mainand to SparseMatrixCSR, Mem:main...
+PCG: 0 : 1.894513e-02
+PCG: 1 : 6.877677e-03 / 3.630314e-01
+PCG: 2 : 2.534201e-03 / 1.337653e-01
+PCG: 3 : 8.153068e-04 / 4.303517e-02
+PCG: 4 : 1.593899e-04 / 8.413238e-03
+PCG: 0 : 5.674912e-04
+PCG: 1 : 8.352382e-05 / 1.471808e-01
+PCG: 2 : 4.653231e-06 / 8.199653e-03
+PCG: 3 : 6.682487e-07 / 1.177549e-03
+PCG: 4 : 7.110171e-08 / 1.252913e-04
+PCG: 0 : 7.124551e-08
+PCG: 1 : 1.041026e-08 / 1.461182e-01
+PCG: 2 : 1.182804e-09 / 1.660180e-02
+PCG: 3 : 1.254467e-10 / 1.760767e-03
+PCG: 4 : 1.708338e-11 / 2.397819e-04
+
+PCG ( VCycle ( S: Scale / C: Scale )  )
+
+Complete solver TOE: 1.11392
+0.432553 GFlop/s [0.432553 GFlops/s]
+
+Total time: 1.11392s
+Accumulated op time: 1.07744
+
+Reductions: 1.81036%
+Blas-1: 5.35846%
+Blas-2: 89.5558%
+Precon Kernels: 0%
+MPI Execution: 0%
+MPI Wait: 0%
+Not covered: 3.27537%
+
+Domain size: 26.8075 MByte
+LA size: 89.3029 MByte
+MPI size: 2.68239 MByte
+
+H0-Error: 1.716358e-06
+H1-Error: 4.034414e-03
+
+Writing DATA to output.data...
+Run-Time: 0:03.537 [0:03.537]
+0xb33279f8 Error: MemoryPool<CPU> still contains memory chunks on deconstructor call

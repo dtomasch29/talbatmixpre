@@ -1,0 +1,68 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 3 [3]
+LVL-MAX: 9 [9]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixCSR, Mem:mainand to SparseMatrixCSR, Mem:main...
+PCG: 0 : 1.894513e-02
+PCG: 1 : 1.974194e-02 / 1.042059e+00
+PCG: 2 : 2.306508e-02 / 1.217468e+00
+PCG: 3 : 1.763060e-02 / 9.306140e-01
+PCG: 4 : 4.225597e-03 / 2.230440e-01
+PCG: 5 : 5.786622e-04 / 3.054412e-02
+PCG: 6 : 8.224117e-05 / 4.341019e-03
+PCG: 7 : 1.672212e-05 / 8.826606e-04
+PCG: 0 : 5.485076e-04
+PCG: 1 : 5.509898e-05 / 1.004525e-01
+PCG: 2 : 6.652803e-05 / 1.212892e-01
+PCG: 3 : 2.158642e-05 / 3.935482e-02
+PCG: 4 : 1.489330e-05 / 2.715240e-02
+PCG: 5 : 3.447405e-06 / 6.285063e-03
+PCG: 6 : 3.750270e-07 / 6.837226e-04
+PCG: 7 : 1.087082e-07 / 1.981891e-04
+PCG: 0 : 1.088532e-07
+PCG: 1 : 1.114742e-07 / 1.024079e+00
+PCG: 2 : 2.949210e-08 / 2.709347e-01
+PCG: 3 : 6.644105e-09 / 6.103731e-02
+PCG: 4 : 8.904548e-09 / 8.180328e-02
+PCG: 5 : 4.024735e-09 / 3.697398e-02
+PCG: 6 : 1.594818e-09 / 1.465110e-02
+PCG: 7 : 3.808319e-10 / 3.498583e-03
+PCG: 0 : 3.808459e-10
+PCG: 1 : 1.724010e-10 / 4.526792e-01
+PCG: 2 : 4.677601e-11 / 1.228214e-01
+PCG: 3 : 1.505059e-11 / 3.951886e-02
+PCG: 4 : 5.306131e-12 / 1.393249e-02
+PCG: 5 : 6.751000e-12 / 1.772633e-02
+PCG: 6 : 3.298452e-12 / 8.660858e-03
+PCG: 7 : 1.096988e-12 / 2.880400e-03
+
+PCG ( VCycle ( S: Scale / C: Scale )  )
+
+Complete solver TOE: 2.44554
+0.444001 GFlop/s [0.444001 GFlops/s]
+
+Total time: 2.44554s
+Accumulated op time: 2.3782
+
+Reductions: 1.79518%
+Blas-1: 5.3436%
+Blas-2: 90.1076%
+Precon Kernels: 0%
+MPI Execution: 0%
+MPI Wait: 0%
+Not covered: 2.75362%
+
+Domain size: 26.805 MByte
+LA size: 89.2863 MByte
+MPI size: 2.68211 MByte
+
+H0-Error: 1.716359e-06
+H1-Error: 4.034414e-03
+
+Writing DATA to output.data...
+Run-Time: 0:04.876 [0:04.876]
+0xb335a9f8 Error: MemoryPool<CPU> still contains memory chunks on deconstructor call
