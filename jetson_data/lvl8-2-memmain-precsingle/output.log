@@ -1,0 +1,46 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 2 [2]
+LVL-MAX: 8 [8]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixCSR, Mem:main...
+PCG:    0 : 3.788187e-02
+PCG:    1 : 1.876205e-02 / 4.952777e-01
+PCG:    2 : 1.023292e-02 / 2.701270e-01
+PCG:    3 : 3.185067e-03 / 8.407891e-02
+PCG:    4 : 5.392147e-04 / 1.423411e-02
+PCG:    5 : 4.779269e-05 / 1.261624e-03
+PCG:    6 : 5.752805e-06 / 1.518617e-04
+PCG:    7 : 8.673801e-07 / 2.289697e-05
+PCG:    8 : 7.535132e-08 / 1.989113e-06
+PCG:    9 : 7.908478e-09 / 2.087668e-07
+PCG:   10 : 8.153651e-10 / 2.152388e-08
+PCG:   11 : 4.454268e-11 / 1.175831e-09
+
+PCG ( VCycle ( S: Scale / C: Scale )  )
+
+Complete solver TOE: 0.283008
+0.366132 GFlop/s [0.366132 GFlops/s]
+
+Total time: 0.283008s
+Accumulated op time: 0.271859
+
+Reductions: 2.98649%
+Blas-1: 8.48174%
+Blas-2: 84.5923%
+Precon Kernels: 0%
+MPI Execution: 0%
+MPI Wait: 0%
+Not covered: 3.93946%
+
+Domain size: 6.73645 MByte
+LA size: 22.4112 MByte
+MPI size: 0.674484 MByte
+
+H0-Error: 6.865388e-06
+H1-Error: 8.068795e-03
+
+Run-Time: 0:00.840 [0:00.840]

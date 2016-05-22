@@ -1,0 +1,74 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 2 [2]
+LVL-MAX: 9 [9]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixELL, Mem:cudaand to SparseMatrixELL, Mem:cuda...
+PCG: 0 : 1.894534e-02
+PCG: 1 : 9.764041e-03 / 5.153795e-01
+PCG: 0 : 9.795916e-03
+PCG: 1 : 5.509215e-03 / 5.623992e-01
+PCG: 0 : 5.509202e-03
+PCG: 1 : 5.269298e-03 / 9.564539e-01
+PCG: 0 : 5.269293e-03
+PCG: 1 : 3.409261e-03 / 6.470054e-01
+PCG: 0 : 3.409260e-03
+PCG: 1 : 2.759459e-03 / 8.094012e-01
+PCG: 0 : 2.759459e-03
+PCG: 1 : 1.462134e-03 / 5.298625e-01
+PCG: 0 : 1.462133e-03
+PCG: 1 : 1.008368e-03 / 6.896554e-01
+PCG: 0 : 1.008368e-03
+PCG: 1 : 4.648476e-04 / 4.609899e-01
+PCG: 0 : 4.648476e-04
+PCG: 1 : 2.967558e-04 / 6.383938e-01
+PCG: 0 : 2.967558e-04
+PCG: 1 : 1.295713e-04 / 4.366259e-01
+PCG: 0 : 1.295713e-04
+PCG: 1 : 8.067375e-05 / 6.226206e-01
+PCG: 0 : 8.067376e-05
+PCG: 1 : 3.461499e-05 / 4.290737e-01
+PCG: 0 : 3.461498e-05
+PCG: 1 : 2.138371e-05 / 6.177589e-01
+PCG: 0 : 2.138372e-05
+PCG: 1 : 9.124214e-06 / 4.266898e-01
+PCG: 0 : 9.124214e-06
+PCG: 1 : 5.622390e-06 / 6.162054e-01
+PCG: 0 : 5.622391e-06
+PCG: 1 : 2.395054e-06 / 4.259851e-01
+PCG: 0 : 2.395054e-06
+PCG: 1 : 1.474708e-06 / 6.157305e-01
+PCG: 0 : 1.474708e-06
+PCG: 1 : 6.279776e-07 / 4.258318e-01
+PCG: 0 : 6.279775e-07
+PCG: 1 : 3.866119e-07 / 6.156461e-01
+
+PCG ( VCycle ( S: Scale / C: Scale )  )
+
+Complete solver TOE: 0.159213
+5.94387 GFlop/s [5.94387 GFlops/s]
+
+Total time: 0.159213s
+Accumulated op time: 0.034514
+
+Reductions: 19.9776%
+Blas-1: 0.827822%
+Blas-2: 0.872416%
+Precon Kernels: 0%
+MPI Execution: 0%
+MPI Wait: 0%
+Not covered: 78.3221%
+
+Domain size: 48.2178 MByte
+LA size: 121.079 MByte
+MPI size: 2.68237 MByte
+
+H0-Error: 1.797698e-06
+H1-Error: 4.034414e-03
+
+Writing DATA to output.data...
+Run-Time: 0:00.880 [0:00.880]
+0x31d198e880 Error: MemoryPool<CUDA> still contains memory chunks on deconstructor call

@@ -1,0 +1,68 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 1 [1]
+LVL-MAX: 9 [9]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixCSR, Mem:mainand to SparseMatrixCSR, Mem:main...
+PCG: 0 : 1.894412e-02
+PCG: 1 : 6.876382e-03 / 3.629823e-01
+PCG: 2 : 2.533355e-03 / 1.337277e-01
+PCG: 3 : 8.149568e-04 / 4.301898e-02
+PCG: 4 : 1.593062e-04 / 8.409266e-03
+PCG: 5 : 1.344105e-05 / 7.095102e-04
+PCG: 6 : 1.473774e-06 / 7.779583e-05
+PCG: 7 : 2.364386e-07 / 1.248084e-05
+PCG: 0 : 5.473008e-04
+PCG: 1 : 4.574324e-05 / 8.357969e-02
+PCG: 2 : 3.980317e-06 / 7.272630e-03
+PCG: 3 : 4.793582e-07 / 8.758586e-04
+PCG: 4 : 6.084797e-08 / 1.111783e-04
+PCG: 5 : 6.552337e-09 / 1.197209e-05
+PCG: 6 : 7.670158e-10 / 1.401452e-06
+PCG: 7 : 8.287652e-11 / 1.514277e-07
+PCG: 0 : 5.344234e-09
+PCG: 1 : 1.555540e-09 / 2.910688e-01
+PCG: 2 : 1.436314e-10 / 2.687595e-02
+PCG: 3 : 1.503328e-11 / 2.812990e-03
+PCG: 4 : 1.984032e-12 / 3.712472e-04
+PCG: 5 : 2.412086e-13 / 4.513435e-05
+PCG: 6 : 2.820928e-14 / 5.278452e-06
+PCG: 7 : 3.313799e-15 / 6.200699e-07
+PCG: 0 : 5.023246e-13
+PCG: 1 : 1.415052e-13 / 2.817008e-01
+PCG: 2 : 1.618818e-14 / 3.222653e-02
+PCG: 3 : 2.295518e-15 / 4.569790e-03
+PCG: 4 : 2.947807e-16 / 5.868332e-04
+PCG: 5 : 3.265852e-17 / 6.501478e-05
+PCG: 6 : 4.129823e-18 / 8.221424e-06
+PCG: 7 : 4.351647e-19 / 8.663019e-07
+
+PCG ( VCycle ( S: Scale / C: Scale )  )
+
+Complete solver TOE: 0.43882
+2.47488 GFlop/s [2.47488 GFlops/s]
+
+Total time: 0.43882s
+Accumulated op time: 0.422102
+
+Reductions: 7.24055%
+Blas-1: 5.65972%
+Blas-2: 83.29%
+Precon Kernels: 0%
+MPI Execution: 0%
+MPI Wait: 0%
+Not covered: 3.80976%
+
+Domain size: 48.2188 MByte
+LA size: 121.084 MByte
+MPI size: 2.68246 MByte
+
+H0-Error: 1.716361e-06
+H1-Error: 4.034414e-03
+
+Writing DATA to output.data...
+Run-Time: 0:01.001 [0:01.001]
+0x31d198e880 Error: MemoryPool<CPU> still contains memory chunks on deconstructor call

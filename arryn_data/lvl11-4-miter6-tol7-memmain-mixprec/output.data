@@ -1,0 +1,9 @@
+maxIter:6
+level-Grob:11
+level-Fine:4
+Total time: 20.3173
+DefTol: 1e-07
+H0-Error: 1.074902e-07
+H1-Error: 1.008605e-03
+memtype: main
+prec: mixprec

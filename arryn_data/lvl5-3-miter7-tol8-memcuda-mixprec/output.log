@@ -1,0 +1,68 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 3 [3]
+LVL-MAX: 5 [5]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixELL, Mem:cudaand to SparseMatrixELL, Mem:cuda...
+PCG: 0 : 3.015408e-01
+PCG: 1 : 2.796061e-01 / 9.272582e-01
+PCG: 2 : 1.970737e-01 / 6.535556e-01
+PCG: 3 : 8.407197e-02 / 2.788080e-01
+PCG: 4 : 5.429196e-03 / 1.800485e-02
+PCG: 5 : 8.713090e-04 / 2.889523e-03
+PCG: 6 : 1.462376e-04 / 4.849681e-04
+PCG: 7 : 2.215484e-05 / 7.347213e-05
+PCG: 0 : 3.762705e-02
+PCG: 1 : 1.342765e-02 / 3.568615e-01
+PCG: 2 : 1.204946e-02 / 3.202340e-01
+PCG: 3 : 1.256897e-02 / 3.340409e-01
+PCG: 4 : 1.671559e-03 / 4.442439e-02
+PCG: 5 : 2.591444e-04 / 6.887185e-03
+PCG: 6 : 3.689078e-05 / 9.804324e-04
+PCG: 7 : 4.430359e-06 / 1.177440e-04
+PCG: 0 : 4.425634e-06
+PCG: 1 : 1.244213e-06 / 2.811377e-01
+PCG: 2 : 1.640113e-07 / 3.705938e-02
+PCG: 3 : 2.567778e-08 / 5.802056e-03
+PCG: 4 : 1.932373e-08 / 4.366320e-03
+PCG: 5 : 1.286698e-08 / 2.907376e-03
+PCG: 6 : 3.604946e-09 / 8.145603e-04
+PCG: 7 : 3.038349e-09 / 6.865340e-04
+PCG: 0 : 3.038396e-09
+PCG: 1 : 1.146344e-09 / 3.772860e-01
+PCG: 2 : 7.283399e-10 / 2.397120e-01
+PCG: 3 : 1.874140e-10 / 6.168187e-02
+PCG: 4 : 1.304202e-10 / 4.292403e-02
+PCG: 5 : 1.050947e-10 / 3.458888e-02
+PCG: 6 : 5.937149e-11 / 1.954040e-02
+PCG: 7 : 1.770817e-11 / 5.828130e-03
+
+PCG ( VCycle ( S: Scale / C: Scale )  )
+
+Complete solver TOE: 0.017308
+0.240415 GFlop/s [0.240415 GFlops/s]
+
+Total time: 0.017308s
+Accumulated op time: 0.007057
+
+Reductions: 32.8403%
+Blas-1: 4.28703%
+Blas-2: 3.64571%
+Precon Kernels: 0%
+MPI Execution: 0%
+MPI Wait: 0%
+Not covered: 59.2269%
+
+Domain size: 0.196762 MByte
+LA size: 0.487099 MByte
+MPI size: 0.0111771 MByte
+
+H0-Error: 4.391240e-04
+H1-Error: 6.452751e-02
+
+Writing DATA to output.data...
+Run-Time: 0:00.067 [0:00.067]
+0x31d198e880 Error: MemoryPool<CUDA> still contains memory chunks on deconstructor call

@@ -1,0 +1,72 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 3 [3]
+LVL-MAX: 5 [5]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixCSR, Mem:mainand to SparseMatrixCSR, Mem:main...
+PCG: 0 : 3.015411e-01
+PCG: 1 : 2.796062e-01 / 9.272574e-01
+PCG: 2 : 1.970729e-01 / 6.535525e-01
+PCG: 3 : 8.407171e-02 / 2.788068e-01
+PCG: 4 : 5.429191e-03 / 1.800481e-02
+PCG: 5 : 8.713039e-04 / 2.889503e-03
+PCG: 6 : 1.462355e-04 / 4.849604e-04
+PCG: 7 : 2.215653e-05 / 7.347765e-05
+PCG: 8 : 3.300856e-06 / 1.094662e-05
+PCG: 0 : 3.762990e-02
+PCG: 1 : 1.342803e-02 / 3.568448e-01
+PCG: 2 : 1.204875e-02 / 3.201910e-01
+PCG: 3 : 1.256841e-02 / 3.340006e-01
+PCG: 4 : 1.670552e-03 / 4.439428e-02
+PCG: 5 : 2.588140e-04 / 6.877881e-03
+PCG: 6 : 3.692743e-05 / 9.813322e-04
+PCG: 7 : 4.432462e-06 / 1.177910e-04
+PCG: 8 : 1.322215e-06 / 3.513734e-05
+PCG: 0 : 1.323606e-06
+PCG: 1 : 1.728925e-07 / 1.306224e-01
+PCG: 2 : 2.968073e-08 / 2.242415e-02
+PCG: 3 : 2.315914e-08 / 1.749701e-02
+PCG: 4 : 2.316577e-08 / 1.750202e-02
+PCG: 5 : 4.159647e-09 / 3.142664e-03
+PCG: 6 : 2.291731e-09 / 1.731431e-03
+PCG: 7 : 1.234316e-09 / 9.325407e-04
+PCG: 8 : 4.829149e-10 / 3.648480e-04
+PCG: 0 : 4.829123e-10
+PCG: 1 : 2.699960e-10 / 5.590995e-01
+PCG: 2 : 7.724657e-11 / 1.599598e-01
+PCG: 3 : 2.919033e-11 / 6.044645e-02
+PCG: 4 : 1.454540e-11 / 3.012017e-02
+PCG: 5 : 4.016804e-12 / 8.317874e-03
+PCG: 6 : 2.613783e-12 / 5.412541e-03
+PCG: 7 : 2.168696e-12 / 4.490868e-03
+PCG: 8 : 6.745689e-13 / 1.396876e-03
+
+PCG ( VCycle ( S: Scale / C: Scale )  )
+
+Complete solver TOE: 0.001624
+2.91031 GFlop/s [2.91031 GFlops/s]
+
+Total time: 0.001624s
+Accumulated op time: 0.001334
+
+Reductions: 10.0369%
+Blas-1: 2.21675%
+Blas-2: 69.8892%
+Precon Kernels: 0%
+MPI Execution: 0%
+MPI Wait: 0%
+Not covered: 17.8571%
+
+Domain size: 0.196762 MByte
+LA size: 0.487099 MByte
+MPI size: 0.0111771 MByte
+
+H0-Error: 4.391240e-04
+H1-Error: 6.452751e-02
+
+Writing DATA to output.data...
+Run-Time: 0:00.007 [0:00.007]
+0x31d198e880 Error: MemoryPool<CPU> still contains memory chunks on deconstructor call

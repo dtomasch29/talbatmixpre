@@ -1,0 +1,7 @@
+Level-Grob:11
+Level-Fine:1
+Total time: 0.751725s
+H0-Error: 1.072991e-07
+H1-Error: 1.008605e-03
+memtype: cuda
+prec: singleprec

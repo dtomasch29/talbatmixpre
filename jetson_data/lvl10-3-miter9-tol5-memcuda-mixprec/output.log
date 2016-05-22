@@ -1,0 +1,66 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 3 [3]
+LVL-MAX: 10 [10]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixELL, Mem:cudaand to SparseMatrixELL, Mem:cuda...
+PCG: 0 : 9.473711e-03
+PCG: 1 : 1.006421e-02 / 1.062330e+00
+PCG: 2 : 1.259371e-02 / 1.329332e+00
+PCG: 3 : 1.014107e-02 / 1.070444e+00
+PCG: 4 : 2.933751e-03 / 3.096729e-01
+PCG: 5 : 5.955103e-04 / 6.285924e-02
+PCG: 6 : 8.480658e-05 / 8.951780e-03
+PCG: 7 : 1.264178e-05 / 1.334406e-03
+PCG: 8 : 3.061686e-06 / 3.231770e-04
+PCG: 9 : 4.788749e-06 / 5.054777e-04
+PCG: 0 : 2.152213e-04
+PCG: 1 : 4.054226e-04 / 1.883748e+00
+PCG: 2 : 2.563987e-04 / 1.191326e+00
+PCG: 3 : 5.607837e-05 / 2.605614e-01
+PCG: 4 : 2.127740e-05 / 9.886288e-02
+PCG: 5 : 3.332929e-06 / 1.548606e-02
+PCG: 6 : 7.764519e-07 / 3.607691e-03
+PCG: 7 : 4.315607e-07 / 2.005195e-03
+PCG: 8 : 1.644050e-07 / 7.638881e-04
+PCG: 9 : 3.784625e-08 / 1.758481e-04
+PCG: 0 : 7.359677e-08
+PCG: 1 : 2.805978e-07 / 3.812638e+00
+PCG: 2 : 8.929822e-08 / 1.213344e+00
+PCG: 3 : 3.143797e-08 / 4.271651e-01
+PCG: 4 : 8.223749e-09 / 1.117406e-01
+PCG: 5 : 2.650940e-09 / 3.601978e-02
+PCG: 6 : 7.877481e-10 / 1.070357e-02
+PCG: 7 : 4.735233e-10 / 6.434023e-03
+PCG: 8 : 1.284109e-10 / 1.744790e-03
+PCG: 9 : 5.905578e-11 / 8.024235e-04
+
+PCG ( VCycle ( S: Scale / C: Scale )  )
+
+Complete solver TOE: 7.07603
+0.585076 GFlop/s [0.585076 GFlops/s]
+
+Total time: 7.07603s
+Accumulated op time: 2.43057
+
+Reductions: 33.043%
+Blas-1: 0.690754%
+Blas-2: 0.615571%
+Precon Kernels: 0%
+MPI Execution: 0%
+MPI Wait: 0%
+Not covered: 65.6506%
+
+Domain size: 106.946 MByte
+LA size: 356.551 MByte
+MPI size: 10.6978 MByte
+
+H0-Error: 4.291489e-07
+H1-Error: 2.017209e-03
+
+Writing DATA to output.data...
+Run-Time: 0:18.719 [0:18.719]
+0xb337f9f8 Error: MemoryPool<CUDA> still contains memory chunks on deconstructor call

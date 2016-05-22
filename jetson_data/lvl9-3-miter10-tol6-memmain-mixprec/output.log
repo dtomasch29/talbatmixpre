@@ -1,0 +1,69 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 3 [3]
+LVL-MAX: 9 [9]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixCSR, Mem:mainand to SparseMatrixCSR, Mem:main...
+PCG:  0 : 1.894513e-02
+PCG:  1 : 1.974194e-02 / 1.042059e+00
+PCG:  2 : 2.306508e-02 / 1.217468e+00
+PCG:  3 : 1.763060e-02 / 9.306140e-01
+PCG:  4 : 4.225597e-03 / 2.230440e-01
+PCG:  5 : 5.786622e-04 / 3.054412e-02
+PCG:  6 : 8.224117e-05 / 4.341019e-03
+PCG:  7 : 1.672212e-05 / 8.826606e-04
+PCG:  8 : 7.180049e-06 / 3.789918e-04
+PCG:  9 : 1.080668e-05 / 5.704201e-04
+PCG: 10 : 1.616749e-06 / 8.533849e-05
+PCG:  0 : 5.477858e-04
+PCG:  1 : 5.595760e-05 / 1.021523e-01
+PCG:  2 : 8.251991e-05 / 1.506427e-01
+PCG:  3 : 2.389250e-05 / 4.361651e-02
+PCG:  4 : 1.527062e-05 / 2.787699e-02
+PCG:  5 : 3.482361e-06 / 6.357158e-03
+PCG:  6 : 3.774912e-07 / 6.891219e-04
+PCG:  7 : 1.160505e-07 / 2.118537e-04
+PCG:  8 : 8.033887e-08 / 1.466611e-04
+PCG:  9 : 1.763049e-08 / 3.218501e-05
+PCG: 10 : 2.514524e-09 / 4.590342e-06
+PCG:  0 : 8.592646e-09
+PCG:  1 : 2.858133e-08 / 3.326255e+00
+PCG:  2 : 7.184743e-09 / 8.361502e-01
+PCG:  3 : 2.160794e-09 / 2.514701e-01
+PCG:  4 : 7.258890e-10 / 8.447794e-02
+PCG:  5 : 2.500983e-10 / 2.910608e-02
+PCG:  6 : 1.322026e-10 / 1.538555e-02
+PCG:  7 : 5.051694e-11 / 5.879091e-03
+PCG:  8 : 1.572294e-11 / 1.829814e-03
+PCG:  9 : 4.803858e-12 / 5.590662e-04
+PCG: 10 : 1.604621e-12 / 1.867435e-04
+
+PCG ( VCycle ( S: Scale / C: Scale )  )
+
+Complete solver TOE: 2.68859
+0.426565 GFlop/s [0.426565 GFlops/s]
+
+Total time: 2.68859s
+Accumulated op time: 2.61581
+
+Reductions: 1.76996%
+Blas-1: 5.25793%
+Blas-2: 90.2652%
+Precon Kernels: 0%
+MPI Execution: 0%
+MPI Wait: 0%
+Not covered: 2.70688%
+
+Domain size: 26.805 MByte
+LA size: 89.2863 MByte
+MPI size: 2.68211 MByte
+
+H0-Error: 1.716360e-06
+H1-Error: 4.034414e-03
+
+Writing DATA to output.data...
+Run-Time: 0:05.125 [0:05.125]
+0xb337a9f8 Error: MemoryPool<CPU> still contains memory chunks on deconstructor call

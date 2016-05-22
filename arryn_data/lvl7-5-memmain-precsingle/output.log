@@ -1,0 +1,68 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 5 [5]
+LVL-MAX: 7 [7]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixCSR, Mem:main...
+PCG:    0 : 7.572471e-02
+PCG:    1 : 2.893019e-01 / 3.820443e+00
+PCG:    2 : 2.174569e-01 / 2.871677e+00
+PCG:    3 : 3.691280e-01 / 4.874605e+00
+PCG:    4 : 3.153110e-01 / 4.163912e+00
+PCG:    5 : 1.886804e-01 / 2.491662e+00
+PCG:    6 : 2.114773e-01 / 2.792712e+00
+PCG:    7 : 1.822115e-01 / 2.406236e+00
+PCG:    8 : 1.046505e-01 / 1.381986e+00
+PCG:    9 : 6.015974e-02 / 7.944533e-01
+PCG:   10 : 3.509509e-02 / 4.634562e-01
+PCG:   11 : 3.101440e-02 / 4.095678e-01
+PCG:   12 : 2.245800e-02 / 2.965742e-01
+PCG:   13 : 7.819231e-03 / 1.032587e-01
+PCG:   14 : 2.863815e-03 / 3.781876e-02
+PCG:   15 : 1.273654e-03 / 1.681953e-02
+PCG:   16 : 2.137135e-03 / 2.822243e-02
+PCG:   17 : 9.639441e-04 / 1.272958e-02
+PCG:   18 : 1.858556e-04 / 2.454359e-03
+PCG:   19 : 2.734378e-04 / 3.610946e-03
+PCG:   20 : 1.217328e-04 / 1.607571e-03
+PCG:   21 : 3.879512e-05 / 5.123178e-04
+PCG:   22 : 2.583145e-05 / 3.411231e-04
+PCG:   23 : 1.158621e-05 / 1.530044e-04
+PCG:   24 : 8.951359e-06 / 1.182092e-04
+PCG:   25 : 1.617072e-06 / 2.135461e-05
+PCG:   26 : 9.396693e-07 / 1.240902e-05
+PCG:   27 : 2.708101e-07 / 3.576244e-06
+PCG:   28 : 9.313065e-08 / 1.229858e-06
+PCG:   29 : 2.390307e-08 / 3.156575e-07
+PCG:   30 : 1.317854e-08 / 1.740323e-07
+PCG:   31 : 7.092907e-09 / 9.366701e-08
+PCG:   32 : 1.723914e-09 / 2.276553e-08
+PCG:   33 : 4.993147e-10 / 6.593814e-09
+
+PCG ( VCycle ( S: Scale / C: Scale )  )
+
+Complete solver TOE: 0.027688
+2.64932 GFlop/s [2.64932 GFlops/s]
+
+Total time: 0.027688s
+Accumulated op time: 0.025756
+
+Reductions: 7.80483%
+Blas-1: 6.56963%
+Blas-2: 78.6478%
+Precon Kernels: 0%
+MPI Execution: 0%
+MPI Wait: 0%
+Not covered: 6.97775%
+
+Domain size: 3.00121 MByte
+LA size: 7.32276 MByte
+MPI size: 0.167549 MByte
+
+H0-Error: 2.746078e-05
+H1-Error: 1.613732e-02
+
+Run-Time: 0:00.060 [0:00.060]

@@ -1,0 +1,68 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 2 [2]
+LVL-MAX: 8 [8]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixCSR, Mem:mainand to SparseMatrixCSR, Mem:main...
+PCG:  0 : 3.788143e-02
+PCG:  1 : 1.876217e-02 / 4.952868e-01
+PCG:  2 : 1.023273e-02 / 2.701252e-01
+PCG:  3 : 3.184778e-03 / 8.407228e-02
+PCG:  4 : 5.391559e-04 / 1.423272e-02
+PCG:  5 : 4.781284e-05 / 1.262171e-03
+PCG:  6 : 5.818560e-06 / 1.535993e-04
+PCG:  7 : 1.295316e-06 / 3.419397e-05
+PCG:  8 : 6.546487e-07 / 1.728152e-05
+PCG:  9 : 9.337850e-08 / 2.465020e-06
+PCG: 10 : 1.335009e-08 / 3.524178e-07
+PCG:  0 : 1.544078e-03
+PCG:  1 : 1.555808e-04 / 1.007597e-01
+PCG:  2 : 1.400374e-04 / 9.069324e-02
+PCG:  3 : 1.042289e-05 / 6.750234e-03
+PCG:  4 : 1.317533e-06 / 8.532816e-04
+PCG:  5 : 1.571212e-07 / 1.017573e-04
+PCG:  6 : 1.398836e-08 / 9.059358e-06
+PCG:  7 : 2.206573e-09 / 1.429055e-06
+PCG:  8 : 2.995632e-10 / 1.940078e-07
+PCG:  9 : 5.632185e-11 / 3.647604e-08
+PCG:  0 : 4.834015e-09
+PCG:  1 : 8.309612e-10 / 1.718988e-01
+PCG:  2 : 3.297900e-10 / 6.822281e-02
+PCG:  3 : 1.284335e-10 / 2.656871e-02
+PCG:  4 : 2.123252e-11 / 4.392317e-03
+PCG:  5 : 3.947448e-12 / 8.165984e-04
+PCG:  6 : 5.603030e-13 / 1.159084e-04
+PCG:  7 : 6.922550e-14 / 1.432050e-05
+PCG:  8 : 9.410268e-15 / 1.946678e-06
+PCG:  9 : 1.060627e-15 / 2.194092e-07
+PCG: 10 : 1.088587e-16 / 2.251931e-08
+
+PCG ( VCycle ( S: Scale / C: Scale )  )
+
+Complete solver TOE: 0.102812
+2.70489 GFlop/s [2.70489 GFlops/s]
+
+Total time: 0.102812s
+Accumulated op time: 0.097993
+
+Reductions: 7.71603%
+Blas-1: 4.8506%
+Blas-2: 82.7462%
+Precon Kernels: 0%
+MPI Execution: 0%
+MPI Wait: 0%
+Not covered: 4.6872%
+
+Domain size: 12.1083 MByte
+LA size: 30.3883 MByte
+MPI size: 0.674538 MByte
+
+H0-Error: 6.865389e-06
+H1-Error: 8.068795e-03
+
+Writing DATA to output.data...
+Run-Time: 0:00.242 [0:00.242]
+0x31d198e880 Error: MemoryPool<CPU> still contains memory chunks on deconstructor call
