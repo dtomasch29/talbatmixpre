@@ -72,7 +72,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{Mixed Precision}
-\author{Christoph H\"oppke, Daniel Tomaschewski}
+\author{Christoph Höppke, Daniel Tomaschewski}
 \institute[TU Dortmund]{TU Dortmund}
 \date{Version:\today}
 
@@ -226,7 +226,7 @@ calculations evaluates the expression $1 + \epsilon > 1$ to be true.
 \begin{align*}
 &\text{additive roundoff } & a=1+0.00000004 &= 1.00000004 &=_{fl} 1\\
 &\text{multiplicative roundoff } & b = 1.0002 \cdot 0.9998 &=0.99999996 &=_{fl} 1\\
-&\text{cancellation}  &c\in \lbrace a,b\rbrace 
+&\text{\color{blue}cancellation\color{black}~}  &c\in \lbrace a,b\rbrace 
 \hspace{1cm}\pm 4 &= (c-1)\cdot 10^8 &=_{fl} 0 \\
 &\text{oder~of~operations}  & 1+0.00000004 -1 &=_{fl} 0\\
 & &1-1 + 0.00000004 &=_{fl} 0.0000004
@@ -369,7 +369,7 @@ $x_0 = 77617, y_0 = 33096$
 
 \section{Example Calculation}
 \subsection{Problem definition}
-\begin{frame}{Example Calculation}
+\begin{frame}{Example Calculation}{Problem definition}
 \begin{block}{Problem}
 Solve the Poission problem $- \Delta u = 1,~x\in\Omega$ with dirichlet boundry conditions $u \equiv 0,~x\in \partial \Omega$ using conforming quadrilateral 
 elements for the finite-element discretization of the unit square $\Omega = 
@@ -377,17 +377,15 @@ elements for the finite-element discretization of the unit square $\Omega =
 \end{block}
 
 \begin{itemize}
-\item Method 1: Using a V-cycle MG Solver
-\item Method 2 : Using a V-cycle MG Solver inside of an iterative refinement loop
+\item Method 1: Using a CG solver
+\item Method 2 : Using a more sophisticated MG solver
 \end{itemize}
 
 \begin{algorithm}[H]
   \begin{algorithmic}[1]
-    \WHILE{$\Vert r_{m-1} \Vert \cdot \Vert r_0 \Vert ^{-1} > TOL$}
-    \STATE{$ r_{m} = b - Ax_m$}
-    \STATE{$ Ad_{m} = r_{m}$ \textit{solve~in~high~precision}}
-    \STATE{$x_{m+1} = x_m + d_m$}
-    \ENDWHILE
+  \algorithmicwhile{$\Vert r_m \Vert \cdot \Vert r_0 \Vert ^{-1} > TOL$}
+
+  \ENDFOR
   \end{algorithmic}
 \caption{Iterative refinement }
 \label{alg:seq}
@@ -397,25 +395,16 @@ elements for the finite-element discretization of the unit square $\Omega =
 \subsection{Testresults}
 \begin{frame}{Testresults}
 \begin{center}
-\includegraphics[width=\textwidth]{../../plot-tol5-miter10.pdf}
+\includegraphics[width=0.8\textwidth]{../../plot-tol5-miter10.pdf}
 \end{center}
 
 \begin{itemize}
  \item \textbf{\color{red} 58\% up to 151\%} increase in performance on a 980 Ti GPU
  \item \textbf{\color{red} 77\% up to 111\%} increase in performance on a Tegra K1 SOC
 \end{itemize}
-\end{frame}
 
-\begin{frame}{Discussion and Future work}
- \textbf{Future work}
- \begin{itemize}
-  \item Try using half precision in order to achieve an even greater performance increase
- \end{itemize}
- 
- \vfill
- \begin{center}
-  Thank you for your attention
- \end{center}
+
+
 
 \end{frame}
 

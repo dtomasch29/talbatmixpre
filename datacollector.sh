@@ -8,6 +8,8 @@ declare -a compArray=("time" "h0err" "h1err");
 declare -a simulationFldrs=("arryn_data" "jetson_data");
 declare -a dataFldrs=("arryn_d" "jetson_d");
 declare -a computers=("arryn" "jetson");
+declare -a components=("Runtime[s]" "H0-Error" "H1-Error");
+declare -a legends=("Double-Float GPU" "Double Float CPU" "Double GPU" "Double CPU")
 ## now loop through the above array
 
 mkdir -p arryn_d
@@ -93,12 +95,26 @@ do
         echo "PDF-LaTeX call for tol=$tol, miter=$miter"
         echo " " > $fldr/$ltxfile;
         cat LaTeX/com1.txt >> $fldr/$ltxfile
-
+		start=$((1));
+        counter=$((0));
         #Arryn
         cat LaTeX/com3.txt >> $fldr/$ltxfile;
         for comp in "${compArray[@]}"
         do
             echo "\nextgroupplot[title=${computers[0]}," >> $fldr/$ltxfile;
+			if ($start -lt 2)
+			then
+				start=$((5));
+		        cat LaTeX/com2-1.txt >> $fldr/$ltxfile;
+				echo "ylabel={${components[counter]}}" >> $fldr/$ltxfile;
+				cat LaTeX/com2-2.txt >> $fldr/$ltxfile;		
+				counter=$counter+1;
+			else
+				cat LaTeX/com4-1.txt >> $fldr/$ltxfile;	
+				echo "ylabel={${components[counter]}}" >> $fldr/$ltxfile;
+				cat LaTeX/com4-2.txt >> $fldr/$ltxfile;		
+				counter=$(($counter+1));			
+			fi
             cat LaTeX/com2.txt >> $fldr/$ltxfile;
             echo "\addplot[solid,mark=triangle,mark size=2pt,chart1] table[x=n, y=$comp] {$dataArryn/maxiters$miter-tol$tol-memtypecuda-mixprec.data};" >> $fldr/$ltxfile
             echo "\addplot[solid,mark=square,mark size=2pt,chart2] table[x=n, y=$comp] {$dataArryn/maxiters$miter-tol$tol-memtypemain-mixprec.data};" >> $fldr/$ltxfile
@@ -106,10 +122,16 @@ do
             echo "\addplot[solid,mark=otimes,mark size=2pt,chart4] table[x=n, y=$comp] {$dataArryn/memtypemain-singleprec.data};" >> $fldr/$ltxfile
             
         done
+		counter=$((0));
         #JETSON
         for comp in "${compArray[@]}"
         do
-            echo "\nextgroupplot[title=${computers[1]}," >> $fldr/$ltxfile;
+			echo "\nextgroupplot[title=${computers[1]}," >> $fldr/$ltxfile;			
+			cat LaTeX/com4-1.txt >> $fldr/$ltxfile;	
+			echo "ylabel={${components[counter]}}" >> $fldr/$ltxfile;
+			cat LaTeX/com4-2.txt >> $fldr/$ltxfile;		
+			counter=$(($counter+1));
+            #
             cat LaTeX/com2.txt >> $fldr/$ltxfile;
             echo "\addplot[solid,mark=triangle,mark size=2pt,chart1] table[x=n, y=$comp] {$dataJetson/maxiters$miter-tol$tol-memtypecuda-mixprec.data};" >> $fldr/$ltxfile
             echo "\addplot[solid,mark=square,mark size=2pt,chart2] table[x=n, y=$comp] {$dataJetson/maxiters$miter-tol$tol-memtypemain-mixprec.data};" >> $fldr/$ltxfile

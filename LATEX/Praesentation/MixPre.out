@@ -1,11 +1,10 @@
-\BOOKMARK [2][]{Outline0.1}{Mixedprecision Definition and Goals}{}% 1
+\BOOKMARK [2][]{Outline0.1}{Mixedprecision Definition and history overview}{}% 1
 \BOOKMARK [3][]{Outline0.1.1.4}{Definition}{Outline0.1}% 2
-\BOOKMARK [3][]{Outline0.1.2.10}{Precision}{Outline0.1}% 3
-\BOOKMARK [3][]{Outline0.1.3.15}{Data Error and Truncation}{Outline0.1}% 4
-\BOOKMARK [3][]{Outline0.1.4.16}{Floting Point Operations. A deeper analysis}{Outline0.1}% 5
-\BOOKMARK [2][]{Outline0.2}{History of Mixed Precision in the context of GPGPU calculations}{}% 6
-\BOOKMARK [3][]{Outline0.2.1.18}{History of GPGPU}{Outline0.2}% 7
-\BOOKMARK [3][]{Outline0.2.2.19}{Why Mixed Precision is difficult}{Outline0.2}% 8
-\BOOKMARK [3][]{Outline0.2.3.20}{Unconventional computation Hardware}{Outline0.2}% 9
-\BOOKMARK [2][]{Outline0.3}{Example Calculation}{}% 10
-\BOOKMARK [3][]{Outline0.3.1.23}{Testresults}{Outline0.3}% 11
+\BOOKMARK [3][]{Outline0.1.2.8}{Histroy overview}{Outline0.1}% 3
+\BOOKMARK [2][]{Outline0.2}{Floating point operations}{}% 4
+\BOOKMARK [3][]{Outline0.2.1.13}{Precision}{Outline0.2}% 5
+\BOOKMARK [3][]{Outline0.2.2.16}{Computational Precision vs Accuracy of Result}{Outline0.2}% 6
+\BOOKMARK [3][]{Outline0.2.3.18}{Floting Point Operations. A deeper analysis}{Outline0.2}% 7
+\BOOKMARK [2][]{Outline0.3}{Example Calculation}{}% 8
+\BOOKMARK [3][]{Outline0.3.1.20}{Problem definition}{Outline0.3}% 9
+\BOOKMARK [3][]{Outline0.3.2.21}{Testresults}{Outline0.3}% 10

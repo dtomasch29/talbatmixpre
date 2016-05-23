@@ -1,13 +1,12 @@
 \beamer@endinputifotherversion {3.36pt}
 \select@language {ngerman}
-\beamer@sectionintoc {1}{Mixedprecision Definition and Goals}{3}{0}{1}
+\beamer@sectionintoc {1}{Mixedprecision Definition and history overview}{3}{0}{1}
 \beamer@subsectionintoc {1}{1}{Definition}{4}{0}{1}
-\beamer@subsectionintoc {1}{2}{Precision}{10}{0}{1}
-\beamer@subsectionintoc {1}{3}{Data Error and Truncation}{15}{0}{1}
-\beamer@subsectionintoc {1}{4}{Floting Point Operations. A deeper analysis}{16}{0}{1}
-\beamer@sectionintoc {2}{History of Mixed Precision in the context of GPGPU calculations}{17}{0}{2}
-\beamer@subsectionintoc {2}{1}{History of GPGPU}{18}{0}{2}
-\beamer@subsectionintoc {2}{2}{Why Mixed Precision is difficult}{19}{0}{2}
-\beamer@subsectionintoc {2}{3}{Unconventional computation Hardware}{20}{0}{2}
-\beamer@sectionintoc {3}{Example Calculation}{21}{0}{3}
-\beamer@subsectionintoc {3}{1}{Testresults}{23}{0}{3}
+\beamer@subsectionintoc {1}{2}{Histroy overview}{8}{0}{1}
+\beamer@sectionintoc {2}{Floating point operations}{12}{0}{2}
+\beamer@subsectionintoc {2}{1}{Precision}{13}{0}{2}
+\beamer@subsectionintoc {2}{2}{Computational Precision vs Accuracy of Result}{16}{0}{2}
+\beamer@subsectionintoc {2}{3}{Floting Point Operations. A deeper analysis}{18}{0}{2}
+\beamer@sectionintoc {3}{Example Calculation}{19}{0}{3}
+\beamer@subsectionintoc {3}{1}{Problem definition}{20}{0}{3}
+\beamer@subsectionintoc {3}{2}{Testresults}{21}{0}{3}

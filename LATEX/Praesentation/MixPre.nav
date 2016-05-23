@@ -3,7 +3,7 @@
 \headcommand {\beamer@framepages {1}{1}}
 \headcommand {\slideentry {0}{0}{2}{2/2}{}{0}}
 \headcommand {\beamer@framepages {2}{2}}
-\headcommand {\sectionentry {1}{Mixedprecision Definition and Goals}{3}{Mixedprecision Definition and Goals}{0}}
+\headcommand {\sectionentry {1}{Mixedprecision Definition and history overview}{3}{Mixedprecision Definition and history overview}{0}}
 \headcommand {\beamer@sectionpages {1}{2}}
 \headcommand {\beamer@subsectionpages {1}{2}}
 \headcommand {\slideentry {1}{0}{1}{3/3}{}{0}}
@@ -11,47 +11,42 @@
 \headcommand {\beamer@subsectionentry {0}{1}{1}{4}{Definition}}\headcommand {\beamer@subsectionpages {3}{3}}
 \headcommand {\slideentry {1}{1}{1}{4/7}{Definition}{0}}
 \headcommand {\beamer@framepages {4}{7}}
-\headcommand {\slideentry {1}{1}{2}{8/8}{Definition}{0}}
-\headcommand {\beamer@framepages {8}{8}}
-\headcommand {\slideentry {1}{1}{3}{9/9}{Definition}{0}}
-\headcommand {\beamer@framepages {9}{9}}
-\headcommand {\beamer@subsectionentry {0}{1}{2}{10}{Precision}}\headcommand {\beamer@subsectionpages {4}{9}}
-\headcommand {\slideentry {1}{2}{1}{10/12}{Precision}{0}}
-\headcommand {\beamer@framepages {10}{12}}
-\headcommand {\slideentry {1}{2}{2}{13/14}{Precision}{0}}
-\headcommand {\beamer@framepages {13}{14}}
-\headcommand {\beamer@subsectionentry {0}{1}{3}{15}{Data Error and Truncation}}\headcommand {\beamer@subsectionpages {10}{14}}
-\headcommand {\slideentry {1}{3}{1}{15/15}{Data Error and Truncation}{0}}
-\headcommand {\beamer@framepages {15}{15}}
-\headcommand {\beamer@subsectionentry {0}{1}{4}{16}{Floting Point Operations. A deeper analysis}}\headcommand {\beamer@subsectionpages {15}{15}}
-\headcommand {\slideentry {1}{4}{1}{16/16}{Floting Point Operations. A deeper analysis}{0}}
-\headcommand {\beamer@framepages {16}{16}}
-\headcommand {\sectionentry {2}{History of Mixed Precision in the context of GPGPU calculations}{17}{History of Mixed Precision in the context of GPGPU calculations}{0}}
-\headcommand {\beamer@sectionpages {3}{16}}
-\headcommand {\beamer@subsectionpages {16}{16}}
-\headcommand {\slideentry {2}{0}{1}{17/17}{}{0}}
-\headcommand {\beamer@framepages {17}{17}}
-\headcommand {\beamer@subsectionentry {0}{2}{1}{18}{History of GPGPU}}\headcommand {\beamer@subsectionpages {17}{17}}
-\headcommand {\slideentry {2}{1}{1}{18/18}{History of GPGPU}{0}}
+\headcommand {\beamer@subsectionentry {0}{1}{2}{8}{Histroy overview}}\headcommand {\beamer@subsectionpages {4}{7}}
+\headcommand {\slideentry {1}{2}{1}{8/10}{Histroy overview}{0}}
+\headcommand {\beamer@framepages {8}{10}}
+\headcommand {\slideentry {1}{2}{2}{11/11}{Histroy overview}{0}}
+\headcommand {\beamer@framepages {11}{11}}
+\headcommand {\sectionentry {2}{Floating point operations}{12}{Floating point operations}{0}}
+\headcommand {\beamer@sectionpages {3}{11}}
+\headcommand {\beamer@subsectionpages {8}{11}}
+\headcommand {\slideentry {2}{0}{1}{12/12}{}{0}}
+\headcommand {\beamer@framepages {12}{12}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{13}{Precision}}\headcommand {\beamer@subsectionpages {12}{12}}
+\headcommand {\slideentry {2}{1}{1}{13/15}{Precision}{0}}
+\headcommand {\beamer@framepages {13}{15}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{16}{Computational Precision vs Accuracy of Result}}\headcommand {\beamer@subsectionpages {13}{15}}
+\headcommand {\slideentry {2}{2}{1}{16/17}{Computational Precision vs Accuracy of Result}{0}}
+\headcommand {\beamer@framepages {16}{17}}
+\headcommand {\beamer@subsectionentry {0}{2}{3}{18}{Floting Point Operations. A deeper analysis}}\headcommand {\beamer@subsectionpages {16}{17}}
+\headcommand {\slideentry {2}{3}{1}{18/18}{Floting Point Operations. A deeper analysis}{0}}
 \headcommand {\beamer@framepages {18}{18}}
-\headcommand {\beamer@subsectionentry {0}{2}{2}{19}{Why Mixed Precision is difficult}}\headcommand {\beamer@subsectionpages {18}{18}}
-\headcommand {\slideentry {2}{2}{1}{19/19}{Why Mixed Precision is difficult}{0}}
+\headcommand {\sectionentry {3}{Example Calculation}{19}{Example Calculation}{0}}
+\headcommand {\beamer@sectionpages {12}{18}}
+\headcommand {\beamer@subsectionpages {18}{18}}
+\headcommand {\slideentry {3}{0}{1}{19/19}{}{0}}
 \headcommand {\beamer@framepages {19}{19}}
-\headcommand {\beamer@subsectionentry {0}{2}{3}{20}{Unconventional computation Hardware}}\headcommand {\beamer@subsectionpages {19}{19}}
-\headcommand {\slideentry {2}{3}{1}{20/20}{Unconventional computation Hardware}{0}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{20}{Problem definition}}\headcommand {\beamer@subsectionpages {19}{19}}
+\headcommand {\slideentry {3}{1}{1}{20/20}{Problem definition}{0}}
 \headcommand {\beamer@framepages {20}{20}}
-\headcommand {\sectionentry {3}{Example Calculation}{21}{Example Calculation}{0}}
-\headcommand {\beamer@sectionpages {17}{20}}
-\headcommand {\beamer@subsectionpages {20}{20}}
-\headcommand {\slideentry {3}{0}{1}{21/21}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{3}{2}{21}{Testresults}}\headcommand {\beamer@subsectionpages {20}{20}}
+\headcommand {\slideentry {3}{2}{1}{21/21}{Testresults}{0}}
 \headcommand {\beamer@framepages {21}{21}}
-\headcommand {\slideentry {3}{0}{2}{22/22}{}{0}}
+\headcommand {\slideentry {3}{2}{2}{22/22}{Testresults}{0}}
 \headcommand {\beamer@framepages {22}{22}}
-\headcommand {\beamer@subsectionentry {0}{3}{1}{23}{Testresults}}\headcommand {\beamer@subsectionpages {21}{22}}
-\headcommand {\slideentry {3}{1}{1}{23/23}{Testresults}{0}}
+\headcommand {\slideentry {3}{2}{3}{23/23}{Testresults}{0}}
 \headcommand {\beamer@framepages {23}{23}}
 \headcommand {\beamer@partpages {1}{23}}
-\headcommand {\beamer@subsectionpages {23}{23}}
-\headcommand {\beamer@sectionpages {21}{23}}
+\headcommand {\beamer@subsectionpages {21}{23}}
+\headcommand {\beamer@sectionpages {19}{23}}
 \headcommand {\beamer@documentpages {23}}
-\headcommand {\def \inserttotalframenumber {17}}
+\headcommand {\def \inserttotalframenumber {15}}
