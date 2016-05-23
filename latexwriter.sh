@@ -7,76 +7,80 @@ declare -a memtypeArray=("main" "cuda");
 declare -a compArray=("time" "h0err" "h1err");
 declare -a simulationFldrs=("arryn_data" "jetson_data");
 declare -a dataFldrs=("arryn_d" "jetson_d");
-declare -a computers=("arryn" "jetson");
-## now loop through the above array
+declare -a computers=("arryn" "jetson");## now loop through the above array
 
-#mkdir -p arryn_d
-#mkdir -p jetson_d
-#echo "create file for level $lvlH ..."
-#lvlL=$((1));
-#for computer in "${onezero[@]}"
-#do
-#for miter in "${arrMaxIters[@]}"
-#do
-#    for tol in "${arrTol[@]}"
-#    do
-#        for mem in "${memtypeArray[@]}"
-#        do
-#            infldr="${simulationFldrs[computer]}"
-#            outfldr="${dataFldrs[computer]}"    
-#            fileout=$outfldr/maxiters$miter-tol$tol-memtype$mem-mixprec.data;
-#            touch $fileout;
-#            echo "output file: $fileout";
-#            echo "n time h0err h1err" > $fileout
-#            for lvlH in "${arrLevelH[@]}"
-#            do
-#                fldr=$infldr/lvl$lvlH-1-miter$miter-tol$tol-mem$mem-mixprec;
-#                time=$(cat $fldr/output.data | grep 'Total time:' | cut -d " " -f 3)
-#                time=$(printf "%1.16f\n" $time)
-#                h0error=$(cat $fldr/output.data | grep 'H0-Error:' | cut -d " " -f 2)
-#                h0error=$(printf "%1.16f\n" $h0error)
-#                h1error=$(cat $fldr/output.data | grep 'H1-Error:' | cut -d " " -f 2)
-#                h1error=$(printf "%1.16f\n" $h1error)
-#                n=$(bc <<< "2^$lvlH -1 " )
-#                echo "$n $time $h0error $h1error" >> $fileout;
-#            done
-#        done
-#    done
-#done
-#done
-#
-#echo "collection singleprec data"
-#for computer in "${onezero[@]}"
-#do
-#for mem in "${memtypeArray[@]}"
-#do
-#    infldr="${simulationFldrs[computer]}"
-#    outfldr="${dataFldrs[computer]}"
-#    fileout=$outfldr/memtype$mem-singleprec.data;
-#    rm $fileout;
-#    touch $fileout;
-#    echo "output file: $fileout";
-#    echo " " > $fileout
-#    echo "n time h0err h1err" > $fileout
-#    for lvlH in "${arrLevelH[@]}"
-#    do
-#       fldr=$infldr/lvl$lvlH-1-mem$mem-precsingle;
-#       echo $fldr
-#       time=$(cat $fldr/output.data | grep 'Total time:' | cut -d " " -f 3 | cut -d "s" -f 1)
-#       time=$(printf "%1.16f\n" $time)
-#       h0error=$(cat $fldr/output.data | grep 'H0-Error:' | cut -d " " -f 2)
-#       h0error=$(printf "%1.16f\n" $h0error)
-#       h1error=$(cat $fldr/output.data | grep 'H1-Error:' | cut -d " " -f 2)
-#       h1error=$(printf "%1.16f\n" $h1error)
-#       n=$(bc <<< "2^$lvlH -1 ")
-#                
-#       echo "$n $time $h0error $h1error" >> $fileout;
-#    done
-#done
-#done
-#
-#
-#echo "done creating files";
+mkdir -p arryn_d
+mkdir -p jetson_d
+echo "create file for level $lvlH ..."
+lvlL=$((1));
+for computer in "${onezero[@]}"
+do
+for miter in "${arrMaxIters[@]}"
+do
+    for tol in "${arrTol[@]}"
+    do
+        for mem in "${memtypeArray[@]}"
+        do
+            infldr="${simulationFldrs[computer]}"
+            outfldr="${dataFldrs[computer]}"    
+            fileout=$outfldr/maxiters$miter-tol$tol-memtype$mem-mixprec.data;
+            touch $fileout;
+            echo "output file: $fileout";
+            echo "n time h0err h1err" > $fileout
+            for lvlH in "${arrLevelH[@]}"
+            do
+               fldr=$infldr/lvl$lvlH-1-miter$miter-tol$tol-mem$mem-mixprec;
+                if [ $computer -eq 1 ]
+                then
+                  time=$(cat $fldr/output.data | grep 'Time:' | cut -c 7-)
+                else
+                  time=$(cat $fldr/output.data | grep 'Total time:' | cut -d " " -f 3)
+                fi
+                time=$(printf "%1.16f\n" $time)
+                h0error=$(cat $fldr/output.data | grep 'H0-Error:' | cut -d " " -f 2)
+                h0error=$(printf "%1.16f\n" $h0error)
+                h1error=$(cat $fldr/output.data | grep 'H1-Error:' | cut -d " " -f 2)
+                h1error=$(printf "%1.16f\n" $h1error)
+                n=$(bc <<< "2^$lvlH -1 " )
+                echo "$n $time $h0error $h1error" >> $fileout;
+            done
+        done
+    done
+done
+done
+
+echo "collection singleprec data"
+for computer in "${onezero[@]}"
+do
+for mem in "${memtypeArray[@]}"
+do
+    infldr="${simulationFldrs[computer]}"
+    outfldr="${dataFldrs[computer]}"
+    fileout=$outfldr/memtype$mem-singleprec.data;
+    rm $fileout;
+    touch $fileout;
+    echo "output file: $fileout";
+    echo " " > $fileout
+    echo "n time h0err h1err" > $fileout
+    for lvlH in "${arrLevelH[@]}"
+    do
+       fldr=$infldr/lvl$lvlH-1-mem$mem-precsingle;
+       echo $fldr
+       time=$(cat $fldr/output.data | grep 'Total time:' | cut -d " " -f 3 | cut -d "s" -f 1)
+       time=$(printf "%1.16f\n" $time)
+       h0error=$(cat $fldr/output.data | grep 'H0-Error:' | cut -d " " -f 2)
+       h0error=$(printf "%1.16f\n" $h0error)
+       h1error=$(cat $fldr/output.data | grep 'H1-Error:' | cut -d " " -f 2)
+       h1error=$(printf "%1.16f\n" $h1error)
+       n=$(bc <<< "2^$lvlH -1 ")
+                
+       echo "$n $time $h0error $h1error" >> $fileout;
+    done
+done
+done
+
+
+echo "done creating files";
 echo "creating LaTeX output";
 echo "Make sure that arryn files are in subfolder applications/data-arryn"
 echo "Make sure that jetson files are in subfolder applications/data-jetson"
