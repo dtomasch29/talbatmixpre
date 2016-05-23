@@ -1,0 +1,2 @@
+		width=.55\textwidth,
+                   xlabel={dim(A)},

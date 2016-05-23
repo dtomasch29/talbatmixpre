@@ -1,0 +1,10 @@
+%                   ymin=0,
+                   xmode = log,
+                   ymode = log,
+		   xtick = {0, 4, 8, 16, 32, 64, 128, 256},
+		   xticklabels={0, $2^{2}$, $2^{3}$, $2^{4}$, $2^{5}$, $2^{6}$, $2^{7}$, $2^{8}$ },
+                   max space between ticks=25,
+                   ymajorgrids,
+%                   visualization depends on={\thisrow{np} \as \np},
+%                   nodes near coords={\pgfmathparse{int(\np)}\pgfmathresult},
+                  ]
