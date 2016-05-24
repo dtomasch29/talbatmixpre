@@ -169,7 +169,7 @@ do
         echo "\end{tikzpicture}" >>$fldr/$ltxfile
         echo "\end{document}" >> $fldr/$ltxfile
         pdflatex $fldr/$ltxfile --shell-escape > /dev/null
-        mv $name.pdf plot-down$down-tol$tol-miter$miter.pdf
+        convert -density 300 -quality 100 $name.pdf plot-down$down-tol$tol-miter$miter.jpg
     done
 done
 done
