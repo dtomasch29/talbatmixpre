@@ -2,7 +2,7 @@
 declare -a arrLevelH=("2" "3" "4" "5" "6" "7" "8" "9" "10");
 declare -a arrMaxIters=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10");
 declare -a arrTol=("5" "6" "7" "8");
-declare -a arrDown=("2" "3" "4" "5" "6" "7" "8" "9" "10" );
+declare -a arrDown=("4" "5" "6" "7" "8" "9" "10" );
 declare -a onezero=("0" "1");#
 declare -a memtypeArray=("main" "cuda");
 declare -a compArray=("time" "h0err" "h1err");
@@ -65,7 +65,7 @@ for computer in "${onezero[@]}"
 do
 for down in "${arrDown[@]}"
 do
-echo "create file mixprec for Down $down ..."
+echo "create file singleprec for Down $down ..."
 for mem in "${memtypeArray[@]}"
 do
     infldr="${simulationFldrs[computer]}"
@@ -118,7 +118,7 @@ for tol in "${arrTol[@]}"
 do
     for miter in "${arrMaxIters[@]}"
     do
-        echo "PDF-LaTeX call for tol=$tol, miter=$miter"
+        echo "PDF-LaTeX call for down=$down, tol=$tol, miter=$miter"
         echo " " > $fldr/$ltxfile;
         cat LATEX/com1.txt >> $fldr/$ltxfile
 
