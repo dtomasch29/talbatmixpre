@@ -1,7 +1,7 @@
 maxIter:1
 level-Grob:10
 level-Fine:5
-Time: 150.303
+Time: 150.531
 DefTol: 1e-06
 H0-Error: 8.272937e-07
 H1-Error: 2.017210e-03

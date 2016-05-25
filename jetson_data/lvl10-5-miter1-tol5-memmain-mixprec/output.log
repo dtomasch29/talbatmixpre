@@ -1696,19 +1696,19 @@ PCG: 1 : 2.294507e-06 / 1.116243e+00
 
 PCG ( VCycle ( S: Scale / C: Scale )  )
 
-Complete solver TOE: 467.061
-0.000486828 GFlop/s [0.000486828 GFlops/s]
+Complete solver TOE: 470.66
+0.000483105 GFlop/s [0.000483105 GFlops/s]
 
-Total time: 467.061s
-Accumulated op time: 447.477
+Total time: 470.66s
+Accumulated op time: 451.236
 
-Reductions: 1.77059%
-Blas-1: 5.18305%
-Blas-2: 88.8532%
+Reductions: 1.74082%
+Blas-1: 5.17319%
+Blas-2: 88.9589%
 Precon Kernels: 0%
 MPI Execution: 0%
 MPI Wait: 0%
-Not covered: 4.19312%
+Not covered: 4.12707%
 
 Domain size: 106.918 MByte
 LA size: 356.315 MByte
@@ -1718,5 +1718,5 @@ H0-Error: 4.643219e-06
 H1-Error: 2.017299e-03
 
 Writing DATA to output.data...
-Run-Time: 7:56.874 [7:56.874]
-0xb339f9f8 Error: MemoryPool<CPU> still contains memory chunks on deconstructor call
+Run-Time: 8:00.474 [8:00.474]
+0xb33b29f8 Error: MemoryPool<CPU> still contains memory chunks on deconstructor call

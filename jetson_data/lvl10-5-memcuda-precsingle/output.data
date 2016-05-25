@@ -1,6 +1,6 @@
 Level-Grob:10
 Level-Fine:5
-Total time: 9.28667s
+Total time: 9.26338s
 H0-Error: 4.290880e-07
 H1-Error: 2.017209e-03
 memtype: cuda
