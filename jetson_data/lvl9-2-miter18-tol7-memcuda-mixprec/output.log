@@ -1,0 +1,70 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 2 [2]
+LVL-MAX: 9 [9]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixELL, Mem:cudaand to SparseMatrixELL, Mem:cuda...
+PCG:  0 : 1.894534e-02
+PCG:  1 : 9.764044e-03 / 5.153797e-01
+PCG:  2 : 5.655361e-03 / 2.985094e-01
+PCG:  3 : 1.963571e-03 / 1.036440e-01
+PCG:  4 : 4.557535e-04 / 2.405624e-02
+PCG:  5 : 4.926800e-05 / 2.600534e-03
+PCG:  6 : 4.678470e-06 / 2.469457e-04
+PCG:  7 : 7.020858e-07 / 3.705850e-05
+PCG:  8 : 1.188731e-07 / 6.274528e-06
+PCG:  9 : 5.592362e-08 / 2.951841e-06
+PCG: 10 : 9.969396e-09 / 5.262190e-07
+PCG: 11 : 1.577939e-09 / 8.328902e-08
+PCG:  0 : 5.474312e-04
+PCG:  1 : 4.983040e-05 / 9.102587e-02
+PCG:  2 : 1.977662e-05 / 3.612622e-02
+PCG:  3 : 4.071529e-06 / 7.437517e-03
+PCG:  4 : 6.283684e-07 / 1.147849e-03
+PCG:  5 : 7.286992e-08 / 1.331125e-04
+PCG:  6 : 6.988556e-09 / 1.276609e-05
+PCG:  7 : 9.968515e-10 / 1.820962e-06
+PCG:  8 : 1.794048e-10 / 3.277212e-07
+PCG:  9 : 3.366138e-11 / 6.148969e-08
+PCG:  0 : 5.754998e-09
+PCG:  1 : 8.452749e-09 / 1.468767e+00
+PCG:  2 : 1.166057e-09 / 2.026164e-01
+PCG:  3 : 1.659382e-10 / 2.883375e-02
+PCG:  4 : 1.985700e-11 / 3.450392e-03
+PCG:  5 : 4.081836e-12 / 7.092680e-04
+PCG:  6 : 5.783562e-13 / 1.004963e-04
+PCG:  7 : 6.900231e-14 / 1.198998e-05
+PCG:  8 : 8.590155e-15 / 1.492643e-06
+PCG:  9 : 1.566942e-15 / 2.722749e-07
+PCG: 10 : 8.368947e-16 / 1.454205e-07
+PCG: 11 : 1.636038e-16 / 2.842813e-08
+
+PCG ( VCycle ( S: Scale / C: Scale )  )
+
+Complete solver TOE: 2.9065
+0.40736 GFlop/s [0.40736 GFlops/s]
+
+Total time: 2.9065s
+Accumulated op time: 0.573872
+
+Reductions: 12.446%
+Blas-1: 3.79106%
+Blas-2: 3.50742%
+Precon Kernels: 0%
+MPI Execution: 0%
+MPI Wait: 0%
+Not covered: 80.2555%
+
+Domain size: 26.8068 MByte
+LA size: 89.2992 MByte
+MPI size: 2.68231 MByte
+
+H0-Error: 1.716360e-06
+H1-Error: 4.034414e-03
+
+Writing DATA to output.data...
+Run-Time: 0:05.860 [0:05.860]
+0xb331e9f8 Error: MemoryPool<CUDA> still contains memory chunks on deconstructor call

@@ -1,0 +1,5 @@
+maxIter:11
+level-Grob:2
+level-Fine:1
+Time: 0.000357
+DefTol: 1e-05

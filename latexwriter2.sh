@@ -1,6 +1,6 @@
 #!/bin/bash
 declare -a arrLevelH=("2" "3" "4" "5" "6" "7" "8" "9" "10");
-declare -a arrMaxIters=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10");
+declare -a arrMaxIters=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10" "11" "12" "13" "14" "15" "16" "17" "18" "19" "20");
 declare -a arrTol=("5" "6" "7" "8");
 declare -a arrDown=("4" "5" "6" "7" "8" "9" "10" );
 declare -a onezero=("0" "1");#
