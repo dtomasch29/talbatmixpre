@@ -1,0 +1,82 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 2 [2]
+LVL-MAX: 10 [10]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixELL, Mem:cudaand to SparseMatrixELL, Mem:cuda...
+PCG:  0 : 9.473710e-03
+PCG:  1 : 5.067391e-03 / 5.348898e-01
+PCG:  2 : 3.096539e-03 / 3.268560e-01
+PCG:  3 : 1.162282e-03 / 1.226850e-01
+PCG:  4 : 3.277708e-04 / 3.459793e-02
+PCG:  5 : 5.131067e-05 / 5.416112e-03
+PCG:  6 : 4.441092e-06 / 4.687806e-04
+PCG:  7 : 7.154808e-07 / 7.552277e-05
+PCG:  8 : 5.584617e-07 / 5.894857e-05
+PCG:  9 : 1.062735e-07 / 1.121773e-05
+PCG: 10 : 9.028716e-09 / 9.530286e-07
+PCG: 11 : 1.246145e-09 / 1.315371e-07
+PCG: 12 : 1.630613e-10 / 1.721198e-08
+PCG:  0 : 2.129429e-04
+PCG:  1 : 1.690213e-04 / 7.937401e-01
+PCG:  2 : 4.159482e-05 / 1.953332e-01
+PCG:  3 : 5.842154e-06 / 2.743531e-02
+PCG:  4 : 6.156913e-07 / 2.891345e-03
+PCG:  5 : 7.422178e-08 / 3.485525e-04
+PCG:  6 : 9.697309e-09 / 4.553948e-05
+PCG:  7 : 1.262762e-09 / 5.930053e-06
+PCG:  8 : 1.889169e-10 / 8.871718e-07
+PCG:  9 : 4.194920e-11 / 1.969974e-07
+PCG: 10 : 2.335310e-11 / 1.096684e-07
+PCG: 11 : 6.697976e-12 / 3.145433e-08
+PCG:  0 : 4.217655e-08
+PCG:  1 : 6.578539e-08 / 1.559762e+00
+PCG:  2 : 9.284983e-09 / 2.201456e-01
+PCG:  3 : 1.340061e-09 / 3.177266e-02
+PCG:  4 : 1.881383e-10 / 4.460733e-03
+PCG:  5 : 3.264351e-11 / 7.739729e-04
+PCG:  6 : 5.546870e-12 / 1.315155e-04
+PCG:  7 : 6.878535e-13 / 1.630891e-05
+PCG:  8 : 7.573573e-14 / 1.795683e-06
+PCG:  9 : 1.043533e-14 / 2.474202e-07
+PCG: 10 : 1.811951e-15 / 4.296109e-08
+PCG:  0 : 2.327039e-11
+PCG:  1 : 3.569753e-11 / 1.534032e+00
+PCG:  2 : 6.616946e-12 / 2.843505e-01
+PCG:  3 : 1.341000e-12 / 5.762689e-02
+PCG:  4 : 2.277679e-13 / 9.787886e-03
+PCG:  5 : 3.250403e-14 / 1.396798e-03
+PCG:  6 : 4.307657e-15 / 1.851133e-04
+PCG:  7 : 4.769424e-16 / 2.049568e-05
+PCG:  8 : 5.296167e-17 / 2.275926e-06
+PCG:  9 : 2.531476e-17 / 1.087853e-06
+PCG: 10 : 1.000755e-17 / 4.300552e-07
+PCG: 11 : 1.202029e-18 / 5.165487e-08
+
+PCG ( VCycle ( S: Scale / C: Scale )  )
+
+Complete solver TOE: 0.421536
+15.8988 GFlop/s [15.8988 GFlops/s]
+
+Total time: 0.421536s
+Accumulated op time: 0.184965
+
+Reductions: 42.2989%
+Blas-1: 0.776921%
+Blas-2: 0.803016%
+Precon Kernels: 0%
+MPI Execution: 0%
+MPI Wait: 0%
+Not covered: 56.1212%
+
+Domain size: 192.437 MByte
+LA size: 483.444 MByte
+MPI size: 10.698 MByte
+
+H0-Error: 4.290974e-07
+H1-Error: 2.017209e-03
+
+Writing DATA to output.data...

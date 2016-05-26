@@ -18,19 +18,19 @@ PCG:    7 : 7.734290e-09 / 6.679313e-09
 
 PCG ( VCycle ( S: Scale / C: Scale )  )
 
-Complete solver TOE: 0.002437
-0.0239926 GFlop/s [0.0239926 GFlops/s]
+Complete solver TOE: 0.002419
+0.0241711 GFlop/s [0.0241711 GFlops/s]
 
-Total time: 0.002437s
-Accumulated op time: 0.001181
+Total time: 0.002419s
+Accumulated op time: 0.001188
 
-Reductions: 39.2696%
-Blas-1: 4.96512%
-Blas-2: 4.22651%
+Reductions: 40.1819%
+Blas-1: 4.87805%
+Blas-2: 4.05126%
 Precon Kernels: 0%
 MPI Execution: 0%
 MPI Wait: 0%
-Not covered: 51.5388%
+Not covered: 50.8888%
 
 Domain size: 0.0137024 MByte
 LA size: 0.0290833 MByte

@@ -1,0 +1,2 @@
+memtype: cuda
+prec: mixprec

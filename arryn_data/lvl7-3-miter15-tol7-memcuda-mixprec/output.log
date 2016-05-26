@@ -1,0 +1,26 @@
+NUM-PROCS: 1
+Preparing domain...
+LVL-MIN: 3 [3]
+LVL-MAX: 7 [7]
+Creating gates...
+Assembling system matrices...
+Assembling system filters...
+Assembling transfer matrices...
+Converting assembled linear system from SparseMatrixCSR, Mem:main to SparseMatrixELL, Mem:cudaand to SparseMatrixELL, Mem:cuda...
+PCG:  0 : 7.572471e-02
+PCG:  1 : 7.534429e-02 / 9.949764e-01
+PCG:  2 : 7.357045e-02 / 9.715515e-01
+PCG:  3 : 4.669937e-02 / 6.166993e-01
+PCG:  4 : 5.320016e-03 / 7.025470e-02
+PCG:  5 : 5.762438e-04 / 7.609720e-03
+PCG:  6 : 1.277768e-04 / 1.687386e-03
+PCG:  7 : 2.297220e-05 / 3.033646e-04
+PCG:  8 : 2.571068e-06 / 3.395283e-05
+PCG:  9 : 3.222934e-07 / 4.256119e-06
+PCG: 10 : 5.509047e-08 / 7.275099e-07
+PCG: 11 : 6.172916e-08 / 8.151786e-07
+PCG: 12 : 2.617973e-08 / 3.457224e-07
+PCG: 13 : 4.469310e-09 / 5.902050e-08
+PCG:  0 : 4.379347e-03
+PCG:  1 : 6.470067e-04 / 1.477404e-01
+PCG:  2 : 1.036655e-03 / 2.367146e-01
