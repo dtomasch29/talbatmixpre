@@ -1,0 +1,105 @@
+\documentclass{standalone}
+\usepackage{tikz,pgfplots,xcolor}
+\usepackage{xintexpr}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{pgfplots.groupplots,calc}
+\definecolor{chart1}{RGB}{0,69,134}
+\definecolor{chart2}{RGB}{87,157,28}
+\definecolor{chart3}{RGB}{134,69,134}
+\definecolor{chart4}{RGB}{134,69,0}
+\definecolor{chart5}{RGB}{134,120,0}
+\definecolor{chart6}{RGB}{100,80,0}
+\begin{document}
+                   
+\pgfplotsset{
+  every axis x label/.append style={at={(0.5,-.08)}},
+  every axis y label/.append style={at={(-.15,0.5)}},
+  every axis title/.append style={at={(0.5,0.95)}},
+%  every node near coord/.append style={font=\footnotesize,black},
+}
+\begin{tikzpicture}
+  \begin{groupplot}[group style={group size=2 by 1, horizontal sep=40pt, vertical sep=40pt}]
+    \nextgroupplot[title=CPU,
+                   width=.55\textwidth,
+                   xlabel={dim(A)},
+                   ylabel={Time},
+%                   ymin=0,
+                   xmode = log,
+                   ymode = normal,
+		   xtick = {3, 7, 15, 31, 63, 127, 255, 511, 1023},
+		   xticklabels={$3$, $7$, $15$, $31$, $63$, $127$, $255$, $511$, $1023$ },
+           xticklabel style={
+            inner sep=0pt,
+            anchor=north east,
+            rotate=45 , 
+            font=\tiny},
+                   max space between ticks=25,
+                   ymajorgrids,
+                   legend columns=4,
+                   legend entries={CPU float-double,CPU double},
+                   legend to name=fig:legend:z-plots1,
+                   legend style={column sep=1pt},
+%                   visualization depends on={\thisrow{np} \as \np},
+%                   nodes near coords={\pgfmathparse{int(\np)}\pgfmathresult},
+                  ]
+      %\addplot[solid,mark=triangle,mark size=pt,chart1] table[x=n, y=time] {arryn_d/down10-maxiters2-tol5-memtypecuda-mixprec.data};
+      \addplot[solid,mark=square,mark size=2pt,chart2] table[x=n, y=time] {jetson_d/down10-maxiters2-tol5-memtypemain-mixprec.data};
+      %\addplot[solid,mark=diamond,mark size=2pt,chart3] table[x=n, y=time] {arryn_d/down10-memtypecuda-singleprec.data};
+      \addplot[solid,mark=otimes,mark size=2pt,chart4] table[x=n, y=time] {jetson_d/down10-memtypemain-singleprec.data};
+      
+%      \draw[-latex] (axis cs:0.1,4.9) -- node[pos=0.5,anchor=west] {\footnotesize more cores} (axis cs:0.08,4.1);
+      %\addplot[solid,mark=diamond,mark size=3.5pt,chart2,nodes near coords align=right] table[x=Perf, y=E] {fig/benchdata_ivybridge_float.csv};
+     % \addplot[solid,mark=square,mark size=3.5pt,chart3,nodes near coords align=right] table[x=Perf, y=E] {fig/benchdata_armcortexa15_float.csv};
+     % \addplot[solid,mark=square,mark size=3.5pt,chart4,nodes near coords align=right] table[x=Perf, y=E] {fig/benchdata_armcortexa15_float.csv};
+%      \draw[-latex] (axis cs:0.41,3.05) -- node[pos=0.5,anchor=north west] {\footnotesize more cores} (axis cs:0.32,2.6);
+%      \draw [dotted] (axis cs:0.03,3.17) -- (axis cs:0.03,1.8);
+%      \draw [|<->|] (axis cs:0.03,1.8) -- node[pos=0.5,anchor=north] {\footnotesize speed down x5} (axis cs:0.17,1.8);
+%      \draw[latex-latex,dashed] (axis cs:0.04,3.1) -- node[pos=0.5,rotate=30,anchor=west] {\footnotesize $P$ down x8} (axis cs:0.16,2.15);
+
+      
+%      \draw[-latex] (axis cs:0.41,3.05) -- node[pos=0.5,anchor=north west] {\footnotesize more cores} (axis cs:0.32,2.6);
+%      \draw [dotted] (axis cs:0.03,3.17) -- (axis cs:0.03,1.8);
+%      \draw [|<->|] (axis cs:0.03,1.8) -- node[pos=0.5,anchor=north] {\footnotesize speed down x5} (axis cs:0.17,1.8);
+%      \draw[latex-latex,dashed] (axis cs:0.04,3.1) -- node[pos=0.5,rotate=30,anchor=west] {\footnotesize $P$ down x8} (axis cs:0.16,2.15);
+
+    \nextgroupplot[title=GPU,
+                   width=.55\textwidth,
+                   xlabel={dim(A)},
+                   ylabel={Time},
+%                   ymin=0,
+                   xmode = log,
+                   ymode = normal,
+		   xtick = {3, 7, 15, 31, 63, 127, 255, 511, 1023},
+		   xticklabels={$3$, $7$, $15$, $31$, $63$, $127$, $255$, $511$, $1023$ },
+           xticklabel style={
+            inner sep=0pt,
+            anchor=north east,
+            rotate=45 , 
+            font=\tiny},
+                   legend entries={GPU float-double,CPU float-double,GPU double,CPU double},
+                   max space between ticks=25,
+                   ymajorgrids,
+                   legend columns=4,
+                   legend entries={GPU float-double,GPU double},
+                   legend to name=fig:legend:z-plots2,
+                   legend style={column sep=1pt},
+%                   visualization depends on={\thisrow{np} \as \np},
+%                   nodes near coords={\pgfmathparse{int(\np)}\pgfmathresult},
+                  ]
+      \addplot[solid,mark=triangle,mark size=2pt,chart1] table[x=n, y=time] {jetson_d/down10-maxiters2-tol5-memtypecuda-mixprec.data};
+      %\addplot[solid,mark=square,mark size=2pt,chart2] table[x=n, y=time] {arryn_d/down10-maxiters2-tol5-memtypemain-mixprec.data};
+      \addplot[solid,mark=diamond,mark size=2pt,chart3] table[x=n, y=time] {jetson_d/down10-memtypecuda-singleprec.data};
+      %\addplot[solid,mark=otimes,mark size=2pt,chart4] table[x=n, y=time] {arryn_d/down10-memtypemain-singleprec.data};
+%      \draw[-latex] (axis cs:0.41,3.05) -- node[pos=0.5,anchor=north west] {\footnotesize more cores} (axis cs:0.32,2.6);
+%      \draw [dotted] (axis cs:0.03,3.17) -- (axis cs:0.03,1.8);
+%      \draw [|<->|] (axis cs:0.03,1.8) -- node[pos=0.5,anchor=north] {\footnotesize speed down x5} (axis cs:0.17,1.8);
+%      \draw[latex-latex,dashed] (axis cs:0.04,3.1) -- node[pos=0.5,rotate=30,anchor=west] {\footnotesize $P$ down x8} (axis cs:0.16,2.15);
+
+
+
+  \end{groupplot}
+  \node at ($(group c2r1) + (0cm ,-4cm)$) {\ref{fig:legend:z-plots2}};
+  \node at ($(group c1r1) + (0cm,-4cm)$) {\ref{fig:legend:z-plots1}};
+\end{tikzpicture}
+
+\end{document}
