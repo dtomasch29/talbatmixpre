@@ -1,0 +1,8 @@
+@TECHREPORT{WaterWaveComp,
+	author          = {Glimberg S. L., Engsig-Karup A. P., Madsen M.},
+	title           = {A Fast GPU-Accelecrated Mixed-Precision Strategy for Full Nonlinear Water Wave Computation},
+	year            = {2013},
+	month           = Jan,
+	doi		= {10.1007/978-3-642-33134-3_68},
+	institution	= {ResearchGate}
+}
