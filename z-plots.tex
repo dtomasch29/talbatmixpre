@@ -19,28 +19,33 @@
 }
 \begin{tikzpicture}
   \begin{groupplot}[group style={group size=3 by 2, horizontal sep=40pt, vertical sep=40pt}]
-    \nextgroupplot[title=Arryn,
+    \nextgroupplot[title=i5 2500 - 980Ti,
                    width=.55\textwidth,
                    xlabel={dim(A)},
                    ylabel={Runtime [s]},
 %                   ymin=0,
                    xmode = log,
                    ymode = log,
-		   xtick = {0, 4, 8, 16, 32, 64, 128, 256},
-		   xticklabels={0, $2^{2}$, $2^{3}$, $2^{4}$, $2^{5}$, $2^{6}$, $2^{7}$, $2^{8}$ },
+		   xtick = {3, 7, 15, 31, 63, 127, 255, 511, 1023},
+		   xticklabels={$3$, $7$, $15$, $31$, $63$, $127$, $255$, $511$, $1023$ },
+           xticklabel style={
+            inner sep=0pt,
+            anchor=north east,
+            rotate=45 , 
+            font=\tiny},
                    max space between ticks=25,
                    ymajorgrids,
                    legend columns=4,
-                   legend entries={MixPrec GPU-CPU,MixPrec CPU-CPU, Single GPU, Single CPU},
+                   legend entries={GPU float-double,CPU float-double,GPU double,CPU double},
                    legend to name=fig:legend:z-plots,
                    legend style={column sep=1pt},
 %                   visualization depends on={\thisrow{np} \as \np},
 %                   nodes near coords={\pgfmathparse{int(\np)}\pgfmathresult},
                   ]
-      \addplot[solid,mark=triangle,mark size=2pt,chart1] table[x=n, y=time] {fig/arryn-maxiters5-tol6-memtypecuda-mixprec.data};
-      \addplot[solid,mark=square,mark size=2pt,chart2] table[x=n, y=time] {fig/arryn-maxiters5-tol6-memtypemain-mixprec.data};
-      \addplot[solid,mark=diamond,mark size=2pt,chart3] table[x=n, y=time] {fig/arryn-memtypecuda-singleprec.data};
-      \addplot[solid,mark=otimes,mark size=2pt,chart4] table[x=n, y=time] {fig/arryn-memtypemain-singleprec.data};
+      \addplot[solid,mark=triangle,mark size=2pt,chart1] table[x=n, y=time] {arryn_d/down10-maxiters2-tol5-memtypecuda-mixprec.data};
+      \addplot[solid,mark=square,mark size=2pt,chart2] table[x=n, y=time] {arryn_d/down10-maxiters2-tol5-memtypemain-mixprec.data};
+      \addplot[solid,mark=diamond,mark size=2pt,chart3] table[x=n, y=time] {arryn_d/down10-memtypecuda-singleprec.data};
+      \addplot[solid,mark=otimes,mark size=2pt,chart4] table[x=n, y=time] {arryn_d/down10-memtypemain-singleprec.data};
       
 %      \draw[-latex] (axis cs:0.1,4.9) -- node[pos=0.5,anchor=west] {\footnotesize more cores} (axis cs:0.08,4.1);
       %\addplot[solid,mark=diamond,mark size=3.5pt,chart2,nodes near coords align=right] table[x=Perf, y=E] {fig/benchdata_ivybridge_float.csv};
@@ -51,51 +56,61 @@
 %      \draw [|<->|] (axis cs:0.03,1.8) -- node[pos=0.5,anchor=north] {\footnotesize speed down x5} (axis cs:0.17,1.8);
 %      \draw[latex-latex,dashed] (axis cs:0.04,3.1) -- node[pos=0.5,rotate=30,anchor=west] {\footnotesize $P$ down x8} (axis cs:0.16,2.15);
 
-    \nextgroupplot[title=Arryn,
+    \nextgroupplot[title=i5 2500 - 980Ti,
                    width=.55\textwidth,
                    xlabel={dim(A)},
                    ylabel={H0-Error},
 %                   ymin=0,
                    xmode = log,
                    ymode = log,
-		   xtick = {0, 4, 8, 16, 32, 64, 128, 256},
-		   xticklabels={0, $2^{2}$, $2^{3}$, $2^{4}$, $2^{5}$, $2^{6}$, $2^{7}$, $2^{8}$ },
+		   xtick = {3, 7, 15, 31, 63, 127, 255, 511, 1023},
+		   xticklabels={$3$, $7$, $15$, $31$, $63$, $127$, $255$, $511$, $1023$ },
+           xticklabel style={
+            inner sep=0pt,
+            anchor=north east,
+            rotate=45 , 
+            font=\tiny},
                    max space between ticks=25,
                    ymajorgrids,
 %                   visualization depends on={\thisrow{np} \as \np},
 %                   nodes near coords={\pgfmathparse{int(\np)}\pgfmathresult},
                   ]
-      \addplot[solid,mark=triangle,mark size=2pt,chart1] table[x=n, y=h0err] {fig/arryn-maxiters2-tol6-memtypecuda-mixprec.data};
-      \addplot[solid,mark=square,mark size=2pt,chart2] table[x=n, y=h0err] {fig/arryn-maxiters2-tol6-memtypemain-mixprec.data};
-      \addplot[solid,mark=diamond,mark size=2pt,chart3] table[x=n, y=h0err] {fig/arryn-memtypecuda-singleprec.data};
-      \addplot[solid,mark=otimes,mark size=2pt,chart4] table[x=n, y=h0err] {fig/arryn-memtypemain-singleprec.data};
+      \addplot[solid,mark=triangle,mark size=2pt,chart1] table[x=n, y=h0err] {arryn_d/down10-maxiters2-tol5-memtypecuda-mixprec.data};
+      \addplot[solid,mark=square,mark size=2pt,chart2] table[x=n, y=h0err] {arryn_d/down10-maxiters2-tol5-memtypemain-mixprec.data};
+      \addplot[solid,mark=diamond,mark size=2pt,chart3] table[x=n, y=h0err] {arryn_d/down10-memtypecuda-singleprec.data};
+      \addplot[solid,mark=otimes,mark size=2pt,chart4] table[x=n, y=h0err] {arryn_d/down10-memtypemain-singleprec.data};
 %      \draw[-latex] (axis cs:0.41,3.05) -- node[pos=0.5,anchor=north west] {\footnotesize more cores} (axis cs:0.32,2.6);
 %      \draw [dotted] (axis cs:0.03,3.17) -- (axis cs:0.03,1.8);
 %      \draw [|<->|] (axis cs:0.03,1.8) -- node[pos=0.5,anchor=north] {\footnotesize speed down x5} (axis cs:0.17,1.8);
 %      \draw[latex-latex,dashed] (axis cs:0.04,3.1) -- node[pos=0.5,rotate=30,anchor=west] {\footnotesize $P$ down x8} (axis cs:0.16,2.15);
 
-      \nextgroupplot[title=Arryn,
+      \nextgroupplot[title=i5 2500 - 980Ti,
                    width=.55\textwidth,
                    xlabel={dim(A)},
                    ylabel={H1-Error},
 %                   ymin=0,
                    xmode = log,
                    ymode = log,
-		   xtick = {1, 3, 7, 15, 31, 63, 127, 255},
-		   xticklabels={0, $2^{2}$, $2^{3}$, $2^{4}$, $2^{5}$, $2^{6}$, $2^{7}$, $2^{8}$ },
+		   xtick = {3, 7, 15, 31, 63, 127, 255, 511, 1023},
+		   xticklabels={$3$, $7$, $15$, $31$, $63$, $127$, $255$, $511$, $1023$ },
+           xticklabel style={
+            inner sep=0pt,
+            anchor=north east,
+            rotate=45 , 
+            font=\tiny},
                    max space between ticks=25,
                    ymajorgrids,
                    legend columns=4,
-                   legend entries={MixPrec GPU-CPU,MixPrec CPU-CPU, Single GPU, Single CPU},
+                   legend entries={GPU float-double,CPU float-double,GPU double,CPU double},
                    legend to name=fig:legend:z-plots,
                    legend style={column sep=1pt},
 %                   visualization depends on={\thisrow{np} \as \np},
 %                   nodes near coords={\pgfmathparse{int(\np)}\pgfmathresult},
                   ]
-      \addplot[solid,mark=triangle,mark size=2pt,chart1] table[x=n, y=h1err] {fig/arryn-maxiters2-tol6-memtypecuda-mixprec.data};
-      \addplot[solid,mark=square,mark size=2pt,chart2] table[x=n, y=h1err] {fig/arryn-maxiters2-tol6-memtypemain-mixprec.data};
-      \addplot[solid,mark=diamond,mark size=2pt,chart3] table[x=n, y=h1err] {fig/arryn-memtypecuda-singleprec.data};
-      \addplot[solid,mark=otimes,mark size=2pt,chart4] table[x=n, y=h1err] {fig/arryn-memtypemain-singleprec.data};
+      \addplot[solid,mark=triangle,mark size=2pt,chart1] table[x=n, y=h1err] {arryn_d/down10-maxiters2-tol5-memtypecuda-mixprec.data};
+      \addplot[solid,mark=square,mark size=2pt,chart2] table[x=n, y=h1err] {arryn_d/down10-maxiters2-tol5-memtypemain-mixprec.data};
+      \addplot[solid,mark=diamond,mark size=2pt,chart3] table[x=n, y=h1err] {arryn_d/down10-memtypecuda-singleprec.data};
+      \addplot[solid,mark=otimes,mark size=2pt,chart4] table[x=n, y=h1err] {arryn_d/down10-memtypemain-singleprec.data};
 %      \draw[-latex] (axis cs:0.1,4.9) -- node[pos=0.5,anchor=west] {\footnotesize more cores} (axis cs:0.08,4.1);
       %\addplot[solid,mark=diamond,mark size=3.5pt,chart2,nodes near coords align=right] table[x=Perf, y=E] {fig/benchdata_ivybridge_float.csv};
      % \addplot[solid,mark=square,mark size=3.5pt,chart3,nodes near coords align=right] table[x=Perf, y=E] {fig/benchdata_armcortexa15_float.csv};
@@ -112,17 +127,22 @@
 %                   ymin=0,
                    xmode = log,
                    ymode = log,
-		   xtick = {0, 4, 8, 16, 32, 64, 128, 256},
-		   xticklabels={0, $2^{2}$, $2^{3}$, $2^{4}$, $2^{5}$, $2^{6}$, $2^{7}$, $2^{8}$ },
+		   xtick = {3, 7, 15, 31, 63, 127, 255, 511, 1023},
+		   xticklabels={$3$, $7$, $15$, $31$, $63$, $127$, $255$, $511$, $1023$ },
+           xticklabel style={
+            inner sep=0pt,
+            anchor=north east,
+            rotate=45 , 
+            font=\tiny},
                    max space between ticks=25,
                    ymajorgrids,
 %                   visualization depends on={\thisrow{np} \as \np},
 %                   nodes near coords={\pgfmathparse{int(\np)}\pgfmathresult},
                   ]
-      \addplot[solid,mark=triangle,mark size=2pt,chart1] table[x=n, y=time] {fig/arryn-maxiters2-tol6-memtypecuda-mixprec.data};
-      \addplot[solid,mark=square,mark size=2pt,chart2] table[x=n, y=time] {fig/arryn-maxiters2-tol6-memtypemain-mixprec.data};
-      \addplot[solid,mark=diamond,mark size=2pt,chart3] table[x=n, y=time] {fig/arryn-memtypecuda-singleprec.data};
-      \addplot[solid,mark=otimes,mark size=2pt,chart4] table[x=n, y=time] {fig/arryn-memtypemain-singleprec.data};
+      \addplot[solid,mark=triangle,mark size=2pt,chart1] table[x=n, y=time] {jetson_d/down10-maxiters2-tol5-memtypecuda-mixprec.data};
+      \addplot[solid,mark=square,mark size=2pt,chart2] table[x=n, y=time] {jetson_d/down10-maxiters2-tol5-memtypemain-mixprec.data};
+      \addplot[solid,mark=diamond,mark size=2pt,chart3] table[x=n, y=time] {jetson_d/down10-memtypecuda-singleprec.data};
+      \addplot[solid,mark=otimes,mark size=2pt,chart4] table[x=n, y=time] {jetson_d/down10-memtypemain-singleprec.data};
       
 %      \draw[-latex] (axis cs:0.41,3.05) -- node[pos=0.5,anchor=north west] {\footnotesize more cores} (axis cs:0.32,2.6);
 %      \draw [dotted] (axis cs:0.03,3.17) -- (axis cs:0.03,1.8);
@@ -136,17 +156,22 @@
 %                   ymin=0,
                    xmode = log,
                    ymode = log,
-		   xtick = {0, 4, 8, 16, 32, 64, 128, 256},
-		   xticklabels={0, $2^{2}$, $2^{3}$, $2^{4}$, $2^{5}$, $2^{6}$, $2^{7}$, $2^{8}$ },
+		   xtick = {3, 7, 15, 31, 63, 127, 255, 511, 1023},
+		   xticklabels={$3$, $7$, $15$, $31$, $63$, $127$, $255$, $511$, $1023$ },
+           xticklabel style={
+            inner sep=0pt,
+            anchor=north east,
+            rotate=45 , 
+            font=\tiny},
                    max space between ticks=25,
                    ymajorgrids,
 %                   visualization depends on={\thisrow{np} \as \np},
 %                   nodes near coords={\pgfmathparse{int(\np)}\pgfmathresult},
                   ]
-      \addplot[solid,mark=triangle,mark size=2pt,chart1] table[x=n, y=h0err] {fig/Jetson_mix_cuda.data};
-      \addplot[solid,mark=square,mark size=2pt,chart2] table[x=n, y=h0err] {fig/Jetson_mix_main.data};
-      \addplot[solid,mark=diamond,mark size=2pt,chart3] table[x=n, y=h0err] {fig/Jetson_single_cuda.data};
-      \addplot[solid,mark=otimes,mark size=2pt,chart4] table[x=n, y=h0err] {fig/Jetson_single_main.data};
+      \addplot[solid,mark=triangle,mark size=2pt,chart1] table[x=n, y=h0err] {jetson_d/down10-maxiters2-tol5-memtypecuda-mixprec.data};
+      \addplot[solid,mark=square,mark size=2pt,chart2] table[x=n, y=h0err] {jetson_d/down10-maxiters2-tol5-memtypemain-mixprec.data};
+      \addplot[solid,mark=diamond,mark size=2pt,chart3] table[x=n, y=h0err] {jetson_d/down10-memtypecuda-singleprec.data};
+      \addplot[solid,mark=otimes,mark size=2pt,chart4] table[x=n, y=h0err] {jetson_d/down10-memtypemain-singleprec.data};
 %      \draw[-latex] (axis cs:0.41,3.05) -- node[pos=0.5,anchor=north west] {\footnotesize more cores} (axis cs:0.32,2.6);
 %      \draw [dotted] (axis cs:0.03,3.17) -- (axis cs:0.03,1.8);
 %      \draw [|<->|] (axis cs:0.03,1.8) -- node[pos=0.5,anchor=north] {\footnotesize speed down x5} (axis cs:0.17,1.8);
@@ -159,17 +184,22 @@
 %                   ymin=0,
                    xmode = log,
                    ymode = log,
-		   xtick = {0, 4, 8, 16, 32, 64, 128, 256},
-		   xticklabels={0, $2^{2}$, $2^{3}$, $2^{4}$, $2^{5}$, $2^{6}$, $2^{7}$, $2^{8}$ },
+		   xtick = {3, 7, 15, 31, 63, 127, 255, 511, 1023},
+		   xticklabels={$3$, $7$, $15$, $31$, $63$, $127$, $255$, $511$, $1023$ },
+           xticklabel style={
+            inner sep=0pt,
+            anchor=north east,
+            rotate=45 , 
+            font=\tiny},
                    max space between ticks=25,
                    ymajorgrids,
 %                   visualization depends on={\thisrow{np} \as \np},
 %                   nodes near coords={\pgfmathparse{int(\np)}\pgfmathresult},
                   ]
-      \addplot[solid,mark=triangle,mark size=2pt,chart1] table[x=n, y=h1err] {fig/Jetson_mix_cuda.data};
-      \addplot[solid,mark=square,mark size=2pt,chart2] table[x=n, y=h1err] {fig/Jetson_mix_main.data};
-      \addplot[solid,mark=diamond,mark size=2pt,chart3] table[x=n, y=h1err] {fig/Jetson_single_cuda.data};
-      \addplot[solid,mark=otimes,mark size=2pt,chart4] table[x=n, y=h1err] {fig/Jetson_single_main.data};
+      \addplot[solid,mark=triangle,mark size=2pt,chart1] table[x=n, y=h1err] {jetson_d/down10-maxiters2-tol5-memtypecuda-mixprec.data};
+      \addplot[solid,mark=square,mark size=2pt,chart2] table[x=n, y=h1err] {jetson_d/down10-maxiters2-tol5-memtypemain-mixprec.data};
+      \addplot[solid,mark=diamond,mark size=2pt,chart3] table[x=n, y=h1err] {jetson_d/down10-memtypecuda-singleprec.data};
+      \addplot[solid,mark=otimes,mark size=2pt,chart4] table[x=n, y=h1err] {jetson_d/down10-memtypemain-singleprec.data};
 %      \draw[-latex] (axis cs:0.41,3.05) -- node[pos=0.5,anchor=north west] {\footnotesize more cores} (axis cs:0.32,2.6);
 %      \draw [dotted] (axis cs:0.03,3.17) -- (axis cs:0.03,1.8);
 %      \draw [|<->|] (axis cs:0.03,1.8) -- node[pos=0.5,anchor=north] {\footnotesize speed down x5} (axis cs:0.17,1.8);

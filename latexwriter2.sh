@@ -8,7 +8,7 @@ declare -a memtypeArray=("main" "cuda");
 declare -a compArray=("time" "h0err" "h1err");
 declare -a simulationFldrs=("arryn_data" "jetson_data");
 declare -a dataFldrs=("arryn_d" "jetson_d");
-declare -a computers=("arryn" "jetson");## now loop through the above array
+declare -a computers=("i5 2500 - 980Ti" "Jetson TK1");## now loop through the above array
 
 mkdir -p arryn_d
 mkdir -p jetson_d
@@ -165,11 +165,12 @@ do
             
         done
         echo "\end{groupplot}" >>  $fldr/$ltxfile
-        echo LATEX/com3.txt >> $fldr/$ltxfile
+        echo "  \node at ($(group c1r2) + (.52\textwidth,-4cm)$) {\ref{fig:legend:z-plots}};" >> $fldr/$ltxfile
+        #echo LATEX/com3.txt >> $fldr/$ltxfile
         echo "\end{tikzpicture}" >>$fldr/$ltxfile
         echo "\end{document}" >> $fldr/$ltxfile
         pdflatex $fldr/$ltxfile --shell-escape > /dev/null
-        convert -density 300 -quality 100 $name.pdf plot-down$down-tol$tol-miter$miter.jpg
+        convert -density 600 -quality 100 $name.pdf plot-down$down-tol$tol-miter$miter.jpg
     done
 done
 done

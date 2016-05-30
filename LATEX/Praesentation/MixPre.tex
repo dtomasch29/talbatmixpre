@@ -71,10 +71,11 @@
 %%% titlepage information
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{Mixed Precision}
+\title{Exploring  the  limits  of  mixed  precision  FEM  based  computations  on  the  Tegra-K1
+micro-architecture}
 \author{Christoph H\"oppke, Daniel Tomaschewski}
 \institute[TU Dortmund]{TU Dortmund}
-\date{Version:\today}
+\date{Date: 2016/06/01}
 
 
 
@@ -101,14 +102,39 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Mixedprecision Definition and history overview}
+\section{Mixed precision definition and history overview}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{History overview}
+\begin{frame}{A brief history overview}
+\onslide<2->
+\textbf{Trends:}\\
+\begin{itemize}
+  \item Memory clock speeds are increasing\\
+  \begin{itemize}
+    \item GTX 980 Ti Memory clock speed: 2x 1753 MHz
+    \item GTX 1080 Memory clock speeds: 4x 2500 MHz (\color{red} +185\%\color{black})
+  \end{itemize}
+  \item Alternative computing architectures\\
+  \begin{itemize}
+    \item APU's
+    \item SoC's such as the NVIDIA Tegra K1 micro-architecture
+  \end{itemize}
+  \item NVIDIA pushing the use of half precision. 
+  \begin{itemize}
+   \item half and half2 were announced as important new features in the CUDA Toolkit version 7.5 \cite{nvidiahalf}
+  \end{itemize}
+\end{itemize}
+\onslide<3->
+\textbf{$\rightarrow$ Sharing memory between CPU and GPU is becoming easier and more common}
+\end{frame}
+
 \subsection{Definition}
 \begin{frame}{Definition}
 \onslide<1->
-\begin{block}{\textbf{Definition:}}
-An Algorithm that 
+\begin{block}{\textbf{Definition: Mixed precision algorithm}}
+An algorithm that 
 uses different precisions in its computation
 \end{block}
 
@@ -123,14 +149,14 @@ high precision
 by utilizing low precision computations
 \end{itemize}
 \onslide<3->
-\textbf{Performance Gains for bandwidth bound algorithms}~\\
+\textbf{Performance gains for bandwidth bound algorithms}~\\
  \begin{itemize}
   \item 64 bit = 1 double = 2 floats = 4 halfs
   \item More variables per \textbf{bandwidth} and variables per \textbf{storage}
-  \item Applies to all memory levels: network, disc, main, device, local, register 
+  \item Applies to all memory levels: network, disc, cache, main, device, local, register 
  \end{itemize}
 \onslide<4->
-\textbf{Performance Gains for compuation bound algorithms}~\\
+\textbf{Performance gains for compuation bound algorithms}~\\
  \begin{itemize}
   \item 1 double addition $\approx$ 2 float additions $\approx$ 4 half additions (linear)
   \item 1 double multip. $\approx$ 4 float multip. $\approx$ 16 half multip. (quadratic)
@@ -139,49 +165,35 @@ by utilizing low precision computations
 
 \end{frame}
 
-\subsection{Histroy overview}
-\begin{frame}{A brief history overview}
-\textbf{Challenges when it comes to Mixedprecision}
+
+\begin{frame}{Challenges and past achievements}
+ \textbf{Challenges when it comes to Mixed precision}
 \begin{itemize}
  \item Data has to be converted
- \item When using GPU accelleration Data has to be transferred from the Host to the device (usually) over the relativly slow PCIe bus
- \item We are being bottelnecked be memoryinterfaces\\
+ \item When using GPU accelleration data has to be transferred from the host to the device (usually) over the relatively slow PCIe bus
+ \item We are being bottlenecked be memory interfaces\\
  $\rightarrow$ a lot of time is wasted while waiting for data
 \end{itemize}
-
+~\\
 \onslide<2->
-\textbf{Trends:}\\
-\begin{itemize}
-  \item Memoryclock speeds are increasing\\
-  \begin{itemize}
-    \item GTX 980 Ti Memoryclock speed: 2x 1753 MHz
-    \item GTX 1080 Memoryclock speeds: 4x 2500 MHz (\color{red} +185\%\color{black})
-  \end{itemize}
-  \item Alternative computing arcetectures\\
-  \begin{itemize}
-    \item APU's
-    \item SOC's such as the NVIDIA Tegra K1 Chip
-  \end{itemize}
-  \item NVIDIA pushing the use of half precision. 
-  \begin{itemize}
-   \item half and half2 were announced as important new features in the CUDA Toolkit version 7.5
-  \end{itemize}
-\end{itemize}
-\onslide<3->
-\textbf{$\rightarrow$ Sharing memory between CPU and GPU is becoming easyer and more common}
+  \textbf{Past achievements:}~\\
+\begin{center}
+  %\includegraphics[width=0.9\textwidth]{../SourcesCites/past.jpg}
+  %\cite{WaterWaveComp}
+  In the year 2013. M. Madesen, S. L. Glimberg and A. P. Engsig-Karup were able to
+  achieve a \color{red}38\% performance increase \color{black} using GPU accelerated mixed precision 
+  algorithms for full nonlinear water wave computation.\cite{waterwavecomp}
+\end{center}
 \end{frame}
 
-\begin{frame}{A brief history overview}
- \textbf{Past achievements:}~\\
-\begin{center}
-  \includegraphics[width=0.9\textwidth]{../SourcesCites/past.jpg}
-  \cite{WaterWaveComp}
-\end{center}
-\begin{itemize}
- \item[] \textbf{$\rightarrow$ Logscale} makes the performance benefits look smaller than they actually are\\
- \item[] \textbf{$\rightarrow$} \color{red} 38\% performance increase\color{black}
-\end{itemize}
-\end{frame}
+
+%\begin{frame}{A brief history overview}
+% 
+%\begin{itemize}
+% \item[] \textbf{$\rightarrow$ Logscale} makes the performance benefits look smaller than they actually are\\
+% \item[] \textbf{$\rightarrow$} \color{red} 38\% performance increase\color{black}
+%\end{itemize}
+%\end{frame}
 
 
 %\subsection{Performance Gains}
@@ -210,8 +222,8 @@ by utilizing low precision computations
 \begin{frame}{Roundoff and Cancellation}
 \onslide<1->
 \begin{block}{Definition Machine Precision}
-The smalles positive number $\epsilon$ for wich a floating point 
-calculations evaluates the expression $1 + \epsilon > 1$ to be true.
+The smallest positive number $\epsilon$ for wich a floating point 
+calculation evaluates the expression $1 + \epsilon > 1$ to be true.
 \end{block}
 \onslide<2->
 \textbf{Examples:}
@@ -222,19 +234,19 @@ calculations evaluates the expression $1 + \epsilon > 1$ to be true.
 \item So \color{red}more precision\color{black}~is usually \color{red}better
 \end{itemize}
 \onslide<3->
-\textbf{Cancellation}
+\textbf{Examples for cancellation effects in float}
 \begin{align*}
 &\text{additive roundoff } & a=1+0.00000004 &= 1.00000004 &=_{fl} 1\\
 &\text{multiplicative roundoff } & b = 1.0002 \cdot 0.9998 &=0.99999996 &=_{fl} 1\\
 &\text{cancellation}  &c\in \lbrace a,b\rbrace 
 \hspace{1cm}\pm 4 &= (c-1)\cdot 10^8 &=_{fl} 0 \\
-&\text{oder~of~operations}  & 1+0.00000004 -1 &=_{fl} 0\\
+&\text{order~of~operations}  & 1+0.00000004 -1 &=_{fl} 0\\
 & &1-1 + 0.00000004 &=_{fl} 0.0000004
 \end{align*}
 \end{frame}
 
-\subsection{Computational Precision vs Accuracy of Result}
-\begin{frame}{Computational Precision vs Accuracy of Result}
+\subsection{Computational precision vs accuracy of result}
+\begin{frame}{Computational precision vs accuracy of result}
 \onslide<1->
 \begin{block}{Instructive Example [S.M. Rump, 1988]}
 $f(x,y) = (333.75 - x^2)y^6 + x^2(11x^2y^2 - 121y^4-2) + 5.5y^8 + 0.5x/y$\\
@@ -275,8 +287,8 @@ $x_0 = 77617, y_0 = 33096$
 %\end{frame}
 
 
-\subsection{Floting Point Operations. A deeper analysis}
-\begin{frame}{Floating Point Operations. A deeper analysis}
+\subsection{Floting point operations. A deeper analysis}
+\begin{frame}{Floting point operations. A deeper analysis}
 \textbf{Number representation}\textbf{$\rightarrow$ almost all numbers have to be truncated}~\\
 \begin{table}[H]
  \centering
@@ -291,8 +303,8 @@ $x_0 = 77617, y_0 = 33096$
 \begin{table}[H]
  \centering
       \begin{tabular}{l||l|l}
-	\textbf{Multiplication} & & \\\hline\hline
-	Precision & Exactformat & Mantissa truncation: \\\hline\hline
+	\textbf{multiplication} & & \\\hline\hline
+	precision & exact format & mantissa truncation: \\\hline\hline
 	half(a) $\cdot$ half(b)& s20e6& from 20 to 10 bit \\\hline
 	float(a) $\cdot$ float(b)& s46e9& from 46 to 23 bit \\\hline
 	double(a) $\cdot$ double(b)& s104e12& from 104 to 52 bit 
@@ -300,78 +312,47 @@ $x_0 = 77617, y_0 = 33096$
       \end{tabular}
     \hfill
   \begin{tabular}{l||l|l}
-	\textbf{Addition} & & \\\hline\hline
-	Precision & Exactformat & Mantissa truncation: \\\hline\hline
-	half(a) $\cdot$ half(b)& s41e5& from 41 to 10 bit \\\hline
-	float(a) $\cdot$ float(b)& s278e8& from 278 to 23 bit \\\hline
-	double(a) $\cdot$ double(b)& s2099e11& from 2099 to 52 bit 
+	\textbf{addition} & & \\\hline\hline
+	precision & exact format & mantissa truncation: \\\hline\hline
+	half(a) + half(b)& s41e5& from 41 to 10 bit \\\hline
+	float(a) + float(b)& s278e8& from 278 to 23 bit \\\hline
+	double(a) + double(b)& s2099e11& from 2099 to 52 bit 
       %\label{tab:L2-Fehler bei einfachen Dimension-Splitting}
     \end{tabular}
 \end{table}
 
 \end{frame}
-%\begin{itemize}
-%\item Multiplication $float(a) \cdot float(b)$
-%	\begin{itemize}
-%	\item Operations: $s_a \cdot s_b$,$m_a \cdot m_b$,$e_a \cdot e_b$
-%	\item Excat format: s46e9 = s23e8 $\cdot$s23e8
-%	\item Main error: Mantissa truncated from 46 bit to 23 bit
-%	\end{itemize}
-%\item Addition $float(a) + float(b)$
-%	\begin{itemize}
-%	\item Operations: $e_{diff} = e_a - e_b$, $m_a + (m_b >> e_{diff})$, 
-%			normalize
-%	\item Exact format: s278e8 = s23e8+s23e8
-%	\item Main error: Maintissa truncated from 278 bit to 23 bit
-%	\end{itemize}
-%\end{itemize}
 
-%\section{History of Mixed Precision in the context of GPGPU calculations}
-%\subsection{History of GPGPU}
-%\begin{frame}{History of GPGPU}
-%
-%	\textbf{1999: NVIDIA GeForce 256}\\
-%	\begin{itemize}
-%	\item Term GPU was coined during the launch
-%	\item GPGPU calculations were only achievable by "Hacking the GPU" 
-%			(verry cumbersome and error-prone)
-%	\end{itemize}
-%~\\~\\
-%\textbf{2003-2007 First wave of GPU computing}
-%\begin{itemize}
-%\item Floating point support
-%\item Performance improvements
-%\item Geforce 8800GT Release (29.October 2007)\\
-%	first CUDA enabled Consumer GPU
-%\item Double precision was not available on the GPU
-%\item Mixed Precision was the ONLY way to utilize GPU horesepower
-%	without precision compromises
-%\item Mixed Precision lead to a speedup of factor 3-5 in FEM applications %[http://www.mathematik.tu-dortmund.de/~goeddeke/pubs/pdf/Strzodka_2006_MPM.pdf]
-%\end{itemize}
-%\end{frame}
 
-%\subsection{Why Mixed Precision is difficult}
-%\begin{frame}{Why Mixed Precision is difficult}
-%\begin{itemize}
-%\item Data has to be transferred to the GPU over the relativly \color{red} slow PCIe \color{black} interface
-%\item A lot of time is wasted while waiting for data
-%\end{itemize}
-%\end{frame}
+\section{Example calculation}
+\subsection{Algorithm}
+\begin{frame}{Algorithm}{mixed precision iterative refinement}
+ \begin{algorithm}[H]
+  \begin{algorithmic}[1]
+    \WHILE{$\Vert r_{m-1} \Vert \cdot \Vert r_0 \Vert ^{-1} > TOL$}
+    \STATE{$ r_{m}^h = b - Ax_m$} 
+    \STATE{$ r_{m}^l = r_{m}^h$ \textit{\hspace{1cm}//convert from high to low precision}}
+    \STATE{$ Ad_{m}^l = r_{m}^l$ \textit{\hspace{1cm}//solve using a fixed number of iterations}}
+    \STATE{$ d_m^h = d_m^l$ \textit{\hspace{1cm}//convert from low to high precision}}
+    \STATE{$x_{m+1} = x_m + d_m$}
+    \ENDWHILE
+  \end{algorithmic}
+\caption{mixed precision iterative refinement}
+\label{alg:seq}
+\end{algorithm}
+\begin{itemize}
+ \item Mixed precision iterative refinement deals with the truncation errors of lower precision data formats
+ \item The optimal number of inner iterations was empirically determined
 
-%\subsection{Unconventional computation Hardware}
-%\begin{frame}{Unconventional compuation Hardware}
-%\textbf{NVIDIA Jetson TK1 Bord}
-%\begin{itemize}
-%\item CPU and GPU share the same memory and use the same memory interface
-%\item Copying data from CPU to GPU and vice versa is much faster
-%\end{itemize}
-%\end{frame}
+\end{itemize}
 
-\section{Example Calculation}
+\end{frame}
+
+
 \subsection{Problem definition}
-\begin{frame}{Example Calculation}
+\begin{frame}{Problem definition and Hardware configuration}
 \begin{block}{Problem}
-Solve the Poission problem $- \Delta u = 1,~x\in\Omega$ with dirichlet boundry conditions $u \equiv 0,~x\in \partial \Omega$ using conforming quadrilateral 
+Solve the Poission problem $- \Delta u = 1,~x\in\Omega$ with dirichlet boundary conditions $u \equiv 0,~x\in \partial \Omega$ using conforming quadrilateral 
 elements for the finite-element discretization of the unit square $\Omega = 
 (-1,1)^2$
 \end{block}
@@ -381,40 +362,67 @@ elements for the finite-element discretization of the unit square $\Omega =
 \item Method 2 : Using a V-cycle MG Solver inside of an iterative refinement loop
 \end{itemize}
 
-\begin{algorithm}[H]
-  \begin{algorithmic}[1]
-    \WHILE{$\Vert r_{m-1} \Vert \cdot \Vert r_0 \Vert ^{-1} > TOL$}
-    \STATE{$ r_{m} = b - Ax_m$}
-    \STATE{$ Ad_{m} = r_{m}$ \textit{solve~in~high~precision}}
-    \STATE{$x_{m+1} = x_m + d_m$}
-    \ENDWHILE
-  \end{algorithmic}
-\caption{Iterative refinement }
-\label{alg:seq}
-\end{algorithm}
+\begin{itemize}
+ \item Hardware configuration 1: i5 2500 + 980Ti \\$\rightarrow$representing a high preformance convetional setup
+ \item Hardware configuration 2: Tegra K1 \\$\rightarrow$ representing alternative computing hardware
+\end{itemize}
+
+
+
 \end{frame}
 
 \subsection{Testresults}
-\begin{frame}{Testresults}
-\begin{center}
-\includegraphics[width=\textwidth]{../../plot-tol5-miter10.pdf}
-\end{center}
+\begin{frame}{Testresults - Accuracy}
+ \begin{center}
+  \includegraphics[width=0.6\textwidth]{figures/z-plots2.pdf}
+ \end{center}
 
 \begin{itemize}
- \item \textbf{\color{red} 58\% up to 151\%} increase in performance on a 980 Ti GPU
- \item \textbf{\color{red} 77\% up to 111\%} increase in performance on a Tegra K1 SOC
+ \item (virtually) same accuracy as double calculation
+ \item H0-Error is $O(m^2)$, H1-Error is $O(m^1)$. [$V_h = Q_1$]
 \end{itemize}
 \end{frame}
+
+\begin{frame}{Testresults - Performance on comodity Hardware}
+  \includegraphics[width=\textwidth]{figures/z-plots3.pdf} %CPU Arryn | GPU Arryn
+  \begin{itemize}
+ \item \textbf{\color{red} up to 57\%} increase in performance on x86
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Testresults - Performance on the Tegra K1}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/z-plots3.pdf} %Jetson CPU | Jetson GPU
+\end{center}
+\begin{itemize}
+ \item \textbf{\color{red} up to 65\%} increase in performance on a Jetson TK1
+ \item \textbf{ $\rightarrow$ Speedup of about \color{red} 1.6}
+ \item \color{black} $\rightarrow$ performance model show that a speedup of 2 is optimal 
+ \item \color{black} $\rightarrow$ for longer calculations a speedup of 1.6 can save multiple days
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Testresults - Half}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/z-plots4.pdf}
+\end{center}
+\begin{itemize}
+ \item Accuracy loss. Inner solver diverges at more than $63^2$ DOF's.
+\end{itemize}
+\end{frame}
+
 
 \begin{frame}{Discussion and Future work}
  \textbf{Future work}
  \begin{itemize}
-  \item Try using half precision in order to achieve an even greater performance increase
+  \item Try combining half, float and double precision in order to achieve an even greater performance increase
+  %\item Use half precision on GPU
  \end{itemize}
  
  \vfill
  \begin{center}
-  Thank you for your attention
+  Thank you for your attention!
  \end{center}
 
 \end{frame}

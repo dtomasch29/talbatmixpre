@@ -1,6 +1,12 @@
 \begin{thebibliography}{1}
 
-\bibitem{WaterWaveComp}
+\bibitem{nvidiahalf}
+New features in cuda 7.5.
+\newblock
+  \url{https://devblogs.nvidia.com/parallelforall/new-features-cuda-7-5/}.
+\newblock Accessed: 2016-05-27.
+
+\bibitem{waterwavecomp}
 Madsen~M. Glimberg S.~L., Engsig-Karup A.~P.
 \newblock A fast gpu-accelecrated mixed-precision strategy for full nonlinear
   water wave computation.
